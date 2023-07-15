@@ -1,0 +1,131 @@
+<%- include('./partials/header.ejs') %>
+
+		<!-- Hero section -->
+		<div
+			class="h-[35vh]"
+			style="background: url('./img/contact-us-hero-bg.png')"
+		>
+			<div
+				class="container flex flex-col items-center justify-center h-full mx-auto text-white gap-y-5"
+			>
+				<h2 class="text-5xl font-bold">Contact Us</h2>
+				<div class="text-sm breadcrumbs">
+					<ul>
+						<li><a href="./index.html">Home</a></li>
+						<li class="font-medium">Contact Us</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- form section -->
+		<div
+			class="lg:h-[150vh]"
+			style="
+				background: linear-gradient(
+					to bottom,
+					rgba(101, 161, 132, 0.1) 50%,
+					#fff 50%
+				);
+			"
+		>
+			<div
+				class="container flex flex-col items-center justify-center h-full gap-y-10"
+			>
+				<div
+					class="grid p-5 py-10 rounded-lg lg:shadow-xl lg:p-20 gap-y-10 lg:w-3/4 lg:grid-cols-2 gap-x-10 bg-base-100"
+				>
+					<div class="flex flex-col gap-y-10">
+						<h3 class="text-5xl font-bold text-secondary">
+							Let us know about your next project
+						</h3>
+						<p>
+							Our friendly help team can be reached Monday through
+							Friday, from 7am to 5pm, Pacific Time. Just click
+							the button below to contact us.
+						</p>
+						<div class="flex flex-col gap-y-3">
+							<p
+								class="flex items-center font-semibold text-primary gap-x-2"
+							>
+								<i class="bi bi-geo-alt text-accent"></i>Office
+								location
+							</p>
+							<p>
+								Kolaron, Boalmari, Faridpur, Dhaka, Bangladesh
+							</p>
+						</div>
+
+						<div class="flex flex-col gap-y-3">
+							<p
+								class="flex items-center font-semibold text-primary gap-x-2"
+							>
+								<i class="bi bi-telephone text-accent"></i>Phone
+								number
+							</p>
+							<div class="flex flex-col font-bold text-accent">
+								<p>01750613481</p>
+								<p>01750613481</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="flex flex-col gap-y-10">
+						<h3 class="text-5xl font-bold text-secondary">
+							Get In Touch
+						</h3>
+						<div class="flex flex-col w-full gap-y-5">
+							<input
+								class="input input-lg input-bordered"
+								type="text"
+								placeholder="Name"
+							/>
+							<input
+								class="input input-lg input-bordered"
+								type="phone"
+								placeholder="Phone"
+							/>
+
+							<input
+								class="input input-lg input-bordered"
+								type="email"
+								placeholder="Email address"
+							/>
+							<select
+								class="font-normal select select-lg select-bordered"
+							>
+								<option>Financial consulting</option>
+								<option>Financial consulting</option>
+								<option>Financial consulting</option>
+								<option>Financial consulting</option>
+							</select>
+
+							<textarea
+								class="textarea textarea-lg textarea-bordered"
+								placeholder="Your message"
+							></textarea>
+
+							<button
+								class="lg:self-center self-start border-0 px-16 text-white normal-case btn btn-lg bg-gradient-to-r from-[#1B8900] to-[#65A184]"
+							>
+								Submit
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="container grid items-center w-full grid-cols-2 px-5 py-10 mx-auto gap-x-10 gap-y-10 lg:gap-x-0 xl:gap-y-0 lg:px-0 lg:grid-cols-6"
+				>
+					<img src="./img/freedombird.png" alt="" />
+					<img src="./img/ident.png" alt="" />
+					<img src="./img/natural.png" alt="" />
+					<img src="./img/simpleaf.png" alt="" />
+					<img src="./img/globe.png" alt="" />
+					<img src="./img/fossilgroup.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<!-- footer section -->
+        <%- include('./partials/footer.ejs') %>

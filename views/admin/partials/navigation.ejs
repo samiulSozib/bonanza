@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonaza Dashboard - <%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/output.dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</head>
+<body class="font-sans">
+  <section class=" max-w-[1920px] ml-auto mr-auto">
+
+    <!-- Navigation Menu -->
+    <div class="relative">
+        
+      <nav class="bg-white fixed min-[2000px]:absolute top-0 flex flex-row xl:flex-col justify-between xl:h-full custom-container shadow-sm xl:shadow-none w-full xl:w-fit z-10">
+          
+          <div class="">
+
+              <a href="index.html" class="h-12 w-12"><img class="h-20 xl:h-24 2xl:h-28" src="img/Logo.png" alt=""></a>
+
+              <a class="xl:bg-gray-100 p-5 flex items-center mx-auto rounded-md gap-3 pl-5 absolute xl:static top-1 right-20 md:right-36" href="/dashboard/profile">
+                <img src="/img/admin.png" alt="" class="h-8 w-8 xl:h-12 xl:w-12 rounded-[50%]">
+                <div class="hidden xl:block">
+                  <p class="text-primaryColor font-semibold">Sarah Brown</p>
+                  <p>Admin</p>
+                </div>
+              </a>
+
+              <div class="bg-white xl:bg-transparent hidden xl:grid absolute xl:static top-12 right-0 z-10 rounded-sm py-5 xl:py-0 2xl:py-5 max-h-[800px] xl:max-h-[280px] 2xl:max-h-[700px] overflow-y-auto scroll-h min-w-[195px] scroll-smooth shadow-md xl:shadow-none mt-5" id="toggle-menu">
+
+                  <a class="accordion-button menu-list menu-list-active" href="/dashboard">
+                      <span>Dashboard</span>
+                  </a>
+
+                  <button class="accordion-button menu-list mt-3">
+                      <span>Product</span>
+                      <i class="ml-auto fa-solid fa-chevron-down"></i>
+                  </button>
+
+                    <ul class="menu-collapse hidden">
+                      <li><a href="/dashboard/productList">Products</a></li>
+                      <li><a href="/dashboard/productCategory">Categories</a></li>
+                    </ul>
+
+                  <a class="accordion-button menu-list mt-3" href="/dashboard/team">
+                      <span>Team</span>
+                  </a>
+
+                  <a class="accordion-button menu-list mt-3" href="/dashboard/testimonial">
+                    <span>Testimonial</span>
+                  </a>
+
+                  <button class="accordion-button menu-list mt-3">
+                    <span>General Info</span>
+                    <i class="ml-auto fa-solid fa-chevron-down"></i>
+                  </button>
+
+                  <ul class="menu-collapse hidden">
+                    <li><a href="/dashboard/addCountry">Country</a></li>
+                    <li><a href="/dashboard/homeBanner">Homepage Banner</a></li>
+                    <li><a href="/dashboard/footerInformation">Footer Info</a></li>
+                  </ul>
+                   
+
+                    
+
+
+              </div>
+
+          </div>
+
+          <!-- Logout Menu Section -->
+          <div class="flex items-center px-0 xl:px-4 xl:py-3 xl:mt-10">
+              <a class="text-secondaryColor hover:text-red-500 hover:bg-transparent flex gap-3 items-center font-medium text-sm px-5 py-3 rounded-l-full" href="#">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.75 9V5.25C15.75 4.65326 15.5129 4.08097 15.091 3.65901C14.669 3.23705 14.0967 3 13.5 3H7.5C6.90326 3 6.33097 3.23705 5.90901 3.65901C5.48705 4.08097 5.25 4.65326 5.25 5.25V18.75C5.25 19.3467 5.48705 19.919 5.90901 20.341C6.33097 20.7629 6.90326 21 7.5 21H13.5C14.0967 21 14.669 20.7629 15.091 20.341C15.5129 19.919 15.75 19.3467 15.75 18.75V15M18.75 15L21.75 12M21.75 12L18.75 9M21.75 12H9" stroke="#15562B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      
+                      
+                  <span class="hidden md:block">Log Out</span>
+              </a>
+              
+              <button class="block xl:hidden" id="toggle-button">
+                  <svg class="-mr-[1px]" height="24px" width="24px" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                    </svg>
+              </button>    
+              </a>
+
+          </div>
+              
+       
+
+      </nav>
+      
+  </div>

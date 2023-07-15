@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+	font-family: 'Poppins', sans-serif;
+}
+
+.navlink-active {
+	@apply text-[#1B8900];
+}
+
+.mv-card {
+	& .mv-card-header {
+		transition-duration: 150ms;
+	}
+	&:hover {
+		& .bottom-border {
+			& span {
+				width: 100%;
+			}
+		}
+
+		& .read-more {
+			@apply font-bold text-secondary;
+		}
+
+		& .mv-card-header {
+			@apply text-secondary;
+		}
+	}
+}
+
+.product {
+	.details {
+		@apply rounded-lg;
+	}
+	&:hover {
+		& > .amount {
+			@apply text-white bg-accent;
+		}
+
+		& > .details {
+			@apply text-white bg-gradient-to-r from-[#1B8900] to-[#65A184];
+		}
+	}
+}
+
+.client {
+	@apply border-primary;
+	&:hover {
+		& .client-name {
+			@apply border-accent;
+		}
+	}
+}
+
+.bg-gradient {
+	@apply bg-gradient-to-r from-[#1B8900] to-[#65A184];
+}
+
+.container {
+	@apply mx-auto;
+}
+
+.product-sidebar-link {
+	background: linear-gradient(to left, #fdfdfd, #c4feb6, #aeff9a);
+}
+
+.product-sidebar-link-active {
+	@apply text-white bg-gradient;
+}
+
+.active-tab {
+	@apply text-white bg-gradient;
+}
+
+.absolute-center {
+	@apply translate-x-[-50%] translate-y-[-50%] top-1/2 left-1/2;
+}
