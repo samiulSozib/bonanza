@@ -216,38 +216,48 @@
 					consectetur, ligula semper sagittis lobortis, eros metus efficitur
 					purus
 				</p>
-				<div class="flex flex-col w-full px-5 lg:w-3/4 lg:px-0 gap-y-5">
-					<div class="grid gap-y-10 lg:grid-cols-2 gap-x-5">
-						<input
-							class="input input-lg input-bordered"
-							type="text"
-							placeholder="Name"
-						/>
-						<input
-							class="input input-lg input-bordered"
-							type="phone"
-							placeholder="Phone"
-						/>
+				<form id="contactForm">
+					<div class="flex flex-col w-full px-5 lg:w-3/4 lg:px-0 gap-y-5">
+						<div class="grid gap-y-10 lg:grid-cols-2 gap-x-5">
+							<input
+								class="input input-lg input-bordered"
+								type="text"
+								placeholder="Name"
+								name="name"
+							/>
+							<input
+								class="input input-lg input-bordered"
+								type="email"
+								placeholder="Email address"
+								name="email"
+							/>
+						</div>
+						<div class="grid gap-y-10 lg:grid-cols-2 gap-x-5">
+							<input
+								class="input input-lg input-bordered"
+								type="phone"
+								placeholder="Phone"
+								name="phoneNumber"
+							/>
+							<select id="category" name="category" class="font-normal select select-lg select-bordered">
+								<option value="Financial consulting1">Financial consulting1</option>
+								<option value="Financial consulting2">Financial consulting2</option>
+								<option value="Financial consulting3">Financial consulting3</option>
+								<option value="Financial consulting4">Financial consulting4</option>
+							</select>
+						</div>
+						<textarea
+								class="textarea textarea-lg h-36 input-bordered"
+								placeholder="Your message"
+								name="message"
+							></textarea>
+						<button type="submit"
+							class="lg:self-center self-start border-0 px-16 text-white normal-case btn btn-lg bg-gradient-to-r from-[#1B8900] to-[#65A184]"
+						>
+							Submit
+						</button>
 					</div>
-					<div class="grid gap-y-10 lg:grid-cols-2 gap-x-5">
-						<input
-							class="input input-lg input-bordered"
-							type="email"
-							placeholder="Email address"
-						/>
-						<select class="font-normal select select-lg select-bordered">
-							<option>Financial consulting</option>
-							<option>Financial consulting</option>
-							<option>Financial consulting</option>
-							<option>Financial consulting</option>
-						</select>
-					</div>
-					<button
-						class="lg:self-center self-start border-0 px-16 text-white normal-case btn btn-lg bg-gradient-to-r from-[#1B8900] to-[#65A184]"
-					>
-						Submit
-					</button>
-				</div>
+				</form>
 			</div>
 		</div>
 		<div
@@ -263,3 +273,6 @@
 
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
+		<script src="/js/contactScript.js"></script>
+	</body>
+</html>

@@ -11,7 +11,7 @@
 				<h2 class="text-5xl font-bold">Contact Us</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
-						<li><a href="./index.html">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li class="font-medium">Contact Us</li>
 					</ul>
 				</div>
@@ -74,43 +74,47 @@
 						<h3 class="text-5xl font-bold text-secondary">
 							Get In Touch
 						</h3>
-						<div class="flex flex-col w-full gap-y-5">
-							<input
-								class="input input-lg input-bordered"
-								type="text"
-								placeholder="Name"
-							/>
-							<input
-								class="input input-lg input-bordered"
-								type="phone"
-								placeholder="Phone"
-							/>
-
-							<input
-								class="input input-lg input-bordered"
-								type="email"
-								placeholder="Email address"
-							/>
-							<select
-								class="font-normal select select-lg select-bordered"
-							>
-								<option>Financial consulting</option>
-								<option>Financial consulting</option>
-								<option>Financial consulting</option>
-								<option>Financial consulting</option>
-							</select>
-
-							<textarea
-								class="textarea textarea-lg textarea-bordered"
-								placeholder="Your message"
-							></textarea>
-
-							<button
-								class="lg:self-center self-start border-0 px-16 text-white normal-case btn btn-lg bg-gradient-to-r from-[#1B8900] to-[#65A184]"
-							>
-								Submit
-							</button>
-						</div>
+						<form id="contactForm">
+							<div class="flex flex-col w-full gap-y-5">
+								<input
+									class="input input-lg input-bordered"
+									type="text"
+									placeholder="Name"
+									name="name"
+								/>
+								<input
+									class="input input-lg input-bordered"
+									type="phone"
+									placeholder="Phone",
+									name="phoneNumber"
+								/>
+	
+								<input
+									class="input input-lg input-bordered"
+									type="email"
+									placeholder="Email address",
+									name="email"
+								/>
+								<select id="category" name="category" class="font-normal select select-lg select-bordered">
+									<option value="Financial consulting1">Financial consulting1</option>
+									<option value="Financial consulting2">Financial consulting2</option>
+									<option value="Financial consulting3">Financial consulting3</option>
+									<option value="Financial consulting4">Financial consulting4</option>
+								</select>
+	
+								<textarea
+									class="textarea textarea-lg textarea-bordered"
+									placeholder="Your message"
+									name="message"
+								></textarea>
+	
+								<button type="submit"
+									class="lg:self-center self-start border-0 px-16 text-white normal-case btn btn-lg bg-gradient-to-r from-[#1B8900] to-[#65A184]"
+								>
+									Submit
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
 
@@ -129,3 +133,6 @@
 
 		<!-- footer section -->
         <%- include('./partials/footer.ejs') %>
+		<script src="/js/contactScript.js"></script>
+	</body>
+</html>

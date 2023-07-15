@@ -472,35 +472,46 @@
 						0123. 456. 789 or email to hello@support.com we will contact you
 						shortly after receiving your request.
 					</p>
-					<div class="flex flex-col gap-y-5">
-						<div class="grid gap-y-5 lg:grid-cols-2 gap-x-5">
-							<input
-								class="input input-border input-lg"
-								type="text"
-								placeholder="Name"
-							/>
-							<input
-								class="input input-border input-lg"
-								type="email"
-								placeholder="Email Address"
-							/>
+					<form id="contactForm">
+						<div class="flex flex-col gap-y-5">
+							<div class="grid gap-y-5 lg:grid-cols-2 gap-x-5">
+								<input
+									class="input input-border input-lg"
+									type="text"
+									placeholder="Name"
+									name="name"
+								/>
+								<input
+									class="input input-border input-lg"
+									type="email"
+									placeholder="Email Address",
+									name="email"
+								/>
+								<input
+									class="input input-border input-lg"
+									type="number"
+									placeholder="Phone Number",
+									name="phoneNumber"
+								/>
+							</div>
+							<select id="category" name="category" class="font-normal select select-lg select-bordered">
+								<option value="Financial consulting1">Financial consulting1</option>
+								<option value="Financial consulting2">Financial consulting2</option>
+								<option value="Financial consulting3">Financial consulting3</option>
+								<option value="Financial consulting4">Financial consulting4</option>
+							</select>
+							<textarea
+								class="textarea textarea-lg h-36"
+								placeholder="Your message"
+								name="message"
+							></textarea>
+							<button type="submit"
+								class="self-start border-0 px-16 hover:text-white normal-case btn btn-lg text-black duration-150 hover:bg-gradient-to-r from-[#1B8900] to-[#65A184]"
+							>
+								Submit
+							</button>
 						</div>
-						<select class="font-normal select select-lg select-bordered">
-							<option>Financial consulting</option>
-							<option>Financial consulting</option>
-							<option>Financial consulting</option>
-							<option>Financial consulting</option>
-						</select>
-						<textarea
-							class="textarea textarea-lg h-36"
-							placeholder="Your message"
-						></textarea>
-						<button
-							class="self-start border-0 px-16 hover:text-white normal-case btn btn-lg text-black duration-150 hover:bg-gradient-to-r from-[#1B8900] to-[#65A184]"
-						>
-							Submit
-						</button>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -580,3 +591,6 @@
 
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
+		<script src="/js/contactScript.js"></script>
+	</body>
+</html>

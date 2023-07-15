@@ -8,7 +8,7 @@
 				<h2 class="text-5xl font-bold">Enquiry</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
-						<li><a href="./index.html">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li class="font-medium">Enquiry</li>
 					</ul>
 				</div>
@@ -27,43 +27,53 @@
 					class="flex flex-col p-5 py-20 rounded-lg lg:p-20 lg:w-1/2 justify-self-center gap-y-10 bg-base-100"
 				>
 					<h3 class="text-4xl font-bold text-secondary">Enquiry for Bonanza</h3>
-					<div class="flex flex-col gap-y-5">
-						<input
-							class="w-full input input-bordered"
-							type="text"
-							placeholder="Name"
-						/>
-						<input
-							class="input input-bordered"
-							type="phone"
-							placeholder="Phone"
-						/>
-
-						<input
-							class="input input-bordered"
-							type="email"
-							placeholder="Email address"
-						/>
-						<input
-							class="input input-bordered"
-							type="text"
-							placeholder="Subject"
-						/>
-
-						<textarea
-							class="textarea textarea-bordered"
-							placeholder="Enquiry"
-						></textarea>
-
-						<button
-							class="self-start border-0 px-16 text-white normal-case btn bg-gradient-to-r from-[#1B8900] to-[#65A184]"
-						>
-							Submit
-						</button>
-					</div>
+					<form id="enquiryForm">
+						<div class="flex flex-col gap-y-5">
+							<input
+								class="w-full input input-bordered"
+								type="text"
+								placeholder="Name"
+								name="name"
+							/>
+							<input
+								class="input input-bordered"
+								type="phone"
+								placeholder="Phone"
+								name="phoneNumber"
+							/>
+	
+							<input
+								class="input input-bordered"
+								type="email"
+								placeholder="Email address"
+								name="email"
+							/>
+							<input
+								class="input input-bordered"
+								type="text"
+								placeholder="Subject"
+								name="subject"
+							/>
+	
+							<textarea
+								class="textarea textarea-bordered"
+								placeholder="Enquiry"
+								name="enquiry"
+							></textarea>
+	
+							<button type="submit"
+								class="self-start border-0 px-16 text-white normal-case btn bg-gradient-to-r from-[#1B8900] to-[#65A184]"
+							>
+								Submit
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 
 		<!-- footer section -->
         <%- include('./partials/footer.ejs') %>
+		<script src="/js/enquiryScript.js"></script>
+	</body>
+</html>

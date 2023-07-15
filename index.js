@@ -1,7 +1,7 @@
 require('dotenv').config()
 const path = require("path");
-
 const express = require('express')
+const db=require('./config/database')
 
 
 const setMiddlewares = require('./middleware/middleware')
@@ -18,7 +18,12 @@ app.use(express.static('public'));
 setMiddlewares(app)
 setRoutes(app)
 
-
+db.connect(function (err) {
+    if (err) {
+      return console.error("error: " + err.message);
+    }
+    console.log("Connected to the MySQL server.");
+  });
 
 const PORT = process.env.PORT || 1000
 
