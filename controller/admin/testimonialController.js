@@ -10,7 +10,7 @@ exports.getTestimonial=async(req,res,next)=>{
                 throw err 
             }
             
-            return res.status(200).render('admin/testimonial',{title:"Testimonial",testimonials})
+            return res.status(200).render('admin/testimonial/testimonial',{title:"Testimonial",testimonials})
         })
 
        
@@ -24,7 +24,7 @@ exports.getTestimonial=async(req,res,next)=>{
 
 exports.getAddTastimonial=async(req,res,next)=>{
     try{
-        return res.status(200).render('admin/addTestimonial',{title:"Testimonial"})
+        return res.status(200).render('admin/testimonial/addTestimonial',{title:"Testimonial"})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -82,7 +82,7 @@ exports.getSingleTestimonail=async(req,res,next)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/singleTestimonial',{title:"Team Single",testimonial})
+            return res.status(200).render('admin/testimonial/singleTestimonial',{title:"Team Single",testimonial})
         })
 
     }catch(e){

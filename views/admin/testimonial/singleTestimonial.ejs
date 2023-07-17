@@ -1,5 +1,4 @@
-<%- include('./partials/navigation.ejs') %>
-
+<%- include('../partials/navigation.ejs') %>
 
 
 
@@ -9,12 +8,28 @@
 
        <!-- Project Overview Header -->
 
-        <section class="flex items-center justify-between px-5 py-2 xl:py-5 gap-4">
-            
-            <p class="text-lg font-bold text-tColor2">Product Categories</p>
+        <section class="flex flex-col xl:flex-row xl:items-center justify-between px-5 py-2 xl:py-5 gap-4">
+
+          
+            <div>
+              <p class="text-lg font-bold text-secondaryColor"><span>Welcome,</span> <span>Demo Name</span></p>
+              <p class="text-xs text-tColor font-semibold">1 October  2023 | 05:59 AM GMT</p>
+            </div>
 
             <!-- Notification & User -->
-            <div class="text-xs xl:text-base flex items-center gap-3 xl:gap-5">
+            <div class="text-xs xl:text-base flex items-center gap-3 xl:gap-5 ml-auto">
+
+
+                <!-- Search Box -->
+                <!-- <div class="bg-white relative border-2 rounded-md">
+                  <input class="py-2 pr-3 pl-10 focus:outline-none max-w-[250px]" type="text" placeholder="Search...">
+                  <i class="fa-solid fa-magnifying-glass absolute top-1/2 left-3 -translate-y-1/2 text-tColor"></i>
+                </div> -->
+
+                <svg width="1" height="32" viewBox="0 0 1 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="0.5" y1="0.5" x2="0.499999" y2="31.5" stroke="#D1D1D1" stroke-linecap="round"/>
+                  </svg>
+                  
                 
                 <a class="" href="#">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,61 +55,44 @@
             
         </section>
 
-      
-        <section class="mx-5 rounded-md border-b-2">
-
-          <div class="flex xl:flex-row xl:items-center justify-between py-4 gap-4">
-
-            <!-- Search Box -->
-            <div class="bg-white relative shadow">
-              <input class="py-2 pr-7 pl-3 focus:outline-none max-w-[180px]" type="text" placeholder="Search...">
-              <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-2 -translate-y-1/2 text-tColor"></i>
-            </div>
-
-            <a class="flex items-center gap-3 text-tColor border-green-300 hover:bg-primaryColor hover:text-white border-2 rounded px-3 py-1" href="dashboard-addProduct.html">
-              <p>Add Product</p>
-              <i class="fa-solid fa-plus"></i>
-            </a>
-          </div>
-          
-        </section>
 
 
 
-        <section class="px-5 py-5 grid gap-5">
+        <form class="px-5 py-5" action="/dashboard/updateTestimonial/<%= testimonial[0].id %>" method="POST" enctype="multipart/form-data">
 
-          <div class="flex items-center justify-between xl:justify-start gap-20 border-b-[1px] pb-5">
-            <p class="text-tColor2 font-bold text-sm">jute twine</p>
-            <div class="grid grid-cols-2 xl:flex gap-3">
-              <button class="bg-gray-200 px-4 py-1 rounded">Hide</button>
-              <button class="bg-green-700 text-white px-4 py-1 rounded">Unhide</button>
-              <button class="gradient-color text-white px-4 py-1 rounded xl:ml-10">Edit</button>
-              <button class="bg-red-800 text-white px-4 py-1 rounded">Delete</button>
-            </div>
+            <div>
+                <div class="h-60 flex items-center  overflow-hidden rounded-md">
+                  <img src="<%= testimonial[0].image %>" alt="" class="h-60 w-fit">
+                </div>
+                <!-- <button class="flex items-center mx-auto xl:mx-0 gap-3 text-white bg-primaryColor w-fit px-3 py-2 rounded-md mt-5"> -->
+                  <label for="dropzone-file" class="custom-file-label" >                  
+                <!-- </button> -->
+              </div>
+  
+              <input id="dropzone-file" name="testimonial-image" type="file" class="custom-file-label" style="margin-top: 5px;" />
+
+          <div>
+            <p class="mt-5 mb-2 text-secondaryColor font-semibold">Name:</p>
+            <input class="bg-white w-full max-w-[300px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" type="text" value="<%= testimonial[0].name %>" required/>
           </div>
 
-          <div class="flex items-center justify-between xl:justify-start gap-20 border-b-[1px] pb-5">
-            <p class="text-tColor2 font-bold text-sm">jute twine</p>
-            <div class="grid grid-cols-2 xl:flex gap-3">
-              <button class="bg-gray-200 px-4 py-1 rounded">Hide</button>
-              <button class="bg-green-700 text-white px-4 py-1 rounded">Unhide</button>
-              <button class="gradient-color text-white px-4 py-1 rounded xl:ml-10">Edit</button>
-              <button class="bg-red-800 text-white px-4 py-1 rounded">Delete</button>
-            </div>
+          <div>
+            <p class="mt-5 mb-2 text-secondaryColor font-semibold">Text:</p>
+            <textarea id="text" name="text" rows="4" cols="50" placeholder="Write Description" class="bg-white w-full max-w-[500px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" required><%= testimonial[0].text %></textarea>
           </div>
 
-          <div class="flex items-center justify-between xl:justify-start gap-20 border-b-[1px] pb-5">
-            <p class="text-tColor2 font-bold text-sm">jute twine</p>
-            <div class="grid grid-cols-2 xl:flex gap-3">
-              <button class="bg-gray-200 px-4 py-1 rounded">Hide</button>
-              <button class="bg-green-700 text-white px-4 py-1 rounded">Unhide</button>
-              <button class="gradient-color text-white px-4 py-1 rounded xl:ml-10">Edit</button>
-              <button class="bg-red-800 text-white px-4 py-1 rounded">Delete</button>
-            </div>
+          <div>
+            <p class="mt-5 mb-2 text-secondaryColor font-semibold">From:</p>
+            <input class="bg-white w-full max-w-[300px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="location" name="location" type="text" value="<%= testimonial[0].location %>" required/>
+          </div>
+
+          <div class="mt-5 font-semibold">
+            <button type="submit" class="gradient-color text-white px-5 py-3 rounded-md">Update</button>
+            <button class="px-5 py-3 mt-5 rounded-md text-tColor2">Reset</button>
           </div>
 
 
-        </section>
+        </form>
     
 
     </div>
@@ -183,6 +181,15 @@
 }
 };
 </script>
+
+<script>
+    $('#dropzone-file').on('change', function(e) {
+        let filename = e.target.files[0].name
+        $(this).next('.custom-file-label').html(filename)
+    })
+  
+  
+  </script>
 
 
 

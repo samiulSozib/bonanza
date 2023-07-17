@@ -5,7 +5,7 @@ const {getManagingDirector,updateManagingDirector,getTeamExperts,getAddTeamExper
 const {getTestimonial,getAddTastimonial,postTestimonial,deleteTestimonial,getSingleTestimonail,updateTestimonial} =require('../../controller/admin/testimonialController')
 const {getAddContry}=require('../../controller/admin/addCountryController')
 const {getHomePageBanner}=require('../../controller/admin/homePageBannerController')
-const {getFooterInfo}=require('../../controller/admin/footerController')
+const {getFooterInfo,updateFooterInfo}=require('../../controller/admin/footerController')
 const {getProfile}=require('../../controller/admin/profileController')
 const upload=require('../../middleware/uploadMiddleware')
 
@@ -44,8 +44,9 @@ router.get('/addCountry',getAddContry)
 
 router.get('/homeBanner',getHomePageBanner)
 
-
+// footer info
 router.get('/footerInformation',getFooterInfo)
+router.post('/footerInformation/:id/:id1',updateFooterInfo)
 
 
 module.exports=router

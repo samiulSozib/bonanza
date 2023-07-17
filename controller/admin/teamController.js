@@ -9,7 +9,7 @@ exports.getManagingDirector=async(req,res,next)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/managingDirector',{title:"Managing Director",mdInfo})
+            return res.status(200).render('admin/teamExpert/managingDirector',{title:"Managing Director",mdInfo})
         })
         
     }catch(e){
@@ -76,7 +76,7 @@ exports.getTeamExperts=async(req,res,next)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/teamExperts',{title:"Team Experts",experts})
+            return res.status(200).render('admin/teamExpert/teamExperts',{title:"Team Experts",experts})
         })
 
         
@@ -90,7 +90,7 @@ exports.getTeamExperts=async(req,res,next)=>{
 // get insert team expert page 
 exports.getAddTeamExpert=async(req,res,next)=>{
     try{
-        return res.status(200).render('admin/addTeamExpert',{title:"Add Team Experts"})
+        return res.status(200).render('admin/teamExpert/addTeamExpert',{title:"Add Team Experts"})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -134,7 +134,7 @@ exports.getSingleTeam=async(req,res,next)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/singleTeam',{title:"Team Single",expert})
+            return res.status(200).render('admin/teamExpert/singleTeam',{title:"Team Single",expert})
         })
 
     }catch(e){

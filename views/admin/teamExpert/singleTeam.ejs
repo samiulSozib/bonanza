@@ -1,6 +1,4 @@
-<%- include('./partials/navigation.ejs') %>
-
-
+<%- include('../partials/navigation.ejs') %>
 
 
     <!-- Right Side Section -->
@@ -22,10 +20,10 @@
 
 
                 <!-- Search Box -->
-                <div class="bg-white relative border-2 rounded-md">
+                <!-- <div class="bg-white relative border-2 rounded-md">
                   <input class="py-2 pr-3 pl-10 focus:outline-none max-w-[250px]" type="text" placeholder="Search...">
                   <i class="fa-solid fa-magnifying-glass absolute top-1/2 left-3 -translate-y-1/2 text-tColor"></i>
-                </div>
+                </div> -->
 
                 <svg width="1" height="32" viewBox="0 0 1 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <line x1="0.5" y1="0.5" x2="0.499999" y2="31.5" stroke="#D1D1D1" stroke-linecap="round"/>
@@ -58,87 +56,57 @@
 
 
 
-        <p class="text-lg font-bold text-tColor2 px-5 py-5">Footer Information</p>
+        <form action="/dashboard/updateTeamSingle/<%= expert[0].id %>" method="POST" enctype="multipart/form-data">
+        <section class="px-5 py-5 flex flex-col xl:flex-row gap-10">
+          
+          <div>
+            <div class="h-60 flex items-center justify-center overflow-hidden rounded-md">
+              <img src="<%= expert[0].image %>" alt="" class="h-60 w-fit">
+            </div>
+            <!-- <button class="flex items-center mx-auto xl:mx-0 gap-3 text-white bg-primaryColor w-fit px-3 py-2 rounded-md mt-5"> -->
+              <label for="dropzone-file" class="custom-file-label" >
+              <input id="dropzone-file" name="expert-image" type="file" class="custom-file-label" style="margin-top: 5px;" />
+              
+            <!-- </button> -->
+          </div>
 
 
-        <section class="px-5">
-
-          <form class="mt-5">
-
-            <div class="grid xl:grid-cols-3 gap-10">
-
+          
+            <div>
               <div>
-                <p class="text-lg font-semibold text-tColor2 mb-5">Information One</p>
-
-                <div>
-                  <p class="mb-2 font-bold text-secondaryColor">Name:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="text" placeholder="Your Name" />
-                </div>
-
-                <div>
-                  <p class="my-2 font-bold text-secondaryColor">Designation:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="number" placeholder="(+01) 123 456 789" />
-                </div>
-
-                <div>
-                  <p class="my-2 font-bold text-secondaryColor">Phone:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="number" placeholder="(+01) 123 456 789" />
-                </div>
-
-                <div>
-                  <p class="my-2 mb-2 font-bold text-secondaryColor">Email:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="email" placeholder="@demos.com" />
-                </div>
-
-                <div>
-                  <p class="my-2 mb-2 font-bold text-secondaryColor">Address:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="text" placeholder="www.demos.com" />
-                </div>
-
+                <p class="mb-2 font-bold text-secondaryColor">Name:</p>
+                <input class="bg-white w-full max-w-[250px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" type="text" value="<%= expert[0].name %>" required/>
+                <br>
               </div>
-
+  
               <div>
-                <p class="text-lg font-semibold text-tColor2 mb-5">Information Two</p>
-
-                <div>
-                  <p class="mb-2 font-bold text-secondaryColor">Name:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="text" placeholder="Your Name" />
-                </div>
-
-                <div>
-                  <p class="my-2 font-bold text-secondaryColor">Designation:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="number" placeholder="(+01) 123 456 789" />
-                </div>
-
-                <div>
-                  <p class="my-2 font-bold text-secondaryColor">Phone:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="number" placeholder="(+01) 123 456 789" />
-                </div>
-
-                <div>
-                  <p class="my-2 mb-2 font-bold text-secondaryColor">Email:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="email" placeholder="@demos.com" />
-                </div>
-
-                <div>
-                  <p class="my-2 mb-2 font-bold text-secondaryColor">Address:</p>
-                  <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="text" placeholder="www.demos.com" />
-                </div>
-
+                <p class="mt-2 mb-2 font-bold text-secondaryColor">Designation:</p>
+                <input class="bg-white w-full max-w-[250px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="designation" name="designation" type="text" value="<%= expert[0].designation %>" required/>
               </div>
-
+  
+              <div>
+                <p class="mb-2 font-bold text-secondaryColor">Phone:</p>
+                <input class="bg-white w-full max-w-[250px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="phoneNumber" name="phoneNumber" type="text"  value="<%= expert[0].phoneNumber %>" required/>
+              </div>
+  
+              <div>
+                <p class="mt-2 mb-2 font-bold text-secondaryColor">Email:</p>
+                <input class="bg-white w-full max-w-[250px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" value="<%= expert[0].email %>" required/>
+              </div>
+  
+              
+  
+              <div class="mt-5 font-semibold">
+                <button type="submit" class="gradient-color text-white px-5 py-3 rounded-md">Update</button>
+                <button class="px-5 py-3 mt-5 rounded-md text-tColor2">Reset</button>
+              </div>
             </div>
 
-            <div class="mt-5 font-semibold">
-              <button class="gradient-color text-white px-5 py-3 rounded-md">Update</button>
-              <button class="px-5 py-3 mt-5 rounded-md text-tColor2">Reset</button>
-            </div>
-
-          </form>
+          
 
 
         </section>
-    
+      </form>
 
     </div>
 
@@ -225,6 +193,14 @@
   }
 }
 };
+</script>
+<script>
+  $('#dropzone-file').on('change', function(e) {
+      let filename = e.target.files[0].name
+      $(this).next('.custom-file-label').html(filename)
+  })
+
+
 </script>
 
 
