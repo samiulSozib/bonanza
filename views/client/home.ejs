@@ -296,6 +296,7 @@
 		<div
 			class="min-h-[60vh] h-fit w-full py-5"
 			style="background: url('./img/Bg.png'); background-size: cover"
+			
 		>
 			<div class="container mx-auto grid min-h-[60vh] h-fit lg:grid-cols-2">
 				<div class=""></div>
@@ -525,72 +526,31 @@
 				<h2 class="text-5xl text-[#4F5955] font-bold">We love our clients</h2>
 			</div>
 			<div class="grid px-5 lg:px-0 gap-y-20 lg:grid-cols-3 gap-x-20">
-				<div class="flex flex-col duration-150 border rounded-xl client">
-					<img
-						src="./img/client-1.png"
-						class="w-28 self-center translate-y-[-50%]"
-					/>
-					<div
-						class="flex flex-col translate-y-[-40%] w-3/4 items-center self-center"
-					>
-						<div
-							class="flex flex-col items-center w-full py-5 text-center duration-150 border-b client-name"
-						>
-							<h2 class="text-xl font-medium">Joe Blo</h2>
-							<p>From: France</p>
-						</div>
-						<div class="mt-5 text-center">
-							“Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Pellentesque pulvinar lorem justo, id faucibus mi.”
-						</div>
-					</div>
-				</div>
-				<div class="flex flex-col duration-150 border rounded-xl client">
-					<img
-						src="./img/client-2.png"
-						class="w-28 self-center translate-y-[-50%]"
-					/>
-					<div
-						class="flex flex-col translate-y-[-40%] w-3/4 items-center self-center"
-					>
-						<div
-							class="flex flex-col items-center w-full py-5 text-center duration-150 border-b client-name"
-						>
-							<h2 class="text-xl font-medium">Jane Blo</h2>
-							<p>From: France</p>
-						</div>
-						<div class="mt-5 text-center">
-							“Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Pellentesque pulvinar lorem justo, id faucibus mi.”
-						</div>
-					</div>
-				</div>
+				<% for(let testimonial of testimonials){ %>
+				<div class="flex flex-col duration-150 border rounded-xl client" style="margin-bottom: 5px;">
+					<img src="<%= testimonial.image %>" class="w-1/2 h-1/2 rounded-full self-center translate-y-[-50%]"  alt="image"/>
 
-				<div class="flex flex-col duration-150 border rounded-xl client">
-					<img
-						src="./img/client-3.png"
-						class="w-28 self-center translate-y-[-50%]"
-					/>
 					<div
 						class="flex flex-col translate-y-[-40%] w-3/4 items-center self-center"
 					>
 						<div
 							class="flex flex-col items-center w-full py-5 text-center duration-150 border-b client-name"
 						>
-							<h2 class="text-xl font-medium">Joe Blo</h2>
-							<p>From: France</p>
+							<h2 class="text-xl font-medium"><%= testimonial.name %></h2>
+							<p>From: <%= testimonial.location %></p>
 						</div>
 						<div class="mt-5 text-center">
-							“Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Pellentesque pulvinar lorem justo, id faucibus mi.”
+							<%= testimonial.text %>
 						</div>
 					</div>
 				</div>
+				<% } %>
 			</div>
 		</div>
 
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
 		<script src="/js/contactScript.js"></script>
+		<script src="/js/footerScript.js"></script>
 	</body>
 </html>

@@ -40,9 +40,9 @@
 							<p>Import</p>
 							<div class="w-full relative h-3 border rounded-lg bg-[#d9d9d9]">
 								<span
-									class="absolute rounded-lg top-0 left-0 h-full w-[80%] bg-accent"
+									class="absolute rounded-lg top-0 left-0 h-full w-[70%] bg-accent"
 								></span>
-								<span class="absolute top-[-300%] left-[80%]">80</span>
+								<span class="absolute top-[-300%] left-[80%]"><%= basicInfo[0].importRate %></span>
 							</div>
 						</div>
 
@@ -52,7 +52,7 @@
 								<span
 									class="absolute rounded-lg top-0 left-0 h-full w-[70%] bg-accent"
 								></span>
-								<span class="absolute top-[-300%] left-[70%]">70</span>
+								<span class="absolute top-[-300%] left-[70%]"><%= basicInfo[0].exportRate %></span>
 							</div>
 						</div>
 
@@ -62,7 +62,7 @@
 								<span
 									class="absolute rounded-lg top-0 left-0 h-full w-[95%] bg-accent"
 								></span>
-								<span class="absolute top-[-300%] left-[95%]">95</span>
+								<span class="absolute top-[-300%] left-[95%]"><%= basicInfo[0].productionRate %></span>
 							</div>
 						</div>
 					</div>
@@ -89,15 +89,12 @@
 		</div>
 
 		<!-- country section -->
-		<div
-			class="container grid grid-cols-2 px-5 mx-auto mt-20 gap-y-10 lg:gap-y-0 lg:px-0 lg:grid-cols-5"
-		>
-			<img src="./img/Ellipse 72.png" alt="" srcset="" />
-			<img src="./img/Ellipse 73.png" alt="" srcset="" />
-			<img src="./img/Ellipse 74.png" alt="" srcset="" />
-			<img src="./img/Ellipse 75.png" alt="" srcset="" />
-			<img src="./img/Ellipse 76.png" alt="" srcset="" />
-		</div>
+		<div class="container grid grid-cols-2 px-5 mx-auto mt-20 gap-y-10 lg:gap-y-0 lg:px-0 lg:grid-cols-5">
+			<% for(let country of countries){ %>
+			  <img src="<%= country.image %>" alt="<%= country.name %>" srcset="" class="rounded-full overflow-hidden w-50 h-50" style="padding: 10px;" />
+			<% } %>
+		  </div>
+		  
 
 		<!-- A perfect business solution section -->
 		<div
@@ -116,7 +113,7 @@
 					<p
 						class="text-[transparent] text-6xl font-bold bg-clip-text bg-gradient"
 					>
-						3.689
+					<%= basicInfo[0].employeesCount %>
 					</p>
 					<p>Employees with over 20 years of experience</p>
 				</div>
@@ -127,7 +124,7 @@
 					<p
 						class="text-[transparent] text-6xl font-bold bg-clip-text bg-gradient"
 					>
-						384
+					<%= basicInfo[0].officeCount %>
 					</p>
 					<p>offices around the world</p>
 				</div>
@@ -138,7 +135,7 @@
 					<p
 						class="text-[transparent] text-6xl font-bold bg-clip-text bg-gradient"
 					>
-						4.287
+					<%= basicInfo[0].projectCount %>
 					</p>
 					<p class="w-3/4">total number of completed projects</p>
 				</div>
@@ -147,7 +144,7 @@
 					<p
 						class="text-[transparent] text-6xl font-bold bg-clip-text bg-gradient"
 					>
-						800K+
+					<%= basicInfo[0].customerCount %>
 					</p>
 					<p class="lg:w-1/2">customer satisfied with the service</p>
 				</div>
@@ -274,5 +271,6 @@
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
 		<script src="/js/contactScript.js"></script>
+		<script src="/js/footerScript.js"></script>
 	</body>
 </html>

@@ -17,36 +17,32 @@
 
 		<!-- team leader section -->
 		<div class="container grid px-5 mt-20 gap-y-10 lg:px-0 lg:grid-cols-2">
-			<div class=""><img src="./img/taemLeader.png" alt="" /></div>
+			<div><img src="<%= mdInformation[0].image %>" alt="" style="padding: 25px;"/></div>
 			<div class="flex flex-col gap-y-12">
 				<p class="text-4xl font-bold text-secondary">
-					Name is a professional engineer
+					<%= mdInformation[0].name %>
 				</p>
 				<p class="text-primary">
-					Hello! to the table win survival strategy ensure to
-					proactive domination At the end of the day, going forward
-					new normal that has evolved from user generated content will
-					have touch points shoring hanging fruits to identify a
-					ballpark value-added activity to beta.
+					<%= mdInformation[0].statement %>
 				</p>
 				<div class="border"></div>
 				<div class="flex flex-col lg:w-1/2 gap-y-5">
 					<div class="grid grid-cols-2">
 						<p class="font-bold text-secondary">Phone:</p>
-						<p>(+01) 123 456 789</p>
+						<p><%= mdInformation[0].phoneNumber %></p>
 					</div>
 					<div class="grid grid-cols-2">
 						<p class="font-bold text-secondary">Email:</p>
-						<p>@davidjames.com</p>
+						<p><%= mdInformation[0].email %></p>
 					</div>
 					<div class="grid grid-cols-2">
 						<p class="font-bold text-secondary">Website:</p>
-						<p>www.davidjames.com</p>
+						<p><%= mdInformation[0].website %></p>
 					</div>
 					<div class="flex mt-5 text-2xl gap-x-7 text-secondary">
-						<i class="cursor-pointer bi bi-instagram"></i>
-						<i class="cursor-pointer bi bi-facebook"></i>
-						<i class="cursor-pointer bi bi-twitter"></i>
+						<a href="<%= mdInformation[0].instagram %>"><i class="cursor-pointer bi bi-instagram"></i></a>
+						<a href="<%= mdInformation[0].facebook %>"><i class="cursor-pointer bi bi-facebook"></i></a>
+						<a href="<%= mdInformation[0].twitter %>"><i class="cursor-pointer bi bi-twitter"></i></a>
 					</div>
 					<button
 						class="self-start mt-10 font-medium text-white normal-case btn-lg btn btn-secondary"
@@ -58,7 +54,7 @@
 		</div>
 
 		<!-- Qualification & experience section -->
-		<div class="container flex flex-col px-5 lg:px-0 mt-36 gap-y-10">
+		<!-- <div class="container flex flex-col px-5 lg:px-0 mt-36 gap-y-10">
 			<p class="text-4xl font-bold text-secondary">
 				Qualification & Experience
 			</p>
@@ -79,10 +75,10 @@
 					<li>3. Internet tend to repeat predefined chunks</li>
 				</ol>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- Make real time a day services section -->
-		<div class="container flex flex-col px-5 mt-20 lg:px-0 gap-y-10">
+		<!-- <div class="container flex flex-col px-5 mt-20 lg:px-0 gap-y-10">
 			<p class="text-4xl font-bold text-secondary">
 				Make real time a day services
 			</p>
@@ -103,7 +99,8 @@
 					<li>3. Internet tend to repeat predefined chunks</li>
 				</ol>
 			</div>
-		</div>
+		</div> -->
+		<div class="container flex flex-col px-5 mt-20 lg:px-0 gap-y-10"></div>
 
 		<!-- Meet our expert section -->
 		<div
@@ -120,70 +117,22 @@
 				</p>
 			</div>
 			<div class="grid lg:grid-cols-3 gap-x-36 gap-y-16">
+				<% for(let team of teams){ %>
 				<div class="flex flex-col border rounded-lg p-7 gap-y-7">
-					<img src="./img/expert-1.png" alt="" />
+					<img src="<%= team.image %>" alt="" />
 					<div class="flex flex-col text-center gap-y-3">
 						<p class="text-xl font-bold text-secondary">
-							David James
+							<%= team.name %>
 						</p>
-						<p class="text-primary">Engineer</p>
+						<p class="text-primary"><%= team.designation %></p>
 					</div>
 				</div>
-
-				<div class="flex flex-col border rounded-lg p-7 gap-y-7">
-					<img src="./img/expert-2.png" alt="" />
-					<div class="flex flex-col text-center gap-y-3">
-						<p class="text-xl font-bold text-secondary">
-							Kevin Martin
-						</p>
-						<p class="text-primary">Engineer</p>
-					</div>
-				</div>
-
-				<div class="flex flex-col border rounded-lg p-7 gap-y-7">
-					<img src="./img/expert-3.png" alt="" />
-					<div class="flex flex-col text-center gap-y-3">
-						<p class="text-xl font-bold text-secondary">
-							Sarrah Albert
-						</p>
-						<p class="text-primary">Engineer</p>
-					</div>
-				</div>
-
-				<div class="flex flex-col border rounded-lg p-7 gap-y-7">
-					<img src="./img/expert-4.png" alt="" />
-					<div class="flex flex-col text-center gap-y-3">
-						<p class="text-xl font-bold text-secondary">
-							Jake Gibson
-						</p>
-						<p class="text-primary">Engineer</p>
-					</div>
-				</div>
-
-				<div class="flex flex-col border rounded-lg p-7 gap-y-7">
-					<img src="./img/expert-5.png" alt="" />
-					<div class="flex flex-col text-center gap-y-3">
-						<p class="text-xl font-bold text-secondary">
-							Natalie Lee
-						</p>
-						<p class="text-primary">Engineer</p>
-					</div>
-				</div>
-
-				<div class="flex flex-col border rounded-lg p-7 gap-y-7">
-					<img src="./img/expert-6.png" alt="" />
-					<div class="flex flex-col text-center gap-y-3">
-						<p class="text-xl font-bold text-secondary">
-							Max Oliver
-						</p>
-						<p class="text-primary">Engineer</p>
-					</div>
-				</div>
+				<% } %>
 			</div>
 		</div>
 
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
-		
+		<script src="/js/footerScript.js"></script>
 	</body>
 </html>

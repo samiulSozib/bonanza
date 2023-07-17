@@ -1,5 +1,7 @@
 const db=require('../../../config/database')
 
+
+// send message from contact form
 exports.addContact=async(req,res,next)=>{
     try{
         const {name,email,phoneNumber,category,message}=req.body
@@ -20,6 +22,7 @@ exports.addContact=async(req,res,next)=>{
 }
 
 
+// send enquiry form enquiry form 
 exports.addEnquiry=async(req,res,next)=>{
   try{
     const {name,phoneNumber,email,subject,enquiry}=req.body
@@ -33,6 +36,23 @@ exports.addEnquiry=async(req,res,next)=>{
         }
         return res.status(201).json({msg:'Enquiry Sent Success'})
       });
+  }catch(e){
+    return res.status(500).json({msg:'Server Error'})
+  }
+}
+
+
+
+// get contact information
+exports.getContactInformation=async(req,res,next)=>{
+  try{
+    const query='SELECT * FROM contactInformation';
+    db.query(query,(error,contactInformation)=>{
+      if(error){
+        return res.status(400).json({msg:'Error'})
+      }
+      return res.status(200).json(contactInformation)
+    })
   }catch(e){
     return res.status(500).json({msg:'Server Error'})
   }

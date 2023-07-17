@@ -243,12 +243,14 @@
 
 		<!-- Video section -->
 		<div class="container relative flex justify-center px-5 mt-36 lg:px-0">
-			<img src="./img/surfer-blue-wave_72229-1375 4.png" alt="" />
-			<span
+			<iframe width="980" height="420"
+src="<%= basicInfo[0].videoProductPage %>">
+</iframe>
+			<!-- <span
 				class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] lg:text-8xl text-6xl text-white"
 			>
 				<i class="cursor-pointer bi bi-play-fill"></i
-			></span>
+			></span> -->
 		</div>
 
 		<!-- success story section -->
@@ -268,17 +270,17 @@
 				</div>
 				<div class="grid gap-y-10 lg:grid-cols-3 gap-x-20">
 					<div class="flex flex-col">
-						<p class="text-5xl font-bold lg:text-8xl">93.33%</p>
+						<p class="text-5xl font-bold lg:text-8xl"><%= basicInfo[0].responseRate %></p>
 						<p class="font-medium">Response rate</p>
 					</div>
 
 					<div class="flex flex-col">
-						<p class="text-5xl font-bold lg:text-8xl">370</p>
+						<p class="text-5xl font-bold lg:text-8xl"><%= basicInfo[0].responseTime %></p>
 						<p class="font-medium">Response time</p>
 					</div>
 
 					<div class="flex flex-col">
-						<p class="text-5xl font-bold lg:text-8xl">3.689</p>
+						<p class="text-5xl font-bold lg:text-8xl"><%= basicInfo[0].quotationPerformance %></p>
 						<p class="font-medium">Quotation Perfomance</p>
 					</div>
 				</div>
@@ -287,6 +289,6 @@
 
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
-		
+		<script src="/js/footerScript.js"></script>
 	</body>
 </html>

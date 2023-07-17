@@ -1,5 +1,5 @@
 const router=require('express').Router()
-const {getOurTeam}=require('../../controller/client/oueTeamController')
+const {getOurTeam}=require('../../controller/client/ourTeamController')
 
 
 router.get('/',getOurTeam)

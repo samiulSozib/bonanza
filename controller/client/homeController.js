@@ -1,6 +1,33 @@
+const db=require('../../config/database')
+
+
 exports.getHomePage=async(req,res,next)=>{
     try{
-        return res.status(200).render('client/home',{navStatus:"home"})
+        const findAllTestimonial='SELECT * FROM testimonials'
+        db.beginTransaction((err)=>{
+           if(err){
+            throw err
+           }
+
+           db.query(findAllTestimonial,(err,testimonials)=>{
+            if(err){
+                db.rollback(()=>{
+                    throw err
+                })
+            }
+
+            db.commit((err)=>{
+                if(err){
+                    db.rollback(()=>{
+                        throw err 
+                    })
+                }
+                return res.status(200).render('client/home',{navStatus:"home",testimonials})
+            })
+
+           })
+        })
+       
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
