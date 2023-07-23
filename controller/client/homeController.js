@@ -4,6 +4,7 @@ const db=require('../../config/database')
 exports.getHomePage=async(req,res,next)=>{
     try{
         const findAllTestimonial='SELECT * FROM testimonials'
+        let findHomeBanner='SELECT * FROM herobanner'
         db.beginTransaction((err)=>{
            if(err){
             throw err
@@ -16,13 +17,20 @@ exports.getHomePage=async(req,res,next)=>{
                 })
             }
 
-            db.commit((err)=>{
+            db.query(findHomeBanner,(err,heroBanner)=>{
                 if(err){
                     db.rollback(()=>{
-                        throw err 
+                        throw err
                     })
                 }
-                return res.status(200).render('client/home',{navStatus:"home",testimonials})
+                db.commit((err)=>{
+                    if(err){
+                        db.rollback(()=>{
+                            throw err
+                        })
+                    }
+                    return res.status(200).render('client/home',{navStatus:"home",testimonials,heroBanner})
+                })
             })
 
            })

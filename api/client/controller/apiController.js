@@ -1,5 +1,5 @@
 const db=require('../../../config/database')
-
+const wbm = require('wbm');
 
 // send message from contact form
 exports.addContact=async(req,res,next)=>{
@@ -13,6 +13,12 @@ exports.addContact=async(req,res,next)=>{
               console.log(error)
               return res.status(400).json({msg:'Message Send Fail'})
             }
+          //   wbm.start().then(async () => {
+          //     const phones = ['+8801798778978'];
+          //     const message = 'Good Morning.';
+          //     await wbm.send(phones, message);
+          //     await wbm.end();
+          // }).catch(err => console.log(err));
             return res.status(201).json({msg:'Message Sent Success'})
           });
         

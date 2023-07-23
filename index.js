@@ -3,6 +3,9 @@ const path = require("path");
 const express = require('express')
 const db=require('./config/database')
 const bodyParser=require('body-parser')
+const cookieParser = require("cookie-parser");
+const session = require('express-session');
+
 
 
 const setMiddlewares = require('./middleware/middleware')
@@ -18,8 +21,18 @@ app.use(express.static('public'));
 
 
 
+app.use(cookieParser());
+
 setMiddlewares(app)
 setRoutes(app)
+
+app.use(
+  session({
+    secret: 'admin_login_secret',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 db.connect(function (err) {
     if (err) {

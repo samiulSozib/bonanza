@@ -1,3 +1,5 @@
+const db=require('../../config/database')
+
 exports.getProductList=async(req,res,next)=>{
     try{
         return res.status(200).render('admin/product/productList',{title:"Product List"})
@@ -18,12 +20,4 @@ exports.getAddProduct=async(req,res,next)=>{
 }
 
 
-exports.getProductCategory=async(req,res,next)=>{
-    try{
-        return res.status(200).render('admin/product/productCategory',{title:"Product Categories"})
-    }catch(e){
-        console.log(e)
-        return res.status(500).json({msg:'Internal Server Error'})
-    }
-}
 

@@ -11,7 +11,7 @@ window.onload=function(){
 
         const contactData = {};
         for (let [key, value] of formData.entries()) {
-        contactData[key] = value;
+            contactData[key] = value;
         }
 
         fetch('http://localhost:1000/api/client/addContact', {

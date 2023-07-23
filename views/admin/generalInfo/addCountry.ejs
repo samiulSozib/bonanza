@@ -45,7 +45,7 @@
         
         <section class="px-5 mt-5">
 
-          <form action="">
+          <form action="/dashboard/addCountry" method="POST" enctype="multipart/form-data">
             <div class="flex gap-5 flex-wrap items-center">
               
               <div class="flex items-center">
@@ -61,12 +61,12 @@
                           </svg>                         
                         <p class="mb-1 text-sm font-semibold text-tColor text-center mt-3">Upload Your <br> Country Picture</p>
                     </div>
-                    <input id="dropzone-file" type="file" class="hidden" />
+                    
                 </label>
               </div>
 
-              <div class="flex items-center justify-center aspect-square">
-                <img src="img/country-1.png" alt="" class="h-auto w-16">
+              <!-- <div class="flex items-center justify-center aspect-square">
+                <img src="/img/country-1.png" alt="" class="h-auto w-16">
               </div>
               
               <div class="flex items-center justify-center aspect-square">
@@ -83,21 +83,22 @@
 
               <div class="flex items-center justify-center aspect-square">
                 <img src="img/country-5.png" alt="" class="h-auto w-16">
-              </div>
+              </div> -->
 
 
             </div>
+            <input id="dropzone-file" name="country-image" type="file" class="custom-file-label" style="margin-top: 5px;" />
 
             <div>
               <p class="mt-5 mb-2">Country Name</p>
-              <input class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="last-name" type="text" placeholder="Enter Country Name" />
+              <input class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" type="text" placeholder="Enter Country Name" required/>
             </div>
 
 
 
           
             <div class="mt-5 font-semibold">
-              <button class="gradient-color text-white px-5 py-3 rounded-md">Update</button>
+              <button class="gradient-color text-white px-5 py-3 rounded-md">Submit</button>
               <button class="px-5 py-3 mt-5 rounded-md text-tColor2">Reset</button>
             </div>
 
@@ -190,6 +191,15 @@
   }
 }
 };
+</script>
+
+<script>
+  $('#dropzone-file').on('change', function(e) {
+    let filename = e.target.files[0].name
+    $(this).next('.custom-file-label').html(filename)
+})
+
+
 </script>
 
 

@@ -8,7 +8,7 @@
 				<h2 class="text-5xl font-bold">Our Team</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
-						<li><a href="./index.html">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li class="font-medium">Our Team</li>
 					</ul>
 				</div>
@@ -17,10 +17,13 @@
 
 		<!-- team leader section -->
 		<div class="container grid px-5 mt-20 gap-y-10 lg:px-0 lg:grid-cols-2">
-			<div><img src="<%= mdInformation[0].image %>" alt="" style="padding: 25px;"/></div>
+			<div><img src="<%= mdInformation[0].image %>" alt="" /></div>
 			<div class="flex flex-col gap-y-12">
 				<p class="text-4xl font-bold text-secondary">
 					<%= mdInformation[0].name %>
+				</p>
+				<p class="text-2xl font-bold text-secondary">
+					<%= mdInformation[0].designation %>
 				</p>
 				<p class="text-primary">
 					<%= mdInformation[0].statement %>
@@ -133,6 +136,9 @@
 
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
-		<script src="/js/footerScript.js"></script>
+		<script>
+			getFooterInfo()
+			
+		</script>
 	</body>
 </html>

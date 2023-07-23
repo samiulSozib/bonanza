@@ -1,52 +1,113 @@
 const router=require('express').Router()
+const {getLogin,postLogin,registration,logOut}=require('../../controller/admin/authController')
 const {getDashboard}=require('../../controller/admin/dashboardController')
-const {getProductList,getAddProduct,getProductCategory}=require('../../controller/admin/productController')
 const {getManagingDirector,updateManagingDirector,getTeamExperts,getAddTeamExpert,postTeamExpert,updateSingleTeam,deleteTeamExpert,getSingleTeam}=require('../../controller/admin/teamController')
 const {getTestimonial,getAddTastimonial,postTestimonial,deleteTestimonial,getSingleTestimonail,updateTestimonial} =require('../../controller/admin/testimonialController')
-const {getAddContry}=require('../../controller/admin/addCountryController')
-const {getHomePageBanner}=require('../../controller/admin/homePageBannerController')
+const {getCountry,getAddCountry,postCountry,deleteCountry,getSingleCountry,updateCountry}=require('../../controller/admin/countryController')
+const {getHomePageBanner,updateHomeBanner}=require('../../controller/admin/homePageBannerController')
 const {getFooterInfo,updateFooterInfo}=require('../../controller/admin/footerController')
-const {getProfile}=require('../../controller/admin/profileController')
+const {getBasicInfo,updateBasicInfo}=require('../../controller/admin/basicInfoController')
+const {getProfile,updateAdmin}=require('../../controller/admin/profileController')
+const {getContactMessage,deleteContactMessage,getEnquiry,deleteEnquiry}=require('../../controller/admin/contactMessage&EnquiryController')
+const {getProductList,getAddProduct}=require('../../controller/admin/productController')
+const {getCategory,getAddCategory,postCategory,getEditCategory,editCategory,deleteCategory}=require('../../controller/admin/categoryController')
+
+
 const upload=require('../../middleware/uploadMiddleware')
-
-router.get('/',getDashboard)
-
-
-router.get('/profile',getProfile)
+const adminAuth=require('../../middleware/authMiddlerare')
 
 
-router.get('/productList',getProductList)
-router.get('/addProduct',getAddProduct)
-router.get('/productCategory',getProductCategory)
+// auth 
+router.get('/login',getLogin)
+router.post('/login',postLogin)
+router.post('/registration',registration)
+router.get('/logout',adminAuth,logOut)
 
 
-router.get('/managingDirector',getManagingDirector)
-router.post('/updateManagingDirector/:id',upload.single('md-image'),updateManagingDirector)
-router.get('/teamExpert',getTeamExperts)
-router.get('/addTeamExpert',getAddTeamExpert)
-router.post('/addTeamExpert',upload.single('expert-image'),postTeamExpert)
-router.post('/updateTeamSingle/:id',upload.single('expert-image'),updateSingleTeam)
-router.get('/deleteTeamSingle/:id',deleteTeamExpert)
-router.get('/teamSingle/:id',getSingleTeam)
+
+router.get('/',adminAuth,getDashboard)
+
+
+
+// profile
+router.get('/profile',adminAuth,getProfile)
+router.post('/editProfile/:id',upload.single('admin-image'),updateAdmin)
+
+
+
+
+// team expert and Managing Director
+router.get('/managingDirector',adminAuth,getManagingDirector)
+router.post('/updateManagingDirector/:id',adminAuth,upload.single('md-image'),updateManagingDirector)
+router.get('/teamExpert',adminAuth,getTeamExperts)
+router.get('/addTeamExpert',adminAuth,getAddTeamExpert)
+router.post('/addTeamExpert',adminAuth,upload.single('expert-image'),postTeamExpert)
+router.post('/updateTeamSingle/:id',adminAuth,upload.single('expert-image'),updateSingleTeam)
+router.get('/deleteTeamSingle/:id',adminAuth,deleteTeamExpert)
+router.get('/teamSingle/:id',adminAuth,getSingleTeam)
 
 // testimonial
-router.get('/testimonial',getTestimonial)
-router.get('/testimonial/:id',getSingleTestimonail)
-router.get('/addTestimonial',getAddTastimonial)
-router.post('/addTestimonial',upload.single('testimonial-image'),postTestimonial)
-router.get('/deleteTestimonial/:id',deleteTestimonial)
-router.post('/updateTestimonial/:id',upload.single('testimonial-image'),updateTestimonial)
+router.get('/testimonial',adminAuth,getTestimonial)
+router.get('/testimonial/:id',adminAuth,getSingleTestimonail)
+router.get('/addTestimonial',adminAuth,getAddTastimonial)
+router.post('/addTestimonial',adminAuth,upload.single('testimonial-image'),postTestimonial)
+router.get('/deleteTestimonial/:id',adminAuth,deleteTestimonial)
+router.post('/updateTestimonial/:id',adminAuth,upload.single('testimonial-image'),updateTestimonial)
 
 
 
-router.get('/addCountry',getAddContry)
+// country
+router.get('/country',adminAuth,getCountry)
+router.get('/addCountry',adminAuth,getAddCountry)
+router.post('/addCountry',adminAuth,upload.single('country-image'),postCountry)
+router.get('/deleteCountry/:id',adminAuth,deleteCountry)
+router.get('/country/:id',adminAuth,getSingleCountry)
+router.post('/updateCountry/:id',adminAuth,upload.single('country-image'),updateCountry)
 
 
-router.get('/homeBanner',getHomePageBanner)
+// homeBanner
+router.get('/homeBanner',adminAuth,getHomePageBanner)
+router.post('/updateHomeBanner/:id',adminAuth,upload.fields([{ name: 'hero_image' }, { name: 'logo1_image' },{name:'logo2_image'}]),updateHomeBanner)
+
+
+
 
 // footer info
-router.get('/footerInformation',getFooterInfo)
-router.post('/footerInformation/:id/:id1',updateFooterInfo)
+router.get('/footerInformation',adminAuth,getFooterInfo)
+router.post('/footerInformation/:id/:id1',adminAuth,updateFooterInfo)
+
+// basic info 
+router.get('/basicInformation',adminAuth,getBasicInfo)
+router.post('/updateBasicInformation/:id',adminAuth,updateBasicInfo)
+
+
+
+
+// contact & enquiry messages
+router.get('/contactMessages',adminAuth,getContactMessage)
+router.get('/deleteMessage/:id',adminAuth,deleteContactMessage)
+router.get('/enquiry',adminAuth,getEnquiry)
+router.get('/deleteEnquiry/:id',adminAuth,deleteEnquiry)
+
+
+
+
+//category routes 
+router.get('/category',adminAuth,getCategory)
+router.get('/addCategory',adminAuth,getAddCategory)
+router.post('/addCategory',adminAuth,postCategory)
+router.get('/editCategory/:id',adminAuth,getEditCategory)
+router.post('/editCategory/:id',adminAuth,editCategory)
+router.get('/category/delete/:id',adminAuth,deleteCategory)
+
+
+
+// product  routes 
+router.get('/productList',adminAuth,getProductList)
+router.get('/addProduct',adminAuth,getAddProduct)
+
+
+
 
 
 module.exports=router

@@ -1,6 +1,7 @@
-window.onload=function(){
-    // Retrieve contact information from the API
-        fetch('http://localhost:1000/api/client/contactInformation')
+
+    // fetch footer contact information 
+    function getFooterInfo(){
+        fetch('/api/client/contactInformation')
         .then((response) => response.json())
         .then((data) => {
         // Populate the contact sections in the footer
@@ -63,5 +64,72 @@ window.onload=function(){
         .catch((error) => {
         console.error('Error:', error);
         });
+    }
+// post contact form 
+function postContactForm(){
+        const contactForm = document.getElementById('contactForm');
 
+        contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+        const form = event.target;
+        const formData = new FormData(form);
+
+        const contactData = {};
+        for (let [key, value] of formData.entries()) {
+            contactData[key] = value;
+        }
+
+        fetch('/api/client/addContact', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contactData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('contactForm').reset();
+        alert("Message Sent Success")
+        })
+        .catch(error => {
+            alert("Message Sent Fail")
+        });
+  });
+}
+
+
+// post enquiry form 
+function postEnquiryForm(){
+    const enquiryForm = document.getElementById('enquiryForm');
+
+
+    
+    enquiryForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+        const _form = event.target;
+        const _formData = new FormData(_form);
+
+        const enquiryData = {};
+        for (let [key, value] of _formData.entries()) {
+            enquiryData[key] = value;
+        }
+        console.log(enquiryData)
+        fetch('/api/client/addEnquiry', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(enquiryData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('enquiryForm').reset();
+            alert("Enquiry Sent Success")
+        })
+        .catch(error => {
+            alert("Enquiry Sent Fail")
+        });
+    });
 }

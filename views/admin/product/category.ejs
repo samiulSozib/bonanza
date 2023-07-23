@@ -51,8 +51,8 @@
               <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-2 -translate-y-1/2 text-tColor"></i>
             </div>
 
-            <a class="flex items-center gap-3 text-tColor border-green-300 hover:bg-primaryColor hover:text-white border-2 rounded px-3 py-1" href="dashboard-addProduct.html">
-              <p>Add Product</p>
+            <a class="flex items-center gap-3 text-tColor border-green-300 hover:bg-primaryColor hover:text-white border-2 rounded px-3 py-1" href="/dashboard/addCategory">
+              <p>Add Category</p>
               <i class="fa-solid fa-plus"></i>
             </a>
           </div>
@@ -62,39 +62,36 @@
 
 
         <section class="px-5 py-5 grid gap-5">
-
-          <div class="flex items-center justify-between xl:justify-start gap-20 border-b-[1px] pb-5">
-            <p class="text-tColor2 font-bold text-sm">jute twine</p>
-            <div class="grid grid-cols-2 xl:flex gap-3">
-              <button class="bg-gray-200 px-4 py-1 rounded">Hide</button>
-              <button class="bg-green-700 text-white px-4 py-1 rounded">Unhide</button>
-              <button class="gradient-color text-white px-4 py-1 rounded xl:ml-10">Edit</button>
-              <button class="bg-red-800 text-white px-4 py-1 rounded">Delete</button>
+          <% for (const category of categories) { %>
+            <div class="border border-gray-300 rounded-md">
+              <div class="flex items-center justify-between xl:justify-start gap-20 bg-gray-100 px-5 py-3 cursor-pointer" onclick="toggleSubcategories(this)">
+                <p class="text-tColor2 font-bold text-sm"><%= category.category_name %></p>
+                <div class="grid grid-cols-2 xl:flex gap-3">
+                  <button class="bg-gray-200 px-4 py-1 rounded">Hide</button>
+                  <button class="bg-green-700 text-white px-4 py-1 rounded">Unhide</button>
+                  <button class="gradient-color text-white px-4 py-1 rounded xl:ml-10"><a href="/dashboard/editCategory/<%= category.category_id %>">Edit</a></button>
+                  <button class="bg-red-800 text-white px-4 py-1 rounded"><a href="/dashboard/category/delete/<%= category.category_id %>">Delete</a></button>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-3 px-5 py-3 hidden">
+                <% for (const subcategory of category.subcategories) { %>
+                  <div class="flex items-center gap-3">
+                    <p class="text-tColor2 font-bold text-sm"><%= subcategory.subcategory_name %></p>
+                    <div class="flex gap-3">
+                      <button class="bg-gray-200 px-4 py-1 rounded">Hide</button>
+                      <button class="bg-green-700 text-white px-4 py-1 rounded">Unhide</button>
+                      <button class="gradient-color text-white px-4 py-1 rounded"><a href="/dashboard/editCategoryt/<%= category.category_id %>">Edit</a></button>
+                      <button class="bg-red-800 text-white px-4 py-1 rounded"><a href="/dashboard/subCategory/delete/<%= subcategory.subcategory_id %>">Delete</a></button>
+                    </div>
+                  </div>
+                  
+                <% } %>
+              </div>
             </div>
-          </div>
-
-          <div class="flex items-center justify-between xl:justify-start gap-20 border-b-[1px] pb-5">
-            <p class="text-tColor2 font-bold text-sm">jute twine</p>
-            <div class="grid grid-cols-2 xl:flex gap-3">
-              <button class="bg-gray-200 px-4 py-1 rounded">Hide</button>
-              <button class="bg-green-700 text-white px-4 py-1 rounded">Unhide</button>
-              <button class="gradient-color text-white px-4 py-1 rounded xl:ml-10">Edit</button>
-              <button class="bg-red-800 text-white px-4 py-1 rounded">Delete</button>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between xl:justify-start gap-20 border-b-[1px] pb-5">
-            <p class="text-tColor2 font-bold text-sm">jute twine</p>
-            <div class="grid grid-cols-2 xl:flex gap-3">
-              <button class="bg-gray-200 px-4 py-1 rounded">Hide</button>
-              <button class="bg-green-700 text-white px-4 py-1 rounded">Unhide</button>
-              <button class="gradient-color text-white px-4 py-1 rounded xl:ml-10">Edit</button>
-              <button class="bg-red-800 text-white px-4 py-1 rounded">Delete</button>
-            </div>
-          </div>
-
-
+          <% } %>
         </section>
+        
+        
     
 
     </div>
@@ -182,6 +179,13 @@
   }
 }
 };
+</script>
+
+<script>
+  function toggleSubcategories(element) {
+    const subcategorySection = element.nextElementSibling;
+    subcategorySection.classList.toggle("hidden");
+  }
 </script>
 
 

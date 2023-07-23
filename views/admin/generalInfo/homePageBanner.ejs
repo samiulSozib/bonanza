@@ -22,10 +22,10 @@
 
 
                 <!-- Search Box -->
-                <div class="bg-white relative border-2 rounded-md">
+                <!-- <div class="bg-white relative border-2 rounded-md">
                   <input class="py-2 pr-3 pl-10 focus:outline-none max-w-[250px]" type="text" placeholder="Search...">
                   <i class="fa-solid fa-magnifying-glass absolute top-1/2 left-3 -translate-y-1/2 text-tColor"></i>
-                </div>
+                </div> -->
 
                 <svg width="1" height="32" viewBox="0 0 1 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <line x1="0.5" y1="0.5" x2="0.499999" y2="31.5" stroke="#D1D1D1" stroke-linecap="round"/>
@@ -59,12 +59,13 @@
 
 
 
-        <form class="px-5 py-5">
+        <form class="px-5 py-5" action="/dashboard/updateHomeBanner/<%= homeBanner[0].id %>" method="POST" enctype="multipart/form-data">
 
 
           <p class="text-tColor font-semibold">Home Page Banner</p>
+          <img src="<%= homeBanner[0].homePageBanner %>" alt="" style="width: 400px; height: 250px;">
           <div class="flex items-center mt-2">
-            <label for="dropzone-file" class="max-w-[500px] w-full bg-gray-100 flex flex-col items-center justify-center border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+            <!-- <label for="dropzone-file" class="max-w-[500px] w-full bg-gray-100 flex flex-col items-center justify-center border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div class="flex flex-col items-center justify-center p-5">
                     <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M9.99994 7.75839C10.74 7.26392 11.61 7 12.5 7C13.0714 7 13.5346 7.46322 13.5346 8.03464C13.5346 8.60606 13.0714 9.06928 12.5 9.06928C12.0193 9.06928 11.5493 9.21184 11.1496 9.47893C10.7498 9.74602 10.4383 10.1256 10.2543 10.5698C10.0703 11.014 10.0222 11.5027 10.116 11.9742C10.2098 12.4457 10.4413 12.8788 10.7812 13.2188C11.1212 13.5587 11.5543 13.7902 12.0258 13.884C12.4973 13.9778 12.986 13.9297 13.4302 13.7457C13.8744 13.5617 14.254 13.2502 14.5211 12.8504C14.7882 12.4507 14.9307 11.9807 14.9307 11.5C14.9307 10.9286 15.3939 10.4654 15.9654 10.4654C16.5368 10.4654 17 10.9286 17 11.5C17 12.39 16.7361 13.26 16.2416 14.0001C15.7471 14.7401 15.0443 15.3169 14.2221 15.6575C13.3998 15.998 12.495 16.0872 11.6221 15.9135C10.7492 15.7399 9.94736 15.3113 9.31802 14.682C8.68868 14.0526 8.2601 13.2508 8.08647 12.3779C7.91283 11.505 8.00195 10.6002 8.34254 9.77792C8.68314 8.95566 9.25991 8.25285 9.99994 7.75839Z" fill="#15562B"/>
@@ -77,14 +78,41 @@
                     <p class="mb-1 text-sm font-semibold text-tColor text-center mt-3">Upload your <br>photo</p>
                 </div>
                 <input id="dropzone-file" type="file" class="hidden" />
-            </label>
+            </label> -->
+            
+            <label for="dropzone-file" class="custom-file-label"></label>
+            <input id="dropzone-file" name="hero_image" type="file" class="custom-file-label" />
           </div>
+          
+
 
           <p class="mt-5 mb-2 text-tColor font-semibold">Hero Banner Text</p>
-          <textarea id="w3review" name="w3review" rows="4" cols="50" placeholder="Write your Bio here e.g your hobbies, interests ETC" class="bg-gray-100 w-full max-w-[500px] first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+          <textarea id="heroBannerText" name="heroBannerText" rows="4" cols="50" placeholder="Write your Bio here e.g your hobbies, interests ETC" class="bg-gray-100 w-full max-w-[500px] first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"><%= homeBanner[0].heroBannerText %></textarea>
+          
+          <p class="mt-5 mb-2 text-tColor font-semibold">Hero Banner Sub Text</p>
+          <textarea id="heroBannerSubtext" name="heroBannerSubtext" rows="4" cols="50" placeholder="Write your Bio here e.g your hobbies, interests ETC" class="bg-gray-100 w-full max-w-[500px] first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"><%= homeBanner[0].heroBannerSubtext %></textarea>
+
+         
+
+          <p class="text-tColor font-semibold" style="margin-top: 10px;">Logo BackGround White</p>
+          <img src="<%= homeBanner[0].logoBGWhite %>" alt="" style="width: 300px; height: 200px;">
+          <div class="flex items-center mt-2">
+            <label for="dropzone-file1" class="custom-file-label1"></label>
+            <input id="dropzone-file1" name="logo1_image" type="file" class="custom-file-label1" />
+          </div>
+
+          <p class="text-tColor font-semibold" style="margin-top: 10px;">Logo</p>
+          <img src="<%= homeBanner[0].logo %>" alt="" style="width: 300px; height: 200px;">
+          <div class="flex items-center mt-2">
+            <label for="dropzone-file2" class="custom-file-label2"></label>
+            <input id="dropzone-file2" name="logo2_image" type="file" class="custom-file-label2" />
+          </div>
+
+          <p class="mt-5 mb-2 text-tColor font-semibold">WhatsApp Number</p>
+          <input class="bg-white w-full max-w-[350px] border-[1px] border-primaryColor first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="whatsappNumber" name="whatsappNumber" type="text" value="<%= homeBanner[0].whatsappNumber %>" required />
 
           <div class="mt-5 font-semibold">
-            <button class="gradient-color text-white px-5 py-3 rounded-md">Update Profile</button>
+            <button type="submit" class="gradient-color text-white px-5 py-3 rounded-md">Update Profile</button>
             <button class="px-5 py-3 mt-5 rounded-md text-tColor2">Reset</button>
           </div>
 
@@ -177,6 +205,25 @@
   }
 }
 };
+</script>
+
+<script>
+  $('#dropzone-file').on('change', function(e) {
+    let filename = e.target.files[0].name
+    $(this).next('.custom-file-label').html(filename)
+})
+
+$('#dropzone-file1').on('change', function(e) {
+    let filename = e.target.files[0].name
+    $(this).next('.custom-file-label1').html(filename)
+})
+
+$('#dropzone-file2').on('change', function(e) {
+    let filename = e.target.files[0].name
+    $(this).next('.custom-file-label2').html(filename)
+})
+
+
 </script>
 
 

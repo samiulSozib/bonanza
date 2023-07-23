@@ -4,12 +4,15 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="css/output.css" />
+		<script src="/js/singleScript.js"></script>
 		<title>Bonanza</title>
+		
+
 	</head>
 	<body>
 		<div
 			class="w-full h-screen"
-			style="background: url('./img/herobg.png'); background-size: cover"
+			style="background: url('/img/herobg.png'); background-size: cover"
 		>
 			<div class="container flex flex-col h-full mx-auto">
 				<!-- Navbar -->
@@ -73,7 +76,7 @@
 					<div class="flex-col items-center text-center navbar-end xl:flex">
 						<p class="text-sm">WhatsApp for any question</p>
 						<p class="text-lg font-bold xl:text-2xl text-secondary">
-							+8801750613481
+							<%= heroBanner[0].whatsappNumber %>
 						</p>
 					</div>
 				</div>
