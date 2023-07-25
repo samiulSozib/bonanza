@@ -8,6 +8,7 @@ const enquiryRoute=require('./client/enquiryRoute')
 const factoryRoute=require('./client/factoryRoute')
 const dashboardRoute=require('./admin/dashboardRoute')
 const clientApiRoute=require('../api/client/route/apiRoute')
+const adminApiRoute=require('../api/admin/route/apiRoute')
 
 
 
@@ -47,6 +48,10 @@ const routes = [
     {
         path:'/api/client',
         handler:clientApiRoute
+    },
+    {
+        path:'/api/admin',
+        handler:adminApiRoute
     },
     {
         path: '/',

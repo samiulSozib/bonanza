@@ -194,6 +194,20 @@
 			</div>
 		</div>
 
+
+<!-- trust us section -->
+		<div class="container flex flex-col px-5 mt-36 lg:px-0">
+			<div class="flex flex-col items-center">
+				<p class="font-medium uppercase text-accent">trust us</p>
+				<p class="text-5xl font-bold text-primary">Certification</p>
+			</div>
+			<div class="grid mt-20 lg:grid-cols-2 gap-x-32 lg:gap-y-20 gap-y-7">
+				<% for(let certification of certifications){ %>
+				<div class=""><img src="<%= certification.image %>" alt="" /></div>
+				<% } %>
+			</div>
+		</div>
+
 		<!-- request a callback section -->
 		<div
 			class="flex items-center py-10 mt-36 min-h-max"

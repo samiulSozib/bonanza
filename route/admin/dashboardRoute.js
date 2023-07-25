@@ -9,11 +9,14 @@ const {getFooterInfo,updateFooterInfo}=require('../../controller/admin/footerCon
 const {getBasicInfo,updateBasicInfo}=require('../../controller/admin/basicInfoController')
 const {getProfile,updateAdmin}=require('../../controller/admin/profileController')
 const {getContactMessage,deleteContactMessage,getEnquiry,deleteEnquiry}=require('../../controller/admin/contactMessage&EnquiryController')
-const {getProductList,getAddProduct}=require('../../controller/admin/productController')
 const {getCategory,getAddCategory,postCategory,getEditCategory,editCategory,deleteCategory}=require('../../controller/admin/categoryController')
+const {getProductList,getAddProduct,postAddProduct,getProductEditPage,postProductEditPage}=require('../../controller/admin/productController')
+const {getCertification,getAddCertification,postCertification,deleteCertification,getSingleCertification,updateCertification}=require('../../controller/admin/certificationController')
+
 
 
 const upload=require('../../middleware/uploadMiddleware')
+const multiUpload=require('../../middleware/multiupload')
 const adminAuth=require('../../middleware/authMiddlerare')
 
 
@@ -105,9 +108,17 @@ router.get('/category/delete/:id',adminAuth,deleteCategory)
 // product  routes 
 router.get('/productList',adminAuth,getProductList)
 router.get('/addProduct',adminAuth,getAddProduct)
+router.post('/addProduct',adminAuth,multiUpload.fields([{name:'product-featured-image'},{ name: 'product-image'}, { name: 'video'}]),postAddProduct)
+router.get('/editProduct/:id',adminAuth,getProductEditPage)
+router.post('/editProduct/:id',adminAuth,multiUpload.fields([{name:'product-featured-image'},{ name: 'product-image'}, { name: 'video'}]),postProductEditPage)
 
 
-
-
+// certification
+router.get('/certification',adminAuth,getCertification)
+router.get('/addCertification',adminAuth,getAddCertification)
+router.post('/addCertification',adminAuth,upload.single('certification'),postCertification)
+router.get('/deleteCertification/:id',adminAuth,deleteCertification)
+router.get('/certification/:id',adminAuth,getSingleCertification)
+router.post('/updateCertification/:id',adminAuth,upload.single('certification'),updateCertification)
 
 module.exports=router

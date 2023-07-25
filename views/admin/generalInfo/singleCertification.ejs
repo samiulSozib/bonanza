@@ -1,5 +1,8 @@
 <%- include('../partials/navigation.ejs') %>
 
+
+
+
     <!-- Right Side Section -->
     <div class="ml-auto w-full xl:w-5/6 px-0 xl:px-5 py-2 mt-16 xl:mt-0">
 
@@ -8,7 +11,7 @@
 
         <section class="flex items-center justify-between px-5 py-2 xl:py-5 gap-4">
             
-            <p class="text-lg font-bold text-tColor2">Add Product</p>
+            <p class="text-lg font-bold text-tColor2">Edit Certification</p>
 
             <!-- Notification & User -->
             <div class="text-xs xl:text-base flex items-center gap-3 xl:gap-5">
@@ -42,12 +45,11 @@
         
         <section class="px-5 mt-5">
 
-          <form action="/dashboard/addProduct" method="POST" enctype="multipart/form-data">
+          <form action="/dashboard/updateCertification/<%= certification[0].id %>" method="POST" enctype="multipart/form-data">
             <div class="flex gap-5 flex-wrap items-center">
-              <h5>Product Feature Image</h5>
               
               <!-- <div class="flex items-center">
-                <label class="flex flex-col items-center justify-center border-2 border-gray-400 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                <label for="dropzone-file" class="flex flex-col items-center justify-center border-2 border-gray-400 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="flex flex-col items-center justify-center p-5">
                         <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M9.99994 7.75839C10.74 7.26392 11.61 7 12.5 7C13.0714 7 13.5346 7.46322 13.5346 8.03464C13.5346 8.60606 13.0714 9.06928 12.5 9.06928C12.0193 9.06928 11.5493 9.21184 11.1496 9.47893C10.7498 9.74602 10.4383 10.1256 10.2543 10.5698C10.0703 11.014 10.0222 11.5027 10.116 11.9742C10.2098 12.4457 10.4413 12.8788 10.7812 13.2188C11.1212 13.5587 11.5543 13.7902 12.0258 13.884C12.4973 13.9778 12.986 13.9297 13.4302 13.7457C13.8744 13.5617 14.254 13.2502 14.5211 12.8504C14.7882 12.4507 14.9307 11.9807 14.9307 11.5C14.9307 10.9286 15.3939 10.4654 15.9654 10.4654C16.5368 10.4654 17 10.9286 17 11.5C17 12.39 16.7361 13.26 16.2416 14.0001C15.7471 14.7401 15.0443 15.3169 14.2221 15.6575C13.3998 15.998 12.495 16.0872 11.6221 15.9135C10.7492 15.7399 9.94736 15.3113 9.31802 14.682C8.68868 14.0526 8.2601 13.2508 8.08647 12.3779C7.91283 11.505 8.00195 10.6002 8.34254 9.77792C8.68314 8.95566 9.25991 8.25285 9.99994 7.75839Z" fill="#15562B"/>
@@ -57,133 +59,57 @@
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M29 0C29.5523 0 30 0.479239 30 1.07041V10.9296C30 11.5208 29.5523 12 29 12C28.4477 12 28 11.5208 28 10.9296V1.07041C28 0.479239 28.4477 0 29 0Z" fill="#15562B"/>
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M28.0496 19.675L20.9723 25.8014L20.9535 25.8173C20.0931 26.5267 19.0135 26.9145 17.8993 26.9145C16.7851 26.9145 15.7055 26.5267 14.8451 25.8173C14.8358 25.8096 14.8267 25.8018 14.8177 25.7939L14.2713 25.3101C13.8139 24.941 13.2519 24.7253 12.6651 24.694C12.0746 24.6624 11.4894 24.8191 10.9934 25.1414L2.59721 30.8241C2.12855 31.1413 1.49204 31.0177 1.17551 30.5481C0.858988 30.0784 0.982315 29.4405 1.45097 29.1233L9.86814 23.4264C10.7295 22.8634 11.7473 22.5897 12.7741 22.6445C13.801 22.6994 14.7839 23.0802 15.5806 23.7318C15.5909 23.7402 15.6011 23.7489 15.6111 23.7578L16.1591 24.2429C16.6508 24.6434 17.2653 24.8622 17.8993 24.8622C18.5351 24.8622 19.1512 24.6422 19.6436 24.2396L26.7209 18.1131L26.7397 18.0972C27.6002 17.3878 28.6797 17 29.7939 17C30.9081 17 31.9877 17.3878 32.8481 18.0972L32.867 18.1132L35.6454 20.5185C36.0734 20.889 36.1206 21.537 35.7509 21.9659C35.3812 22.3947 34.7345 22.4421 34.3066 22.0716L31.5382 19.6749C31.0458 19.2723 30.4297 19.0523 29.7939 19.0523C29.1582 19.0523 28.5421 19.2723 28.0496 19.675Z" fill="#15562B"/>
                           </svg>                         
-                        <p class="mb-1 text-sm font-semibold text-tColor text-center mt-3">Upload Your <br> Product Picture</p>
-                    </div> 
+                        <p class="mb-1 text-sm font-semibold text-tColor text-center mt-3">Upload Your <br> Country Picture</p>
+                    </div>
+                    
                 </label>
               </div> -->
-              
 
               <!-- <div class="flex items-center justify-center aspect-square">
-                <img src="img/product-1.png" alt="" class="h-auto w-32">
+                <img src="/img/country-1.png" alt="" class="h-auto w-16">
               </div>
               
               <div class="flex items-center justify-center aspect-square">
-                <img src="img/product-2.png" alt="" class="h-auto w-32">
+                <img src="img/country-2.png" alt="" class="h-auto w-16">
               </div>
 
               <div class="flex items-center justify-center aspect-square">
-                <img src="/img/product-1.png" alt="" class="h-auto w-32">
+                <img src="img/country-3.png" alt="" class="h-auto w-16">
+              </div>
+
+              <div class="flex items-center justify-center aspect-square">
+                <img src="img/country-4.png" alt="" class="h-auto w-16">
+              </div>
+
+              <div class="flex items-center justify-center aspect-square">
+                <img src="img/country-5.png" alt="" class="h-auto w-16">
               </div> -->
-
-            </div>
-            <input name="product-featured-image" type="file" class="dropzone-feature-file custom-feature-file-label" style="margin-top: 5px;" required/>
-            <hr class="mt-2">
-            <h6>Add Product Image</h6>
-            <div class="mb-4" id="productImageContainer">
-              <!-- product image fields will be dynamically added here -->
-            </div>
-            <button type="button" class="block my-2 py-2 px-4 bg-blue-500 text-white font-semibold rounded" id="addImageBtn">Add Image</button>
-            <hr class="mt-2">
-            <h6>Product Video</h6>
-            <input id="video-file" name="video" type="file" class="custom-video-file-label" style="margin-top: 5px;" accept="video/*"/>
-            <div>
-              <p class="mt-5 mb-2">Product Name</p>
-              <input class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="product_name" name="product_name" type="text" placeholder="Enter Product Name" required/>
-            </div>
-            <div>
-              <p class="mt-5 mb-2">Product Model</p>
-              <input class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="product_model" name="product_model" type="text" placeholder="Enter Product Model" required/>
-            </div>
-
-            <div class="flex justify-between max-w-[500px] gap-5">
               <div>
-                <p class="mt-5 mb-2">Unit</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="unit" name="unit" type="text" placeholder="Enter Unit" required/>
+                <div class="flex items-center justify-center overflow-hidden rounded-md">
+                  <img src="<%= certification[0].image %>" alt="" class="h-70 w-60 mx-auto">
+                </div>
+                <!-- <button class="flex items-center mx-auto xl:mx-0 gap-3 text-white bg-primaryColor w-fit px-3 py-2 rounded-md mt-5"> -->
+                  <label for="dropzone-file" class="custom-file-label" >
+                  <input id="dropzone-file" name="certification" type="file" class="custom-file-label" style="margin-top: 5px;" />
+                  
+                <!-- </button> -->
               </div>
 
-              <div>
-                <p class="mt-5 mb-2">FOB Price</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="fob_price" name="fob_price" type="text" placeholder="Enter Product FOB Price" required/>
-              </div>  
             </div>
-
-            <div class="flex justify-between max-w-[500px] gap-5">
-              <div>
-                <p class="mt-5 mb-2">Min Order Quentity</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="min_order_quentity" name="min_order_quentity" type="text" placeholder="Enter Min Order Quentity" required/>
-              </div>
-
-              <div>
-                <p class="mt-5 mb-2">Supply Ability</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="suppy_ability" name="suppy_ability" type="text" placeholder="Enter Supply Ability" required/>
-              </div>  
-            </div>
-
-            <div class="flex justify-between max-w-[500px] gap-5">
-              <div>
-                <p class="mt-5 mb-2">Processing Time</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="processing_time" name="processing_time" type="text" placeholder="Enter Processing Time" required/>
-              </div> 
-            </div>
+            <!-- <input id="dropzone-file" name="country-image" type="file" class="custom-file-label" style="margin-top: 5px;" /> -->
 
             
-            <div class="flex gap-5 mt-10 flex-wrap">
-
-              <div class="relative">
-                <select id="main-category" name="category" class="border-[1px] border-gray-400 py-3 pl-5 pr-10 appearance-none focus:outline-none focus:shadow-outline rounded-md">
-                  <option value="" hidden>Main Category</option>
-                  <% for(let category of categories){ %>
-                  <option value="<%= category.id %>"><%= category.category_name %></option>
-                  <% } %>
-                  
-                </select>
-
-                <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                  <i class="fa-solid fa-chevron-down"></i>
-                </div>
-              </div>
-              
-              <div class="relative">
-                <select id="sub-category" name="subcategory" class="border-[1px] border-gray-400 py-3 pl-5 pr-10 appearance-none focus:outline-none focus:shadow-outline rounded-md">
-                  <!-- <option value="volvo" hidden>Sub Category</option> -->
-                  <!-- <option value="saab">Men</option>
-                  <option value="opel">Women</option>
-                  <option value="audi">Kids</option> -->
-                </select>
-
-                <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                  <i class="fa-solid fa-chevron-down"></i>
-                </div>
-              </div>
-
-            </div>
-
 
             <div>
-              <p class="mt-5 mb-2">Packaging Details</p>
-              <textarea id="packaging_details" name="packaging_details" rows="4" cols="50" placeholder="Write Packaging Details" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+              <p class="mt-5 mb-2">Certification Name</p>
+              <input class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" type="text" value="<%= certification[0].name %>" required/>
             </div>
 
-            <div>
-              <p class="mt-5 mb-2">Product Details</p>
-              <textarea id="product_details" name="product_details" rows="4" cols="50" placeholder="Write Product Description" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-            </div>
 
-            <div class="flex">
-              <div class="relative mt-5">
-                <select id="main-category" class="border-[1px] border-gray-400 py-3 pl-5 pr-10 appearance-none focus:outline-none focus:shadow-outline rounded-md">
-                  <option value="saab">Published</option>
-                  <option value="audi">Unpublished</option>
-                </select>
 
-                <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                  <i class="fa-solid fa-chevron-down"></i>
-                </div>
-              </div>
-            </div>
           
             <div class="mt-5 font-semibold">
-              <button type="submit" class="gradient-color text-white px-5 py-3 rounded-md">Add Product</button>
+              <button type="submit" class="gradient-color text-white px-5 py-3 rounded-md">Update</button>
               <button class="px-5 py-3 mt-5 rounded-md text-tColor2">Reset</button>
             </div>
 
@@ -279,77 +205,15 @@
 </script>
 
 <script>
-  // JavaScript to handle dynamically adding and removing subcategory fields
-  document.getElementById("addImageBtn").addEventListener("click", function() {
-    const productImageContainer = document.getElementById("productImageContainer");
-    const newProdcutImageField = document.createElement("div");
-    newProdcutImageField.className = "flex items-center mb-2";
-    newProdcutImageField.innerHTML = `
-    <input  name="product-image" type="file" class="dropzone-file custom-file-label" style="margin-top: 5px;" />
-      <button type="button"  style="margin-left: 10px;" class="bg-red-800 text-white px-4 py-1 rounded" onclick="removeSubcategoryField(this)">Remove</button>
-    `;
-    productImageContainer.appendChild(newProdcutImageField);
-  });
-
-  function removeSubcategoryField(button) {
-    button.parentNode.remove();
-  }
-</script>
-
-<script>
-  $('.dropzone-file').on('change', function(e) {
-    let filenames = [];
-    for (let i = 0; i < e.target.files.length; i++) {
-      filenames.push(e.target.files[i].name);
-    }
-    $(this).next('.custom-file-label').html(filenames.join(', '));
-  });
-</script>
-
-<script>
-  $('.dropzone-feature-file').on('change', function(e) {
+  $('#dropzone-file').on('change', function(e) {
     let filename = e.target.files[0].name
-    $(this).next('.custom-feature-file-label').html(filename)
+    $(this).next('.custom-file-label').html(filename)
 })
 
 
 </script>
 
-<script>
-  $('#video-file').on('change', function(e) {
-    let filename = e.target.files[0].name
-    $(this).next('.custom-video-file-label').html(filename)
-})
 
-
-</script>
-
-<!-- fetch sub category -->
-<script>
-  // JavaScript to handle dynamic subcategory fetching
-  const mainCategoryDropdown = document.getElementById('main-category');
-  const subCategoryDropdown = document.getElementById('sub-category');
-
-  mainCategoryDropdown.addEventListener('change', function() {
-      const selectedMainCategoryId = this.value;
-      fetch(`/api/admin/getSubCategoryByCategoryId/${selectedMainCategoryId}`)
-          .then(response => response.json())
-          .then(data => {
-              // Clear existing options
-              subCategoryDropdown.innerHTML = '';
-
-              // Add new subcategory options from the fetched data
-              data.forEach(function(subcategory) {
-                console.log(subcategory)
-                  const option = document.createElement('option');
-                  option.value = subcategory.id;
-                  option.textContent = subcategory.subcategory_name;
-                  subCategoryDropdown.appendChild(option);
-              });
-          })
-          .catch(error => console.error(error));
-  });
-</script>
 
 </body>
 </html>

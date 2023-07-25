@@ -4,6 +4,7 @@ exports.getAboutUsPage=async(req,res,next)=>{
     try{
         const findCounties='SELECT * FROM country'
         const findBasicInformation='SELECT * FROM basicInformation'
+        const findCertification='SELECT * FROM certification'
         db.beginTransaction((err)=>{
            if(err){
             throw err
@@ -22,13 +23,20 @@ exports.getAboutUsPage=async(req,res,next)=>{
                         throw err 
                     })
                 }
-                db.commit((err)=>{
+                db.query(findCertification,(err,certifications)=>{
                     if(err){
                         db.rollback(()=>{
                             throw err 
                         })
                     }
-                    return res.status(200).render('client/aboutUs',{navStatus:"about",countries,basicInfo});
+                    db.commit((err)=>{
+                        if(err){
+                            db.rollback(()=>{
+                                throw err 
+                            })
+                        }
+                        return res.status(200).render('client/aboutUs',{navStatus:"about",countries,basicInfo,certifications});
+                    })
                 })
             })
 

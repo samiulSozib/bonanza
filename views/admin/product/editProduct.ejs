@@ -8,7 +8,7 @@
 
         <section class="flex items-center justify-between px-5 py-2 xl:py-5 gap-4">
             
-            <p class="text-lg font-bold text-tColor2">Add Product</p>
+            <p class="text-lg font-bold text-tColor2">Edit Product</p>
 
             <!-- Notification & User -->
             <div class="text-xs xl:text-base flex items-center gap-3 xl:gap-5">
@@ -42,7 +42,7 @@
         
         <section class="px-5 mt-5">
 
-          <form action="/dashboard/addProduct" method="POST" enctype="multipart/form-data">
+          <form action="/dashboard/editProduct/<%= product.id %>" method="POST" enctype="multipart/form-data" id="deleteForm">
             <div class="flex gap-5 flex-wrap items-center">
               <h5>Product Feature Image</h5>
               
@@ -76,97 +76,119 @@
               </div> -->
 
             </div>
-            <input name="product-featured-image" type="file" class="dropzone-feature-file custom-feature-file-label" style="margin-top: 5px;" required/>
+            <img id="productImage" src="<%= product.images[0].image %>" alt="">
+            <input name="product-featured-image" type="file" class="dropzone-feature-file custom-feature-file-label" style="margin-top: 5px;"/>
             <hr class="mt-2">
             <h6>Add Product Image</h6>
-            <div class="mb-4" id="productImageContainer">
-              <!-- product image fields will be dynamically added here -->
+            <!--  -->
+            <section class="px-5 py-5 grid grid-cols-2 xl:grid-cols-6 gap-10">
+              
+              <% if(product.images.length>1){ %>
+              <% for(let i=1;i<product.images.length;i++){ %>
+                <div id="removeImage<%= product.images[i].image_id %>">
+                <div class="h-40 w-full flex justify-center items-center mt-3 overflow-hidden">
+                  <img id="productImage" src="<%= product.images[i].image %>" alt="">
+                </div>
+                <div>
+                  <a href="#" class="delete-product-image bg-red-800 text-white px-2 py-1 rounded" data-image-id="<%= product.images[i].image_id %>">Delete</a>
+                </div>
+              </div>
+              
+              <% } %>
+              <% } %>
+            </section>
+            <!--  -->
+            <!--  -->
+            <div id="productImageContainer">
+              <button type="button" class="block my-2 py-2 px-4 bg-blue-500 text-white font-semibold rounded" id="addImageBtn">Add Image</button>
             </div>
-            <button type="button" class="block my-2 py-2 px-4 bg-blue-500 text-white font-semibold rounded" id="addImageBtn">Add Image</button>
+            <!--  -->
             <hr class="mt-2">
             <h6>Product Video</h6>
-            <input id="video-file" name="video" type="file" class="custom-video-file-label" style="margin-top: 5px;" accept="video/*"/>
+            <div id="removeVideo">
+              <% if(product.video[0].video_id){ %>
+                <video controls style="height: 150px; width: 250px; margin-bottom: 10px;"><source src="<%= product.video[0].video %>" type="video/mp4"></video>
+                <a href="#" class="delete-product-video bg-red-800 text-white px-2 py-1 rounded mt-2 mb-2" data-video-id="<%= product.video[0].video_id %>">Delete</a>
+            <% } %>
+            </div>
+            <input id="video-file" name="video"  type="file" class="custom-video-file-label" style="margin-top: 5px;" accept="video/*"/>
+            
             <div>
               <p class="mt-5 mb-2">Product Name</p>
-              <input class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="product_name" name="product_name" type="text" placeholder="Enter Product Name" required/>
+              <input class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="product_name" name="product_name" type="text" value="<%= product.product_name %>" required/>
             </div>
             <div>
               <p class="mt-5 mb-2">Product Model</p>
-              <input class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="product_model" name="product_model" type="text" placeholder="Enter Product Model" required/>
+              <input class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="product_model" name="product_model" type="text" value="<%= product.product_model %>" required/>
             </div>
 
             <div class="flex justify-between max-w-[500px] gap-5">
               <div>
                 <p class="mt-5 mb-2">Unit</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="unit" name="unit" type="text" placeholder="Enter Unit" required/>
+                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="unit" name="unit" type="text" value="<%= product.unit %>" required/>
               </div>
 
               <div>
                 <p class="mt-5 mb-2">FOB Price</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="fob_price" name="fob_price" type="text" placeholder="Enter Product FOB Price" required/>
+                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="fob_price" name="fob_price" type="text" value="<%= product.fob_price %>" required/>
               </div>  
             </div>
 
             <div class="flex justify-between max-w-[500px] gap-5">
               <div>
                 <p class="mt-5 mb-2">Min Order Quentity</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="min_order_quentity" name="min_order_quentity" type="text" placeholder="Enter Min Order Quentity" required/>
+                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="min_order_quentity" name="min_order_quentity" type="text" value="<%= product.min_order_quentity %>" required/>
               </div>
 
               <div>
                 <p class="mt-5 mb-2">Supply Ability</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="suppy_ability" name="suppy_ability" type="text" placeholder="Enter Supply Ability" required/>
+                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="suppy_ability" name="suppy_ability" type="text" value="<%= product.suppy_ability %>" required/>
               </div>  
             </div>
 
             <div class="flex justify-between max-w-[500px] gap-5">
               <div>
                 <p class="mt-5 mb-2">Processing Time</p>
-                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="processing_time" name="processing_time" type="text" placeholder="Enter Processing Time" required/>
+                <input class="bg-white w-full border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline" id="processing_time" name="processing_time" type="text" value="<%= product.processing_time %>" required/>
               </div> 
             </div>
 
             
             <div class="flex gap-5 mt-10 flex-wrap">
-
               <div class="relative">
                 <select id="main-category" name="category" class="border-[1px] border-gray-400 py-3 pl-5 pr-10 appearance-none focus:outline-none focus:shadow-outline rounded-md">
-                  <option value="" hidden>Main Category</option>
-                  <% for(let category of categories){ %>
-                  <option value="<%= category.id %>"><%= category.category_name %></option>
+                  <% for (let category of categories) { %>
+                    <option value="<%= category.id %>" <% if (product.cat_id === category.id) { %>selected<% } %>><%= category.category_name %></option>
                   <% } %>
-                  
                 </select>
-
+            
                 <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                   <i class="fa-solid fa-chevron-down"></i>
                 </div>
               </div>
-              
+            
               <div class="relative">
                 <select id="sub-category" name="subcategory" class="border-[1px] border-gray-400 py-3 pl-5 pr-10 appearance-none focus:outline-none focus:shadow-outline rounded-md">
-                  <!-- <option value="volvo" hidden>Sub Category</option> -->
-                  <!-- <option value="saab">Men</option>
-                  <option value="opel">Women</option>
-                  <option value="audi">Kids</option> -->
+                 
+                  <!-- Subcategory options will be populated dynamically using JavaScript -->
                 </select>
-
+            
                 <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                   <i class="fa-solid fa-chevron-down"></i>
                 </div>
               </div>
-
             </div>
+            
 
 
             <div>
               <p class="mt-5 mb-2">Packaging Details</p>
-              <textarea id="packaging_details" name="packaging_details" rows="4" cols="50" placeholder="Write Packaging Details" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+              <textarea id="packaging_details" name="packaging_details" rows="4" cols="50" placeholder="Write Product Description" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"><%= product.packaging_details %></textarea>
             </div>
 
             <div>
               <p class="mt-5 mb-2">Product Details</p>
-              <textarea id="product_details" name="product_details" rows="4" cols="50" placeholder="Write Product Description" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+              <textarea id="product_details" name="product_details" rows="4" cols="50" placeholder="Write Product Description" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"><%= product.product_details %></textarea>
             </div>
 
             <div class="flex">
@@ -183,7 +205,7 @@
             </div>
           
             <div class="mt-5 font-semibold">
-              <button type="submit" class="gradient-color text-white px-5 py-3 rounded-md">Add Product</button>
+              <button type="submit" class="gradient-color text-white px-5 py-3 rounded-md">Edit Product</button>
               <button class="px-5 py-3 mt-5 rounded-md text-tColor2">Reset</button>
             </div>
 
@@ -297,13 +319,24 @@
 </script>
 
 <script>
-  $('.dropzone-file').on('change', function(e) {
-    let filenames = [];
-    for (let i = 0; i < e.target.files.length; i++) {
-      filenames.push(e.target.files[i].name);
-    }
-    $(this).next('.custom-file-label').html(filenames.join(', '));
+  // JavaScript code to handle displaying the image when the page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    const product = '<%- JSON.stringify(product) %>';
+    const productImage = document.getElementById('productImage');
+    productImage.src = product.images[0].image;
+
+    // Rest of your existing JavaScript code for handling file input changes goes here
+    // ...
+
+    $('.dropzone-file').on('change', function(e) {
+      let filenames = [];
+      for (let i = 0; i < product.images.length; i++) {
+        filenames.push(product.images[i].image);
+      }
+      $(this).next('.custom-file-label').html(filenames.join(', '));
+    });
   });
+
 </script>
 
 <script>
@@ -330,26 +363,132 @@
   const mainCategoryDropdown = document.getElementById('main-category');
   const subCategoryDropdown = document.getElementById('sub-category');
 
-  mainCategoryDropdown.addEventListener('change', function() {
-      const selectedMainCategoryId = this.value;
-      fetch(`/api/admin/getSubCategoryByCategoryId/${selectedMainCategoryId}`)
-          .then(response => response.json())
-          .then(data => {
-              // Clear existing options
-              subCategoryDropdown.innerHTML = '';
+  // Function to fetch all subcategories for the selected main category
+  function fetchAllSubcategories(selectedMainCategoryId) {
+    fetch(`/api/admin/getSubCategoryByCategoryId/${selectedMainCategoryId}`)
+      .then(response => response.json())
+      .then(data => {
+        // Clear existing options
+        subCategoryDropdown.innerHTML = '';
 
-              // Add new subcategory options from the fetched data
-              data.forEach(function(subcategory) {
-                console.log(subcategory)
-                  const option = document.createElement('option');
-                  option.value = subcategory.id;
-                  option.textContent = subcategory.subcategory_name;
-                  subCategoryDropdown.appendChild(option);
-              });
-          })
-          .catch(error => console.error(error));
+        // Add a placeholder option for subcategory selection
+        // const placeholderOption = document.createElement('option');
+        // placeholderOption.value = '';
+        // placeholderOption.disabled = true;
+        // placeholderOption.selected = true;
+        // subCategoryDropdown.appendChild(placeholderOption);
+
+        // Add new subcategory options from the fetched data
+        data.forEach(function(subcategory) {
+          const option = document.createElement('option');
+          option.value = subcategory.id;
+          option.textContent = subcategory.subcategory_name;
+          const subCat_id='<%= product.subCat_id %>'
+          //console.log(subcategory.id)
+          if (subcategory.id == subCat_id) {
+            //console.log('<%= product.subCat_id %>')
+            option.setAttribute('selected', 'selected');
+          }
+          subCategoryDropdown.appendChild(option);
+        });
+      })
+      .catch(error => console.error(error));
+  }
+
+  // Event listener for main category dropdown
+  mainCategoryDropdown.addEventListener('change', function() {
+    const selectedMainCategoryId = this.value;
+    fetchAllSubcategories(selectedMainCategoryId);
+  });
+
+  // Fetch all subcategories initially based on the product's main category data
+  const selectedMainCategoryId = mainCategoryDropdown.value;
+ 
+  fetchAllSubcategories(selectedMainCategoryId);
+</script>
+
+<!-- Your HTML or EJS template file -->
+
+<!-- Add the loop to display images and the delete button as shown in the previous response -->
+
+<!-- Your HTML or EJS template file -->
+
+<!-- Add the loop to display images and the delete button as shown in the previous response -->
+
+<script>
+  // Add an event listener to the form element
+  document.querySelector('.delete-product-video').addEventListener('click', function(event) {
+    //event.preventDefault(); // Prevent the default form submission
+    
+    // Get the image ID from the data-image-id attribute of the button
+    const videoId = this.getAttribute('data-video-id');
+    
+    const confirmed = confirm('Are you sure you want to delete this video?');
+    const divToRemove = document.getElementById('removeVideo'); 
+
+    if (!confirmed) {
+      return;
+    }
+
+    fetch(`/api/admin/deleteProductVideo/${videoId}`, {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+      if (divToRemove) {
+        divToRemove.parentNode.removeChild(divToRemove);
+      }
+      
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+    
   });
 </script>
+
+
+<!-- Delete video -->
+
+<script>
+  // Add an event listener to the form element
+  const deleteImageButton=document.querySelectorAll('.delete-product-image')
+  deleteImageButton.forEach(button=>{
+    button.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    
+    // Get the image ID from the data-image-id attribute of the button
+    const imageId = this.getAttribute('data-image-id');
+    
+    const confirmed = confirm('Are you sure you want to delete this image?');
+    const divToRemove = document.getElementById('removeImage'+imageId); 
+
+    if (!confirmed) {
+      return;
+    }
+
+    fetch(`/api/admin/deleteProductImage/${imageId}`, {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+      if (divToRemove) {
+        divToRemove.parentNode.removeChild(divToRemove);
+      }
+      
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+    
+  });
+  })
+</script>
+
 
 </body>
 </html>

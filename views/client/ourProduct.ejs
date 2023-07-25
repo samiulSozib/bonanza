@@ -22,39 +22,52 @@
 		<div
 			class="container flex flex-col min-h-screen px-5 mt-20 gap-y-20 lg:flex-row gap-x-20 lg:px-0"
 		>
+		
 			<div class="flex relative flex-col gap-y-7 lg:w-[20%]">
 				<p class="text-xl font-bold">Product Categories</p>
+				
+				
 				<div class="flex flex-col gap-y-2">
-					<p
+					<p onclick="displayProducts('all')"
 						class="flex items-center p-4 font-semibold duration-150 rounded-lg cursor-pointer hover:product-sidebar-link-active product-sidebar-link-active gap-x-3"
-					>
+					  >
 						<i class="bi bi-arrow-right-circle"></i>
-						Jute Twine
-					</p>
-					<p
-						class="flex items-center p-4 font-semibold duration-150 rounded-lg cursor-pointer hover:product-sidebar-link-active product-sidebar-link gap-x-3"
+						All
+					  </p>
+					<% for (let category of categories) { %>
+					<div class="category-container"
+					  onmouseover="showSubcategories('<%= category.category_id %>')"
+					  onmouseout="hideSubcategories('<%= category.category_id %>')"
 					>
+
+					  <p onclick="displayProducts('<%= category.category_id %>')"
+						class="flex items-center p-4 font-semibold duration-150 rounded-lg cursor-pointer hover:product-sidebar-link-active product-sidebar-link-active gap-x-3"
+					  >
 						<i class="bi bi-arrow-right-circle"></i>
-						Jute Rope
-					</p>
-					<p
-						class="flex items-center p-4 font-semibold duration-150 rounded-lg cursor-pointer hover:product-sidebar-link-active product-sidebar-link gap-x-3"
-					>
-						<i class="bi bi-arrow-right-circle"></i>
-						Jute Fiber
-					</p>
-					<p
-						class="flex items-center p-4 font-semibold duration-150 rounded-lg cursor-pointer hover:product-sidebar-link-active product-sidebar-link gap-x-3"
-					>
-						<i class="bi bi-arrow-right-circle"></i>
-						Jute Yarn
-					</p>
-				</div>
+						<%= category.category_name %>
+					  </p>
+					  <ul class="list-none pl-4 hidden" id="subcategory-list-<%= category.category_id %>">
+						<% for (let subcategory of category.subcategories) { %>
+						<li class="py-2">
+						  <div style="margin-left: 30px;" class="flex items-center p-3 font-semibold duration-150 rounded-lg cursor-pointer hover:product-sidebar-link-active product-sidebar-link-active gap-x-3">
+							<p onclick="displaySubcategoryProducts('<%= subcategory.subcategory_id %>')"><%= subcategory.subcategory_name %></p> 
+						  </div>
+						</li>
+						<% } %>
+					  </ul>
+					</div>
+					<% } %>
+				  </div>
+				  
+
+				  
+
 				<div
-					class="absolute bottom-0 flex-col self-end hidden w-full px-5 py-8 text-white rounded-lg lg:flex justify-self-end gap-y-4 h-fit"
+					class=" bottom-0 flex-col self-end hidden w-full px-5 py-8 text-white rounded-lg lg:flex justify-self-end gap-y-4 h-fit"
 					style="
 						background: url('./img/Group-1.png');
 						background-size: cover;
+						
 					"
 				>
 					<p class="text-xl font-bold">How can we help you</p>
@@ -75,9 +88,13 @@
 					</div>
 				</div>
 			</div>
+			
+			<div id="productList" class="grid lg:grid-cols-3 gap-20 px-5 lg:w-[80%]">
+				
 
-			<div class="grid lg:grid-cols-3 gap-20 px-5 lg:w-[80%]">
-				<div class="flex flex-col gap-y-4">
+
+
+				<!-- <div class="flex flex-col gap-y-4">
 					<img src="./img/product-1.png" />
 					<p class="font-semibold">
 						High Quality Comfortable 100% Natural Wholesale Cheap
@@ -93,159 +110,17 @@
 							>Details</a
 						>
 					</div>
-				</div>
+				</div> -->
+				
+				<!-- <div id="productList"></div> -->
 
-				<div class="flex flex-col gap-y-4">
-					<img src="./img/product-2.png" />
-					<p class="font-semibold">
-						High Quality Comfortable 100% Natural Wholesale Cheap
-						price Jute Hessian Sacking Bag.
-					</p>
-					<div class="flex justify-between">
-						<p class="flex text-primary gap-x-2">
-							<i class="bi bi-folder"></i>Jute Twine
-						</p>
-						<a
-							href="/productDetails"
-							class="font-bold text-secondary"
-							>Details</a
-						>
-					</div>
-				</div>
-
-				<div class="flex flex-col gap-y-4">
-					<img src="./img/product-3.png" />
-					<p class="font-semibold">
-						High Quality Comfortable 100% Natural Wholesale Cheap
-						price Jute Hessian Sacking Bag.
-					</p>
-					<div class="flex justify-between">
-						<p class="flex text-primary gap-x-2">
-							<i class="bi bi-folder"></i>Jute Twine
-						</p>
-						<a
-							href="/productDetails"
-							class="font-bold text-secondary"
-							>Details</a
-						>
-					</div>
-				</div>
-
-				<div class="flex flex-col gap-y-4">
-					<img src="./img/product-4.png" />
-					<p class="font-semibold">
-						High Quality Comfortable 100% Natural Wholesale Cheap
-						price Jute Hessian Sacking Bag.
-					</p>
-					<div class="flex justify-between">
-						<p class="flex text-primary gap-x-2">
-							<i class="bi bi-folder"></i>Jute Twine
-						</p>
-						<a
-							href="/productDetails"
-							class="font-bold text-secondary"
-							>Details</a
-						>
-					</div>
-				</div>
-
-				<div class="flex flex-col gap-y-4">
-					<img src="./img/product-5.png" />
-					<p class="font-semibold">
-						High Quality Comfortable 100% Natural Wholesale Cheap
-						price Jute Hessian Sacking Bag.
-					</p>
-					<div class="flex justify-between">
-						<p class="flex text-primary gap-x-2">
-							<i class="bi bi-folder"></i>Jute Twine
-						</p>
-						<a
-							href="/productDetails"
-							class="font-bold text-secondary"
-							>Details</a
-						>
-					</div>
-				</div>
-
-				<div class="flex flex-col gap-y-4">
-					<img src="./img/product-6.png" />
-					<p class="font-semibold">
-						High Quality Comfortable 100% Natural Wholesale Cheap
-						price Jute Hessian Sacking Bag.
-					</p>
-					<div class="flex justify-between">
-						<p class="flex text-primary gap-x-2">
-							<i class="bi bi-folder"></i>Jute Twine
-						</p>
-						<a
-							href="/productDetails"
-							class="font-bold text-secondary"
-							>Details</a
-						>
-					</div>
-				</div>
-
-				<div class="flex flex-col gap-y-4">
-					<img src="./img/product-7.png" />
-					<p class="font-semibold">
-						High Quality Comfortable 100% Natural Wholesale Cheap
-						price Jute Hessian Sacking Bag.
-					</p>
-					<div class="flex justify-between">
-						<p class="flex text-primary gap-x-2">
-							<i class="bi bi-folder"></i>Jute Twine
-						</p>
-						<a
-							href="/productDetails"
-							class="font-bold text-secondary"
-							>Details</a
-						>
-					</div>
-				</div>
-
-				<div class="flex flex-col gap-y-4">
-					<img src="./img/product-8.png" />
-					<p class="font-semibold">
-						High Quality Comfortable 100% Natural Wholesale Cheap
-						price Jute Hessian Sacking Bag.
-					</p>
-					<div class="flex justify-between">
-						<p class="flex text-primary gap-x-2">
-							<i class="bi bi-folder"></i>Jute Twine
-						</p>
-						<a
-							href="/productDetails"
-							class="font-bold text-secondary"
-							>Details</a
-						>
-					</div>
-				</div>
-
-				<div class="flex flex-col gap-y-4">
-					<img src="./img/product-9.png" />
-					<p class="font-semibold">
-						High Quality Comfortable 100% Natural Wholesale Cheap
-						price Jute Hessian Sacking Bag.
-					</p>
-					<div class="flex justify-between">
-						<p class="flex text-primary gap-x-2">
-							<i class="bi bi-folder"></i>Jute Twine
-						</p>
-						<a
-							href="/productDetails"
-							class="font-bold text-secondary"
-							>Details</a
-						>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 
 		<!-- Video section -->
 		<div class="container relative flex justify-center px-5 mt-36 lg:px-0">
-			<iframe width="980" height="420"
-src="<%= basicInfo[0].videoProductPage %>">
-</iframe>
+			<iframe width="980" height="420"src="<%= basicInfo[0].videoProductPage %>"></iframe>
 			<!-- <span
 				class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] lg:text-8xl text-6xl text-white"
 			>
@@ -293,5 +168,164 @@ src="<%= basicInfo[0].videoProductPage %>">
 			getFooterInfo()
 			
 		</script>
-	</body>
+		<script>
+			function showSubcategories(categoryId) {
+			const subcategoryList = document.getElementById(`subcategory-list-${categoryId}`);
+			subcategoryList.classList.remove('hidden');
+			}
+		
+			function hideSubcategories(categoryId) {
+			const subcategoryList = document.getElementById(`subcategory-list-${categoryId}`);
+			subcategoryList.classList.add('hidden');
+			}
+		</script>
+
+		<!-- for category -->
+		<script>
+			async function fetchProducts() {
+			try {
+				const response = await fetch('/api/client/products'); // Replace '/api/products' with your API endpoint
+				const data = await response.json();
+				return data;
+			} catch (error) {
+				console.error('Error fetching products:', error);
+				return [];
+			}
+			}
+		
+			async function displayProducts(selectedCategory) {
+				
+			const productListContainer = document.getElementById('productList');
+			productListContainer.innerHTML = '';
+		
+			try {
+				const products = await fetchProducts();
+				const filteredProducts = selectedCategory === 'all'
+				? products // Show all products when 'All Subcategories' is selected
+				: products.filter(product => product.cat_id == selectedCategory);
+		
+				filteredProducts.forEach(product => {
+					const productDiv = document.createElement('div');
+						productDiv.classList.add('flex', 'flex-col', 'gap-y-4');
+
+						const productImage = document.createElement('img');
+						productImage.setAttribute('src', product.images[0].image);
+
+						const productDescription = document.createElement('p');
+						productDescription.classList.add('font-semibold');
+						productDescription.textContent = product.product_name;
+
+						const productCategory = document.createElement('p');
+						productCategory.classList.add('flex', 'text-primary', 'gap-x-2');
+						productCategory.innerHTML = `<i class="bi bi-folder"></i>${product.category_name}`;
+
+						const productDetailsLink = document.createElement('a');
+						productDetailsLink.classList.add('font-bold', 'text-secondary');
+						productDetailsLink.setAttribute('href', product.link);
+						productDetailsLink.textContent = 'Details';
+
+						const myDiv=document.createElement('div')
+						myDiv.classList.add('flex', 'justify-between')
+						myDiv.appendChild(productCategory)
+						myDiv.appendChild(productDetailsLink)
+
+						// Append the elements to the productDiv
+						productDiv.appendChild(productImage);
+						productDiv.appendChild(productDescription);
+						productDiv.appendChild(myDiv);
+						//productDiv.appendChild(productDetailsLink);
+
+						// Append the productDiv to the productListContainer
+						productListContainer.appendChild(productDiv);
+				});
+			} catch (error) {
+				console.error('Error displaying products:', error);
+			}
+			}
+		
+			// function toggleSubcategories(categoryId) {
+			// const subcategoryList = document.getElementById(`subcategory-list-${categoryId}`);
+			// subcategoryList.classList.toggle('hidden');
+			// }
+		
+			// Initial display with all products
+			displayProducts('all');
+		</script>
+
+
+
+		<!-- for sub category -->
+
+		<script>
+			async function fetchProducts() {
+			try {
+				const response = await fetch('/api/client/products'); // Replace '/api/products' with your API endpoint
+				const data = await response.json();
+				return data;
+			} catch (error) {
+				console.error('Error fetching products:', error);
+				return [];
+			}
+			}
+
+			async function displaySubcategoryProducts(selectedSubCategory) {
+				
+			const productListContainer = document.getElementById('productList');
+			productListContainer.innerHTML = '';
+
+			try {
+				const products = await fetchProducts();
+				const filteredProducts = selectedSubCategory === 'all'
+				? products // Show all products when 'All Subcategories' is selected
+				: products.filter(product => product.subCat_id == selectedSubCategory);
+
+				filteredProducts.forEach(product => {
+					const productDiv = document.createElement('div');
+						productDiv.classList.add('flex', 'flex-col', 'gap-y-4');
+
+						const productImage = document.createElement('img');
+						productImage.setAttribute('src', product.images[0].image);
+
+						const productDescription = document.createElement('p');
+						productDescription.classList.add('font-semibold');
+						productDescription.textContent = product.product_name;
+
+						const productCategory = document.createElement('p');
+						productCategory.classList.add('flex', 'text-primary', 'gap-x-2');
+						productCategory.innerHTML = `<i class="bi bi-folder"></i>${product.category_name}`;
+
+						const productDetailsLink = document.createElement('a');
+						productDetailsLink.classList.add('font-bold', 'text-secondary');
+						productDetailsLink.setAttribute('href', product.link);
+						productDetailsLink.textContent = 'Details';
+
+						const myDiv=document.createElement('div')
+						myDiv.classList.add('flex', 'justify-between')
+						myDiv.appendChild(productCategory)
+						myDiv.appendChild(productDetailsLink)
+
+						// Append the elements to the productDiv
+						productDiv.appendChild(productImage);
+						productDiv.appendChild(productDescription);
+						productDiv.appendChild(myDiv);
+						//productDiv.appendChild(productDetailsLink);
+
+						// Append the productDiv to the productListContainer
+						productListContainer.appendChild(productDiv);
+				});
+			} catch (error) {
+				console.error('Error displaying products:', error);
+			}
+			}
+
+			// function toggleSubcategories(categoryId) {
+			// const subcategoryList = document.getElementById(`subcategory-list-${categoryId}`);
+			// subcategoryList.classList.toggle('hidden');
+			// }
+
+			// Initial display with all products
+		</script>
+		
+
+	</body>		
 </html>
