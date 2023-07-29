@@ -9,7 +9,7 @@ const {getFooterInfo,updateFooterInfo}=require('../../controller/admin/footerCon
 const {getBasicInfo,updateBasicInfo}=require('../../controller/admin/basicInfoController')
 const {getProfile,updateAdmin}=require('../../controller/admin/profileController')
 const {getContactMessage,deleteContactMessage,getEnquiry,deleteEnquiry}=require('../../controller/admin/contactMessage&EnquiryController')
-const {getCategory,getAddCategory,postCategory,getEditCategory,editCategory,deleteCategory}=require('../../controller/admin/categoryController')
+const {getCategory,getAddCategory,postCategory,getEditCategory,editCategory,deleteCategory,deleteSubCategory}=require('../../controller/admin/categoryController')
 const {getProductList,getAddProduct,postAddProduct,getProductEditPage,postProductEditPage}=require('../../controller/admin/productController')
 const {getCertification,getAddCertification,postCertification,deleteCertification,getSingleCertification,updateCertification}=require('../../controller/admin/certificationController')
 
@@ -102,6 +102,7 @@ router.post('/addCategory',adminAuth,postCategory)
 router.get('/editCategory/:id',adminAuth,getEditCategory)
 router.post('/editCategory/:id',adminAuth,editCategory)
 router.get('/category/delete/:id',adminAuth,deleteCategory)
+router.get('/subCategory/delete/:id',adminAuth,deleteSubCategory)
 
 
 

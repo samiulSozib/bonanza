@@ -235,12 +235,14 @@
 								type="text"
 								placeholder="Name"
 								name="name"
+								required
 							/>
 							<input
 								class="input input-lg input-bordered"
 								type="email"
 								placeholder="Email address"
 								name="email"
+								required
 							/>
 						</div>
 						<div class="grid gap-y-10 lg:grid-cols-2 gap-x-5">
@@ -249,18 +251,19 @@
 								type="phone"
 								placeholder="Phone"
 								name="phoneNumber"
+								required
 							/>
 							<select id="category" name="category" class="font-normal select select-lg select-bordered">
-								<option value="Financial consulting1">Financial consulting1</option>
-								<option value="Financial consulting2">Financial consulting2</option>
-								<option value="Financial consulting3">Financial consulting3</option>
-								<option value="Financial consulting4">Financial consulting4</option>
+								<% for(let dropdown of contactDropdown){ %>
+									<option value="<%= dropdown.name %>"><%= dropdown.name %></option>
+								<% } %>
 							</select>
 						</div>
 						<textarea
 								class="textarea textarea-lg h-36 input-bordered"
 								placeholder="Your message"
 								name="message"
+								required
 							></textarea>
 						<button type="submit"
 							class="lg:self-center self-start border-0 px-16 text-white normal-case btn btn-lg bg-gradient-to-r from-[#1B8900] to-[#65A184]"

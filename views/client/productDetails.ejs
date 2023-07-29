@@ -3,7 +3,7 @@
 		<!-- Hero section -->
 		<div
 			class="h-[35vh]"
-			style="background: url('./img/product-details-bg.png')"
+			style="background: url('/img/product-details-bg.png')"
 		>
 			<div
 				class="container flex flex-col items-center justify-center h-full mx-auto text-white gap-y-5"
@@ -11,7 +11,7 @@
 				<h2 class="text-3xl font-bold lg:text-5xl">Product Details</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
-						<li><a href="./index.html">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li class="font-medium">Product Details</li>
 					</ul>
 				</div>
@@ -22,9 +22,9 @@
 		<div class="container flex flex-col px-5 mt-20 gap-y-16 gap-x-20 lg:px-0">
 			<div class="flex flex-col gap-y-10">
 				<h2 class="text-3xl">
-					Fine Quality 8 lbs and 2 ply CRT Jute Twine Directly export from
-					Bonanza Jute Composite & Diverse Factory Ltd.
+					<%= product.product_name %>
 				</h2>
+				<p><strong><%= product.category_name %> <%= product.subcategory_name ?">>"+ product.subcategory_name : "" %></strong></p>
 				<p>
 					M.H Golden Jute is a full service vendor with strong vertically
 					integrated production facilities as well as creative & analytical
@@ -36,7 +36,11 @@
 				</p>
 			</div>
 			<div class="flex flex-col xl:flex-row gap-x-10">
-				<img src="./img/product-img.png" class="w-fit" alt="" />
+				<% if(product.video[0].video_id){ %>
+					<video controls style="margin-bottom: 10px;" class="w-fit"><source src="<%= product.video[0].video %>" type="video/mp4"></video>
+				<% }else{ %>
+				<img src="<%= product.images[0].image %>" class="w-fit" alt="" />
+				<% } %>
 				<div class="flex flex-col gap-y-5">
 					<p class="text-2xl font-medium">
 						Are you interested? Contact our sales department now
@@ -70,7 +74,7 @@
 								<i class="text-2xl text-[#1B8900] bi bi-dot"></i>
 							</p>
 						</div>
-						<img src="./img/calender-icon.png" alt="" class="w-fit h-fit" />
+						<img src="/img/calender-icon.png" alt="" class="w-fit h-fit" />
 						<span
 							class="absolute top-0 left-0 w-full xl:w-[100%] h-full border border-2 border-b-8 border-b border-b-[#499851]"
 						></span>
@@ -96,12 +100,12 @@
 				<a
 					class="flex items-center justify-center p-4 py-3 border border-transparent rounded-lg cursor-pointer nav-tab hover:border-primary"
 					data-target="data"
-					>Technical Data</a
+					>Packaging Details</a
 				>
 				<a
 					class="flex items-center justify-center p-4 py-3 border border-transparent rounded-lg cursor-pointer nav-tab hover:border-primary"
 					data-target="applications"
-					>Applications</a
+					>Product Details</a
 				>
 				<a
 					class="flex items-center justify-center p-4 py-3 border border-transparent rounded-lg cursor-pointer nav-tab hover:border-primary"
@@ -112,13 +116,13 @@
 					class="flex items-center self-center px-4 py-2 font-medium bg-transparent border border-transparent cursor-pointer rounded-xl hover:border-primary gap-x-5 justify-self-end"
 				>
 					<p class="text-black">Download Pdf</p>
-					<img src="./img/download-icon.png" alt="" />
+					<img src="/img/download-icon.png" alt="" />
 				</div>
 			</div>
 			<div class="lg:w-3/4">
 				<div class="flex flex-col duration-150 content gap-y-5" id="overview">
-					<h4 class="text-2xl text-secondary">Filling & Packaging Machines</h4>
-					<p>
+					
+					<!-- <p>
 						We produce jute yarn and twine, of various qualities, spun with
 						great care for Carpets. Our yarns replaced the Dundee quality yarn
 						and have been being used in the high-speed CRM, CRT, and CRX looms.
@@ -128,8 +132,8 @@
 						<br />
 						<br />
 						Bonanza jute Composite & Diverse factory Ltd.
-					</p>
-					<ul class="flex flex-col gap-y-2">
+					</p> -->
+					<!-- <ul class="flex flex-col gap-y-2">
 						<li class="flex items-center gap-x-3">
 							<i class="text-2xl bi bi-check text-accent"></i>
 							<p>1 pc/polybag</p>
@@ -154,20 +158,24 @@
 							<i class="text-2xl bi bi-check text-accent"></i>
 							<p>As per buyer requirement</p>
 						</li>
-					</ul>
+					</ul> -->
+					
+					<p>Product Model: <strong><%= product.product_model %></strong></p>
+					<p>FOB Price: <strong><%= product.fob_price %></strong></p>
+					<p>Min Order Quantity: <strong><%= product.min_order_quentity %></strong></p>
+					<p>Supply Ability: <strong><%= product.suppy_ability %></strong></p>
+					<p>Procession Time: <strong><%= product.processing_time %></strong></p>
+					
+				
 				</div>
 
 				<div
 					class="flex flex-col hidden duration-150 content gap-y-5"
 					id="data"
 				>
-					<h4 class="text-2xl text-secondary">Data</h4>
+					<!-- <h4 class="text-2xl text-secondary">Data</h4> -->
 					<p>
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit ex
-						sapiente at, ullam soluta ipsa, molestiae reiciendis esse commodi
-						officia error iste qui illo recusandae obcaecati sunt, minima in
-						beatae voluptatum nostrum eum ratione excepturi assumenda fuga!
-						Assumenda, placeat provident?
+						<%- product.packaging_details %>
 					</p>
 				</div>
 
@@ -175,11 +183,9 @@
 					class="flex flex-col hidden duration-150 content gap-y-5"
 					id="applications"
 				>
-					<h4 class="text-2xl text-secondary">Applications</h4>
+					<!-- <h4 class="text-2xl text-secondary">Applications</h4> -->
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
-						quod! Provident commodi dignissimos nisi dolor eligendi ullam at
-						quia suscipit!
+						<%- product.product_details %>
 					</p>
 				</div>
 
@@ -188,10 +194,9 @@
 					id="gallery"
 				>
 					<h4 class="text-2xl text-secondary">Gallery</h4>
-					<p>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-						Praesentium, laborum?
-					</p>
+					<% for(let image of product.images){ %>
+						<img src="<%= image.image %>" class="w-fit h-fit" alt="">
+						<% } %>
 				</div>
 			</div>
 		</div>
@@ -216,6 +221,9 @@
 
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
-		
+		<script>
+			getFooterInfo()
+			
+		</script>
 	</body>
 </html>

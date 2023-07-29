@@ -1,5 +1,5 @@
 const db=require('../../../config/database')
-const wbm = require('wbm');
+
 
 // send message from contact form
 exports.addContact=async(req,res,next)=>{
@@ -52,7 +52,7 @@ exports.addEnquiry=async(req,res,next)=>{
 // get contact information
 exports.getContactInformation=async(req,res,next)=>{
   try{
-    const query='SELECT * FROM contactInformation';
+    const query='SELECT * FROM contact_information';
     db.query(query,(error,contactInformation)=>{
       if(error){
         return res.status(400).json({msg:'Error'})
@@ -67,7 +67,7 @@ exports.getContactInformation=async(req,res,next)=>{
 
 exports.getOurProduct=async(req,res,next)=>{
   try{
-      const findBasicInformation='SELECT * FROM basicInformation'
+      const findBasicInformation='SELECT * FROM basic_information'
       db.beginTransaction(async(err)=>{
           if(err){
               throw err 

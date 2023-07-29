@@ -2,7 +2,7 @@ const db=require('../../config/database')
 
 exports.getBasicInfo=async(req,res,next)=>{
     try{
-        let getBasicInfoQuery='SELECT * FROM basicinformation'
+        let getBasicInfoQuery='SELECT * FROM basic_information'
         db.query(getBasicInfoQuery,(err,basicInfo)=>{
             if(err){
                 throw err 
@@ -24,7 +24,7 @@ exports.updateBasicInfo=async(req,res,next)=>{
     try{
         let id=req.params.id
         let {importRate,exportRate,productionRate,employeesCount,officeCount,projectCount,customerCount,responseRate,responseTime,quotationPerformance,videoHomePage,videoProductPage}=req.body
-        let updateQuery = 'UPDATE basicinformation SET importRate = ?, exportRate = ?, productionRate = ?, employeesCount = ?, officeCount = ?,projectCount = ?, customerCount = ?, responseRate = ?, responseTime = ?, quotationPerformance = ?,videoHomePage=?,videoProductPage=? WHERE id = ?';
+        let updateQuery = 'UPDATE basic_information SET importRate = ?, exportRate = ?, productionRate = ?, employeesCount = ?, officeCount = ?,projectCount = ?, customerCount = ?, responseRate = ?, responseTime = ?, quotationPerformance = ?,videoHomePage=?,videoProductPage=? WHERE id = ?';
         let value=[importRate,exportRate,productionRate,employeesCount,officeCount,projectCount,customerCount,responseRate,responseTime,quotationPerformance,videoHomePage,videoProductPage,id]
         
 

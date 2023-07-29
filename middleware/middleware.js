@@ -1,6 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
-
+const setLocals=require('./setLocals')
 
 
 const middlewares = [
@@ -8,6 +8,7 @@ const middlewares = [
     express.static('public'),
     express.urlencoded({ extended: true }),
     express.json(),
+    setLocals()
 ]
 
 module.exports = (app) => {

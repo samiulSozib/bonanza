@@ -483,30 +483,34 @@
 									type="text"
 									placeholder="Name"
 									name="name"
+									required
 								/>
 								<input
 									class="input input-border input-lg"
 									type="email"
 									placeholder="Email Address",
 									name="email"
+									required
 								/>
 								<input
 									class="input input-border input-lg"
 									type="number"
 									placeholder="Phone Number",
 									name="phoneNumber"
+									required
 								/>
 							</div>
 							<select id="category" name="category" class="font-normal select select-lg select-bordered">
-								<option value="Financial consulting1">Financial consulting1</option>
-								<option value="Financial consulting2">Financial consulting2</option>
-								<option value="Financial consulting3">Financial consulting3</option>
-								<option value="Financial consulting4">Financial consulting4</option>
+								<% for(let dropdown of contactDropdown){ %>
+									<option value="<%= dropdown.name %>"><%= dropdown.name %></option>
+								<% } %>
+								
 							</select>
 							<textarea
 								class="textarea textarea-lg h-36"
 								placeholder="Your message"
 								name="message"
+								required
 							></textarea>
 							<button type="submit"
 								class="self-start border-0 px-16 hover:text-white normal-case btn btn-lg text-black duration-150 hover:bg-gradient-to-r from-[#1B8900] to-[#65A184]"

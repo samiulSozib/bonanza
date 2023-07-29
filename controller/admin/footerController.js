@@ -2,7 +2,7 @@ const db=require('../../config/database')
 
 exports.getFooterInfo=async(req,res,next)=>{
     try{
-        let getInfo='SELECT * FROM contactinformation LIMIT 2'
+        let getInfo='SELECT * FROM contact_information LIMIT 2'
 
         db.query(getInfo,(err,info)=>{
             if(err){
@@ -27,7 +27,7 @@ exports.updateFooterInfo=async(req,res,next)=>{
         let id=req.params.id
         let id1=req.params.id1
         let {name,name1,designation,designation1,phoneNumber,phoneNumber1,email,email1,location,location1}=req.body
-        let updateQuery = 'UPDATE contactinformation SET name = ?, designation = ?, phoneNumber = ?, email = ?, location = ? WHERE id = ?';
+        let updateQuery = 'UPDATE contact_information SET name = ?, designation = ?, phoneNumber = ?, email = ?, location = ? WHERE id = ?';
         let value=[name,designation,phoneNumber,email,location,id]
         let value1=[name1,designation1,phoneNumber1,email1,location1,id1]
 

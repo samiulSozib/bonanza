@@ -11,7 +11,7 @@
 				<h2 class="text-5xl font-bold">Our Product</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
-						<li><a href="./index.html">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li class="font-medium">Our Product</li>
 					</ul>
 				</div>
@@ -221,7 +221,7 @@
 
 						const productDetailsLink = document.createElement('a');
 						productDetailsLink.classList.add('font-bold', 'text-secondary');
-						productDetailsLink.setAttribute('href', product.link);
+						productDetailsLink.setAttribute('href', `/ourProduct/details/${product.id}`);
 						productDetailsLink.textContent = 'Details';
 
 						const myDiv=document.createElement('div')
@@ -296,7 +296,7 @@
 
 						const productDetailsLink = document.createElement('a');
 						productDetailsLink.classList.add('font-bold', 'text-secondary');
-						productDetailsLink.setAttribute('href', product.link);
+						productDetailsLink.setAttribute('href', `/ourProduct/details/${product.id}`);
 						productDetailsLink.textContent = 'Details';
 
 						const myDiv=document.createElement('div')

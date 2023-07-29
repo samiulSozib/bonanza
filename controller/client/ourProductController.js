@@ -2,7 +2,7 @@ const db=require('../../config/database')
 
 exports.getOurProduct=async(req,res,next)=>{
     try{
-        const findBasicInformation='SELECT * FROM basicInformation'
+        const findBasicInformation='SELECT * FROM basic_information'
         db.beginTransaction(async(err)=>{
             if(err){
                 throw err 
@@ -113,8 +113,62 @@ exports.getOurProduct=async(req,res,next)=>{
 
 
 exports.getProductDetails=async(req,res,next)=>{
+  let product_id=req.params.id 
     try{
-        return res.status(200).render('client/productDetails',{navStatus:"product"});
+      
+      const singleProductsQuery=`SELECT 
+                              p.*,
+                              pi.id as image_id,
+                              pi.image,
+                              pi.featured_image AS is_featured,
+                              pv.id as video_id,
+                              pv.video,
+                              c.id as cat_id,
+                              c.category_name,
+                              sc.id as subCat_id,
+                              sc.subcategory_name
+                            FROM
+                                products p
+                            LEFT JOIN product_images pi ON p.id = pi.product_id
+                            LEFT JOIN product_video pv ON p.id = pv.product_id
+                            LEFT JOIN product_sub_category psc ON p.id = psc.product_id
+                            LEFT JOIN sub_categories sc ON psc.sub_category_id = sc.id
+                            LEFT JOIN product_category pc ON p.id = pc.product_id
+                            LEFT JOIN categories c ON pc.category_id = c.id
+                            WHERE p.id=?
+                            `;
+  
+  
+          
+          let data=await queryAsync(singleProductsQuery,product_id)
+          const nestedData = {};
+  
+          data.forEach((product) => {
+            const { id,image_id, image, is_featured,video_id, video,cat_id, category_name,subCat_id, subcategory_name, ...productData } = product;
+  
+            if (nestedData[id]) {
+              nestedData[id].images.push({ image_id,image, is_featured });
+              if (video) {
+                nestedData[id].video = [{video_id,video}];
+              }
+            } else {
+              nestedData[id] = {
+                id,
+                ...productData,
+                images: [{ image_id,image, is_featured }],
+                video: [{video_id,video}] || null,
+                cat_id,
+                category_name,
+                subCat_id,
+                subcategory_name
+                
+              };
+            }
+          });
+  
+          const product = Object.values(nestedData)[0];
+          //return res.json(product)
+        return res.status(200).render('client/productDetails',{navStatus:"product",product});
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})

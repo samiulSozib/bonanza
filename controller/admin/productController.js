@@ -187,7 +187,7 @@ exports.getProductEditPage=async(req,res,next)=>{
   let product_id=req.params.id
   try{
     let categories= await queryAsyncWithoutValue(getCategory)
-    const allProductsQuery=`SELECT 
+    const singleProductsQuery=`SELECT 
                             p.*,
                             pi.id as image_id,
                             pi.image,
@@ -211,7 +211,7 @@ exports.getProductEditPage=async(req,res,next)=>{
 
 
         
-        let data=await queryAsync(allProductsQuery,product_id)
+        let data=await queryAsync(singleProductsQuery,product_id)
         const nestedData = {};
 
         data.forEach((product) => {

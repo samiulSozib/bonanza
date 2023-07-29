@@ -1,9 +1,10 @@
 const router=require('express').Router()
-const {getOurProduct}=require('../../controller/client/ourProductController')
+const {getOurProduct,getProductDetails}=require('../../controller/client/ourProductController')
+
 
 
 router.get('/',getOurProduct)
-
+router.get('/details/:id',getProductDetails)
 
 
 module.exports=router

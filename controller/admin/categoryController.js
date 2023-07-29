@@ -250,6 +250,45 @@ exports.deleteCategory = async (req, res, next) => {
       return res.status(500).json({ message: 'An error occurred' });
     }
   };
+
+  // Delete  subcategories
+exports.deleteSubCategory = async (req, res, next) => {
+  try {
+    const subCategoryId = req.params.id;
+    
+    // Start a transaction to ensure consistent data removal
+    db.beginTransaction(async (err) => {
+      if (err) {
+        throw err;
+      }
+
+      try {
+        // First, delete the subcategories associated with the category
+        const deleteSubcategoriesQuery = 'DELETE FROM sub_categories WHERE id = ?';
+        await queryAsync(deleteSubcategoriesQuery, [subCategoryId]);
+
+        // Next, delete the category
+       
+
+        db.commit((err) => {
+          if (err) {
+            db.rollback(() => {
+              throw err;
+            });
+          }
+          return res.redirect('/dashboard/category'); 
+        });
+      } catch (e) {
+        db.rollback(() => {
+          throw e;
+        });
+      }
+    });
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ message: 'An error occurred' });
+  }
+};
   
 
 

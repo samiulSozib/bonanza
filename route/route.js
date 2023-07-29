@@ -1,7 +1,7 @@
 const homeRoute=require('./client/homeRoute')
 const aboutRoute=require('./client/aboutRoute')
 const ourProductRoute=require('./client/ourProductRoute')
-const productDetailsRoute=require('./client/productDetailsRoute')
+
 const ourTeamRoute=require('./client/ourTeamRoute')
 const contactRoute=require('./client/contactRoute')
 const enquiryRoute=require('./client/enquiryRoute')
@@ -21,10 +21,7 @@ const routes = [
         path:'/ourProduct',
         handler:ourProductRoute
     },
-    {
-        path:'/productDetails',
-        handler:productDetailsRoute
-    },
+    
     {
         path:'/ourTeam',
         handler:ourTeamRoute

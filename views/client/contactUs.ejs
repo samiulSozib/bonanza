@@ -81,12 +81,14 @@
 									type="text"
 									placeholder="Name"
 									name="name"
+									required
 								/>
 								<input
 									class="input input-lg input-bordered"
 									type="phone"
 									placeholder="Phone",
 									name="phoneNumber"
+									required
 								/>
 	
 								<input
@@ -94,18 +96,19 @@
 									type="email"
 									placeholder="Email address",
 									name="email"
+									required
 								/>
 								<select id="category" name="category" class="font-normal select select-lg select-bordered">
-									<option value="Financial consulting1">Financial consulting1</option>
-									<option value="Financial consulting2">Financial consulting2</option>
-									<option value="Financial consulting3">Financial consulting3</option>
-									<option value="Financial consulting4">Financial consulting4</option>
+									<% for(let dropdown of contactDropdown){ %>
+										<option value="<%= dropdown.name %>"><%= dropdown.name %></option>
+									<% } %>
 								</select>
 	
 								<textarea
 									class="textarea textarea-lg textarea-bordered"
 									placeholder="Your message"
 									name="message"
+									required
 								></textarea>
 	
 								<button type="submit"

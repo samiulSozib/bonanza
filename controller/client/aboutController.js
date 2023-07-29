@@ -3,8 +3,9 @@ const db=require('../../config/database')
 exports.getAboutUsPage=async(req,res,next)=>{
     try{
         const findCounties='SELECT * FROM country'
-        const findBasicInformation='SELECT * FROM basicInformation'
+        const findBasicInformation='SELECT * FROM basic_information'
         const findCertification='SELECT * FROM certification'
+        const findContactDropDown='SELECT * FROM contact_form_dropdown'
         db.beginTransaction((err)=>{
            if(err){
             throw err
@@ -29,13 +30,20 @@ exports.getAboutUsPage=async(req,res,next)=>{
                             throw err 
                         })
                     }
-                    db.commit((err)=>{
+                    db.query(findContactDropDown,(err,contactDropdown)=>{
                         if(err){
                             db.rollback(()=>{
-                                throw err 
+                                throw err
                             })
                         }
-                        return res.status(200).render('client/aboutUs',{navStatus:"about",countries,basicInfo,certifications});
+                        db.commit((err)=>{
+                            if(err){
+                                db.rollback(()=>{
+                                    throw err 
+                                })
+                            }
+                            return res.status(200).render('client/aboutUs',{navStatus:"about",countries,basicInfo,certifications,contactDropdown});
+                        })
                     })
                 })
             })
