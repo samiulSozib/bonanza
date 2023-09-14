@@ -1,4 +1,5 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 // get Categories
 exports.getCategory=async(req,res,next)=>{
@@ -30,7 +31,7 @@ exports.getCategory=async(req,res,next)=>{
         });
         const categories = Object.values(nestedData);
 
-        return res.status(200).render('admin/product/category',{title:"Categories",categories})
+        return res.status(200).render('admin/product/category',{title:"Categories",nav:"category",categories})
         return res.json(nestedData)
       })
      
@@ -45,7 +46,8 @@ exports.getCategory=async(req,res,next)=>{
 
 exports.getAddCategory=async(req,res,next)=>{
     try{
-        return res.status(200).render('admin/product/addCategory',{title:"Product Categories"})
+      const categories=await helper.fetchCategories()
+        return res.status(200).render('admin/product/addCategory',{title:"Product Categories",nav:"product",categories})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -116,6 +118,7 @@ exports.postCategory = async (req, res, next) => {
 exports.getEditCategory=async(req,res,next)=>{
     let category_id=req.params.id
     console.log(category_id)
+    const categories=await helper.fetchCategories()
     let findCategoryQuery='SELECT c.id AS category_id, c.category_name AS category_name, s.id AS subcategory_id, s.subcategory_name AS subcategory_name FROM categories c LEFT JOIN sub_categories s ON c.id = s.category_id WHERE c.id=?;'
     
     try{
@@ -141,7 +144,7 @@ exports.getEditCategory=async(req,res,next)=>{
 
         const category = Object.values(nestedData);
         //return res.json(category)
-        return res.status(200).render('admin/product/editCategory',{title:'Edit Category',category})
+        return res.status(200).render('admin/product/editCategory',{title:'Edit Category',nav:"product",category,categories})
     }catch(e){
         console.error(e);
         return res.status(500).json({ message: 'An error occurred' });

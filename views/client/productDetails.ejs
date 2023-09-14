@@ -25,7 +25,7 @@
 					<%= product.product_name %>
 				</h2>
 				<p><strong><%= product.category_name %> <%= product.subcategory_name ?">>"+ product.subcategory_name : "" %></strong></p>
-				<p>
+				<!-- <p>
 					M.H Golden Jute is a full service vendor with strong vertically
 					integrated production facilities as well as creative & analytical
 					capabilities which clearly sets us apart from most other South Asian
@@ -33,7 +33,7 @@
 					USA & Europe .Dominate these markets in high quality :1. Jute Bags2.
 					Jute Handicrafts3. Jute Textile4. Jute Apparel5. Jute Furnishings6.
 					Industrial Jute Goods
-				</p>
+				</p> -->
 			</div>
 			<div class="flex flex-col xl:flex-row gap-x-10">
 				<% if(product.video[0].video_id){ %>
@@ -66,7 +66,7 @@
 						</div>
 					</div>
 
-					<div class="relative flex mt-10 gap-x-10 p-7">
+					<!-- <div class="relative flex mt-10 gap-x-10 p-7">
 						<div class="flex flex-col w-1/2 gap-y-2">
 							<p class="text-xl font-medium">Let's Plan an Online Meeting</p>
 							<p class="flex items-center text-sm text-primary">
@@ -78,7 +78,7 @@
 						<span
 							class="absolute top-0 left-0 w-full xl:w-[100%] h-full border border-2 border-b-8 border-b border-b-[#499851]"
 						></span>
-					</div>
+					</div> -->
 
 					<button class="self-start mt-10 btn active-tab btn-md">
 						Enquiry
@@ -112,12 +112,12 @@
 					data-target="gallery"
 					>Gallery</a
 				>
-				<div
+				<!-- <div
 					class="flex items-center self-center px-4 py-2 font-medium bg-transparent border border-transparent cursor-pointer rounded-xl hover:border-primary gap-x-5 justify-self-end"
 				>
 					<p class="text-black">Download Pdf</p>
 					<img src="/img/download-icon.png" alt="" />
-				</div>
+				</div> -->
 			</div>
 			<div class="lg:w-3/4">
 				<div class="flex flex-col duration-150 content gap-y-5" id="overview">
@@ -223,7 +223,7 @@
 		<%- include('./partials/footer.ejs') %>
 		<script>
 			getFooterInfo()
-			
+			getFooterSocialMedia()
 		</script>
 	</body>
 </html>

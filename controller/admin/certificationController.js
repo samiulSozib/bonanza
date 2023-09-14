@@ -9,7 +9,7 @@ exports.getCertification=async(req,res,next)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/generalInfo/certification',{title:"Certification",certifications})
+            return res.status(200).render('admin/generalInfo/certification',{title:"Certification",nav:"generalInfo",certifications})
         })
         
         
@@ -22,7 +22,7 @@ exports.getCertification=async(req,res,next)=>{
 // add certification page 
 exports.getAddCertification=async(req,res,next)=>{
     try{
-        return res.status(200).render('admin/generalInfo/addCertification',{title:"Add Certification"})
+        return res.status(200).render('admin/generalInfo/addCertification',{title:"Add Certification",nav:"generalInfo"})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -80,7 +80,7 @@ exports.getSingleCertification=async(req,res,next)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/generalInfo/singleCertification',{title:"Certification",certification})
+            return res.status(200).render('admin/generalInfo/singleCertification',{title:"Certification",nav:"generalInfo",certification})
         })
 
     }catch(e){

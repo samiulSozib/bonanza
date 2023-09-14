@@ -8,7 +8,7 @@ exports.getBasicInfo=async(req,res,next)=>{
                 throw err 
             }
            
-            return res.status(200).render('admin/generalInfo/basicInfo',{title:"Basic Info",basicInfo})
+            return res.status(200).render('admin/generalInfo/basicInfo',{title:"Basic Info",nav:"generalInfo",basicInfo})
         })
         
     }catch(e){

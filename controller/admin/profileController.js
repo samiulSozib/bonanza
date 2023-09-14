@@ -9,7 +9,7 @@ exports.getProfile=async(req,res,next)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/generalInfo/profile',{title:"Profile",admin})
+            return res.status(200).render('admin/generalInfo/profile',{title:"Profile",nav:"generalInfo",admin})
             
         })
         

@@ -8,7 +8,7 @@ exports.getHomePageBanner=async(req,res,next)=>{
                 throw err 
             }
            //return res.json(homeBanner)
-           return res.status(200).render('admin/generalInfo/homePageBanner',{title:"Home Banner",homeBanner})
+           return res.status(200).render('admin/generalInfo/homePageBanner',{title:"Home Banner",nav:"generalInfo",homeBanner})
         })
         
     }catch(e){

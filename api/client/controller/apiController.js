@@ -64,6 +64,21 @@ exports.getContactInformation=async(req,res,next)=>{
   }
 }
 
+// get social media information
+exports.getSocialMedia=async(req,res,next)=>{
+  try{
+    const query='SELECT * FROM social_media_link';
+    db.query(query,(error,social_media_link)=>{
+      if(error){
+        return res.status(400).json({msg:'Error'})
+      }
+      return res.status(200).json(social_media_link)
+    })
+  }catch(e){
+    return res.status(500).json({msg:'Server Error'})
+  }
+}
+
 
 exports.getOurProduct=async(req,res,next)=>{
   try{

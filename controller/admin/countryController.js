@@ -9,7 +9,7 @@ exports.getCountry=async(req,res,next)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/generalInfo/countryList',{title:"Country",countries})
+            return res.status(200).render('admin/generalInfo/countryList',{title:"Country",nav:"generalInfo",countries})
         })
         
     }catch(e){
@@ -22,7 +22,7 @@ exports.getCountry=async(req,res,next)=>{
 // add country page 
 exports.getAddCountry=async(req,res,next)=>{
     try{
-        return res.status(200).render('admin/generalInfo/addCountry',{title:"Add Country"})
+        return res.status(200).render('admin/generalInfo/addCountry',{title:"Add Country",nav:"generalInfo"})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -78,7 +78,7 @@ exports.getSingleCountry=async(req,res,next)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/generalInfo/singleCountry',{title:"Country",country})
+            return res.status(200).render('admin/generalInfo/singleCountry',{title:"Country",nav:"generalInfo",country})
         })
 
     }catch(e){

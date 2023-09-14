@@ -28,11 +28,11 @@
 						More than 50M+ people are happy with us
 					</p>
 				</div>
-				<p class="text-primary">
+				<!-- <p class="text-primary">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae
 					metus a massa lobortis sollicitudin. Cras ut nulla quam. Maecenas
 					tempus felis quis lorem malesuada vehicular.
-				</p>
+				</p> -->
 				<div class="flex flex-col gap-y-5">
 					<p class="text-2xl font-semibold">Our skills</p>
 					<div class="flex flex-col gap-y-10">
@@ -40,7 +40,7 @@
 							<p>Import</p>
 							<div class="w-full relative h-3 border rounded-lg bg-[#d9d9d9]">
 								<span
-									class="absolute rounded-lg top-0 left-0 h-full w-[70%] bg-accent"
+									class="absolute rounded-lg top-0 left-0 h-full w-[<%= basicInfo[0].importRate %>%] bg-accent"
 								></span>
 								<span class="absolute top-[-300%] left-[80%]"><%= basicInfo[0].importRate %></span>
 							</div>
@@ -50,7 +50,7 @@
 							<p>Export</p>
 							<div class="w-full relative h-3 border rounded-lg bg-[#d9d9d9]">
 								<span
-									class="absolute rounded-lg top-0 left-0 h-full w-[70%] bg-accent"
+									class="absolute rounded-lg top-0 left-0 h-full w-[95%] bg-accent"
 								></span>
 								<span class="absolute top-[-300%] left-[70%]"><%= basicInfo[0].exportRate %></span>
 							</div>
@@ -79,11 +79,11 @@
 						We are available worldwide
 					</p>
 				</div>
-				<p>
+				<!-- <p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae
 					metus a massa lobortis sollicitudin. Cras ut nulla quam. Maecenas
 					tempus felis quis lorem malesuada vehicular.
-				</p>
+				</p> -->
 			</div>
 			<div class="w-1/2"><img src="./img/aboutUs-pic2.png" alt="" /></div>
 		</div>
@@ -222,11 +222,11 @@
 						Let us know about your next project
 					</p>
 				</div>
-				<p class="lg:w-[40%] text-primary px-5 lg:px-0">
+				<!-- <p class="lg:w-[40%] text-primary px-5 lg:px-0">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
 					consectetur, ligula semper sagittis lobortis, eros metus efficitur
 					purus
-				</p>
+				</p> -->
 				<form id="contactForm">
 					<div class="flex flex-col w-full px-5 lg:w-3/4 lg:px-0 gap-y-5">
 						<div class="grid gap-y-10 lg:grid-cols-2 gap-x-5">
@@ -274,7 +274,7 @@
 				</form>
 			</div>
 		</div>
-		<div
+		<!-- <div
 			class="container grid items-center w-full grid-cols-2 px-5 py-10 mx-auto gap-x-10 gap-y-10 lg:gap-x-0 xl:gap-y-0 lg:px-0 lg:grid-cols-6"
 		>
 			<img src="./img/freedombird.png" alt="" />
@@ -283,12 +283,13 @@
 			<img src="./img/simpleaf.png" alt="" />
 			<img src="./img/globe.png" alt="" />
 			<img src="./img/fossilgroup.png" alt="" />
-		</div>
+		</div> -->
 
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
 		<script>
 			getFooterInfo()
+			getFooterSocialMedia()
 			postContactForm()
 		</script>
 	</body>

@@ -1,59 +1,62 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 // get product list page
 exports.getProductList=async(req,res,next)=>{
     try{
-        const allProductsQuery=`SELECT 
-                              p.*,
-                              pi.id as image_id,
-                              pi.image,
-                              pi.featured_image AS is_featured,
-                              pv.id as video_id,
-                              pv.video,
-                              c.id as cat_id,
-                              c.category_name,
-                              sc.id as subCat_id,
-                              sc.subcategory_name
-                          FROM
-                              products p
-                          LEFT JOIN product_images pi ON p.id = pi.product_id
-                          LEFT JOIN product_video pv ON p.id = pv.product_id
-                          LEFT JOIN product_sub_category psc ON p.id = psc.product_id
-                          LEFT JOIN sub_categories sc ON psc.sub_category_id = sc.id
-                          LEFT JOIN product_category pc ON p.id = pc.product_id
-                          LEFT JOIN categories c ON pc.category_id = c.id`;
+
+        // const allProductsQuery=`SELECT 
+        //                       p.*,
+        //                       pi.id as image_id,
+        //                       pi.image,
+        //                       pi.featured_image AS is_featured,
+        //                       pv.id as video_id,
+        //                       pv.video,
+        //                       c.id as cat_id,
+        //                       c.category_name,
+        //                       sc.id as subCat_id,
+        //                       sc.subcategory_name
+        //                   FROM
+        //                       products p
+        //                   LEFT JOIN product_images pi ON p.id = pi.product_id
+        //                   LEFT JOIN product_video pv ON p.id = pv.product_id
+        //                   LEFT JOIN product_sub_category psc ON p.id = psc.product_id
+        //                   LEFT JOIN sub_categories sc ON psc.sub_category_id = sc.id
+        //                   LEFT JOIN product_category pc ON p.id = pc.product_id
+        //                   LEFT JOIN categories c ON pc.category_id = c.id`;
 
 
         
-        let data=await queryAsyncWithoutValue(allProductsQuery)
-        const nestedData = {};
+        // let data=await queryAsyncWithoutValue(allProductsQuery)
+        // const nestedData = {};
 
-        data.forEach((product) => {
-          const { id, image_id,image, is_featured,video_id, video,cat_id,subCat_id, category_name, subcategory_name, ...productData } = product;
+        // data.forEach((product) => {
+        //   const { id, image_id,image, is_featured,video_id, video,cat_id,subCat_id, category_name, subcategory_name, ...productData } = product;
 
-          if (nestedData[id]) {
-            nestedData[id].images.push({ image_id,image, is_featured });
-            if (video) {
-              nestedData[id].video = [{video_id,video}];
-            }
-          } else {
-            nestedData[id] = {
-              id,
-              ...productData,
-              images: [{ image_id,image, is_featured }],
-              video: [{video_id,video}] || null,
-              cat_id,
-              category_name,
-              subCat_id,
-              subcategory_name
+        //   if (nestedData[id]) {
+        //     nestedData[id].images.push({ image_id,image, is_featured });
+        //     if (video) {
+        //       nestedData[id].video = [{video_id,video}];
+        //     }
+        //   } else {
+        //     nestedData[id] = {
+        //       id,
+        //       ...productData,
+        //       images: [{ image_id,image, is_featured }],
+        //       video: [{video_id,video}] || null,
+        //       cat_id,
+        //       category_name,
+        //       subCat_id,
+        //       subcategory_name
               
-            };
-          }
-        });
+        //     };
+        //   }
+        // });
 
-        const allProducts = Object.values(nestedData);
+        // const allProducts = Object.values(nestedData);
+        const categories=await helper.fetchCategories()
         //return res.json(allProducts)
-        return res.status(200).render('admin/product/productList',{title:"Product List",allProducts})
+        return res.status(200).render('admin/product/productList',{title:"Product List",categories,nav:"product"})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -67,10 +70,10 @@ exports.getAddProduct=async(req,res,next)=>{
     let getCategory='SELECT * FROM categories'
     try{
         
-
-        let categories= await queryAsyncWithoutValue(getCategory)
+        const categories=await helper.fetchCategories()
+        let p_categories= await queryAsyncWithoutValue(getCategory)
         //return res.json(categories)
-        return res.status(200).render('admin/product/addProduct',{title:"Add Product",categories})
+        return res.status(200).render('admin/product/addProduct',{title:"Add Product",nav:"product",p_categories,categories})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -84,9 +87,11 @@ exports.getAddProduct=async(req,res,next)=>{
 exports.postAddProduct=async(req,res,next)=>{
     try{
         const productData = req.body; // Product information from req.body
-        const productImages = req.files['product-image']; // Array of images
+        const productImages = req.files['product-image']?req.files['product-image']:null; // Array of images
         const productFeatureImage=req.files['product-featured-image']
         const productVideo = req.files['video'] ? req.files['video'][0] : null; // Single video file
+        //console.log(productData)
+        //return;
 
         // Insert the product information into the products table
         const insertProductQuery = `INSERT INTO products 
@@ -94,6 +99,57 @@ exports.postAddProduct=async(req,res,next)=>{
             packaging_details, product_details) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
+            const packaging_details=`<table width="170">
+            <tbody>
+            <tr>
+            <td width="170">1) ${productData.packaging_1}, <br /> 2) ${productData.packaging_2}<br /> 3) ${productData.packaging_3}<br /> 4) ${productData.packaging_4}<br /> ${productData.packaging_5}</td>
+            </tr>
+            </tbody>
+            </table>`
+            const product_details=`
+            <table style="border-collapse: collapse; width: 100%;" border="1">
+            <colgroup>
+              <col style="width: 50%;">
+              <col style="width: 50%;">
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>100% Jute</td>
+                <td>${productData.details_100_jute}</td>
+              </tr>
+              <tr>
+                <td>Model Number</td>
+                <td>${productData.details_model_number}</td>
+              </tr>
+              <tr>
+                <td>Strength</td>
+                <td>${productData.details_strength}</td>
+              </tr>
+              <tr>
+                <td>Yarn Count</td>
+                <td>${productData.details_yarn_count}</td>
+              </tr>
+              <tr>
+                <td>Number of Ply</td>
+                <td>${productData.details_number_of_ply}</td>
+              </tr>
+              <tr>
+                <td>TPI</td>
+                <td>${productData.details_tpi}</td>
+              </tr>
+              
+              <tr>
+                <td>Quality</td>
+                <td>${productData.details_qualily}</td>
+              </tr>
+              <tr>
+                <td>HS Code</td>
+                <td>${productData.details_hs_code}</td>
+              </tr>
+            </tbody>
+          </table>
+
+            `
         const values = [
             productData.product_name,
             productData.product_model,
@@ -102,13 +158,13 @@ exports.postAddProduct=async(req,res,next)=>{
             productData.min_order_quentity,
             productData.suppy_ability,
             productData.processing_time,
-            productData.packaging_details,
-            productData.product_details,
+            packaging_details,
+            product_details,
         ];
-        console.log(values)
-        console.log(productFeatureImage)
-        console.log(productImages)
-        console.log(productVideo)
+        // console.log(values)
+        // console.log(productFeatureImage)
+        // console.log(productImages)
+        // console.log(productVideo)
 
         db.beginTransaction(async(err)=>{
             if(err){
@@ -128,12 +184,14 @@ exports.postAddProduct=async(req,res,next)=>{
                 await queryAsync(insertFeatureImageQuery,featureImageData)
 
                 
-                const insertOtherImagesQuery = `INSERT INTO product_images (product_id, image, featured_image) VALUES (?, ?, ?)`;
+                if(productImages){
+                  const insertOtherImagesQuery = `INSERT INTO product_images (product_id, image, featured_image) VALUES (?, ?, ?)`;
                 for (let i = 0; i < productImages.length; i++) {
                     const image = productImages[i];
                     //otherImagesData.push([product_id, `/uploads/${image.filename}`, false]);
                     let otherImageData=[product_id, `/uploads/${image.filename}`, false];
                     await queryAsync(insertOtherImagesQuery, otherImageData);
+                }
                 }
 
                 
@@ -186,7 +244,8 @@ exports.getProductEditPage=async(req,res,next)=>{
   let getCategory='SELECT * FROM categories'
   let product_id=req.params.id
   try{
-    let categories= await queryAsyncWithoutValue(getCategory)
+    let p_categories= await queryAsyncWithoutValue(getCategory)
+    const categories=await helper.fetchCategories()
     const singleProductsQuery=`SELECT 
                             p.*,
                             pi.id as image_id,
@@ -240,7 +299,7 @@ exports.getProductEditPage=async(req,res,next)=>{
         const product = Object.values(nestedData)[0];
         //return res.json(product)
     
-      return res.render('admin/product/editProduct',{title:'Edit Product',categories,product})
+      return res.render('admin/product/editProduct',{title:'Edit Product',nav:"product",p_categories,product,categories})
   }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})

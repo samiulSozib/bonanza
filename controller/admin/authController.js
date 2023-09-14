@@ -32,7 +32,7 @@ exports.postLogin=async(req,res,next)=>{
             // User authenticated, create a JWT
             const token = jwt.sign({ userId: user.id }, "admin_login_secret", { expiresIn: '1h' });
             res.cookie('token', token, { httpOnly: true});
-            return res.redirect('/dashboard');
+            return res.redirect('/dashboard/productList');
            
           });
         

@@ -11,7 +11,7 @@
             <p class="text-lg font-bold text-tColor2">Add Product</p>
 
             <!-- Notification & User -->
-            <div class="text-xs xl:text-base flex items-center gap-3 xl:gap-5">
+            <!-- <div class="text-xs xl:text-base flex items-center gap-3 xl:gap-5">
                 
                 <a class="" href="#">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
                     
                 </a>
 
-            </div>
+            </div> -->
             
         </section>
 
@@ -132,7 +132,7 @@
               <div class="relative">
                 <select id="main-category" name="category" class="border-[1px] border-gray-400 py-3 pl-5 pr-10 appearance-none focus:outline-none focus:shadow-outline rounded-md">
                   <option value="" hidden>Main Category</option>
-                  <% for(let category of categories){ %>
+                  <% for(let category of p_categories){ %>
                   <option value="<%= category.id %>"><%= category.category_name %></option>
                   <% } %>
                   
@@ -161,13 +161,122 @@
 
             <div>
               <p class="mt-5 mb-2">Packaging Details</p>
-              <textarea id="packaging_details" name="packaging_details" rows="4" cols="50" placeholder="Write Packaging Details" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+              <table>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td><input type="text" name="packaging_1" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      2
+                    </td>
+                    <td><input type="text" name="packaging_2" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      3
+                    </td>
+                    <td><input type="text" name="packaging_3" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      4
+                    </td>
+                    <td><input type="text" name="packaging_4" />
+                    </td>
+                </tr>
+                <tr>
+                  <td>
+                      5
+                  </td>
+                  <td><input type="text" name="packaging_5" />
+                  </td>
+              </tr>
+
+        </table>
+              <!-- <textarea id="packaging_details" name="packaging_details" rows="4" cols="50" placeholder="Write Packaging Details" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea> -->
             </div>
 
             <div>
               <p class="mt-5 mb-2">Product Details</p>
-              <textarea id="product_details" name="product_details" rows="4" cols="50" placeholder="Write Product Description" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+              <table>
+                    <tr>
+                        <td>
+                            <label>
+                              100% Jute
+                            </label>
+                        </td>
+                        <td><input type="text" name="details_100_jute" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                          Model Number
+                            </label>
+                        </td>
+                        <td><input type="text" name="details_model_number" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                          Strength
+                            </label>
+                        </td>
+                        <td><input type="text" name="details_strength" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                          Yarn Count
+                            </label>
+                        </td>
+                        <td><input type="text" name="details_yarn_count" />
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          <label>
+                            Number of Ply
+                          </label>
+                      </td>
+                      <td><input type="text" name="details_number_of_ply" />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label>
+                        TPI
+                          </label>
+                      </td>
+                      <td><input type="text" name="details_tpi" />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label>
+                        Quality
+                          </label>
+                      </td>
+                      <td><input type="text" name="details_qualily" />
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label>
+                        HS Code
+                          </label>
+                      </td>
+                      <td><input type="text" name="details_hs_code" />
+                      </td>
+                  </tr>
+            </table>
+              <!-- <textarea id="product_details" name="product_details" placeholder="Write Product Description" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea> -->
+              
             </div>
+
+
 
             <div class="flex">
               <div class="relative mt-5">
@@ -184,7 +293,7 @@
           
             <div class="mt-5 font-semibold">
               <button type="submit" class="gradient-color text-white px-5 py-3 rounded-md">Add Product</button>
-              <button class="px-5 py-3 mt-5 rounded-md text-tColor2">Reset</button>
+              <!-- <button class="px-5 py-3 mt-5 rounded-md text-tColor2">Reset</button> -->
             </div>
 
           </form>

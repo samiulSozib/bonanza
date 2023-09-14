@@ -1,5 +1,5 @@
 const router=require("express").Router()
-const {addContact,addEnquiry,getContactInformation,getOurProduct}=require("../controller/apiController")
+const {addContact,addEnquiry,getContactInformation,getOurProduct,getSocialMedia}=require("../controller/apiController")
 
 
 // send message from contact 
@@ -17,5 +17,8 @@ router.get('/contactInformation',getContactInformation)
 // get products 
 router.get('/products',getOurProduct)
 
+
+// get social media 
+router.get('/socialMedia',getSocialMedia)
 
 module.exports=router

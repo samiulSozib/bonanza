@@ -12,7 +12,7 @@ const {getContactMessage,deleteContactMessage,getEnquiry,deleteEnquiry}=require(
 const {getCategory,getAddCategory,postCategory,getEditCategory,editCategory,deleteCategory,deleteSubCategory}=require('../../controller/admin/categoryController')
 const {getProductList,getAddProduct,postAddProduct,getProductEditPage,postProductEditPage}=require('../../controller/admin/productController')
 const {getCertification,getAddCertification,postCertification,deleteCertification,getSingleCertification,updateCertification}=require('../../controller/admin/certificationController')
-
+const {getSocialMedia,getSocialMediaUpdate,socialMediaUpdate}=require('../../controller/admin/socialMediaLink')
 
 
 const upload=require('../../middleware/uploadMiddleware')
@@ -121,5 +121,10 @@ router.post('/addCertification',adminAuth,upload.single('certification'),postCer
 router.get('/deleteCertification/:id',adminAuth,deleteCertification)
 router.get('/certification/:id',adminAuth,getSingleCertification)
 router.post('/updateCertification/:id',adminAuth,upload.single('certification'),updateCertification)
+
+// social media 
+router.get('/social-media-link',adminAuth,getSocialMedia)
+router.get('/social-media-link/update/:social_media_link_id',adminAuth,getSocialMediaUpdate)
+router.post('/social-media-link/update/:social_media_link_id',adminAuth,socialMediaUpdate)
 
 module.exports=router

@@ -65,6 +65,62 @@
         console.error('Error:', error);
         });
     }
+
+        // fetch footer social media 
+        function getFooterSocialMedia(){
+          fetch('/api/client/socialMedia')
+          .then((response) => response.json())
+          .then((data) => {
+          // Populate the contact sections in the footer
+              const socialMedia = document.getElementById('socialMedia');
+              
+  
+  
+              socialMedia.innerHTML='';
+  
+                  const htmlContent1 = `
+                  <li>
+                  <a
+                    href="${data[0].link}"
+                    class="flex items-center justify-center p-3 px-4 duration-100 border border-transparent rounded-full hover:border-white"
+                    ><i class="text-xl bi bi-facebook"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="${data[1].link}"
+                    class="flex items-center justify-center p-3 px-4 duration-100 border border-transparent rounded-full hover:border-white"
+                    ><i class="text-xl bi bi-twitter"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="${data[3].link}"
+                    class="flex items-center justify-center p-3 px-4 duration-100 border border-transparent rounded-full hover:border-white"
+                    ><i class="text-xl bi bi-instagram"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="${data[4].link}"
+                    class="flex items-center justify-center p-3 px-4 duration-100 border border-transparent rounded-full hover:border-white"
+                    ><i class="text-xl bi bi-linkedin"></i
+                  ></a>
+                </li>
+                  `;
+  
+
+            
+                  // Add the HTML content to the appropriate contact section
+                  
+                    socialMedia.innerHTML += htmlContent1;
+ 
+              
+          })
+          .catch((error) => {
+          console.error('Error:', error);
+          });
+      }
 // post contact form 
 function postContactForm(){
         const contactForm = document.getElementById('contactForm');

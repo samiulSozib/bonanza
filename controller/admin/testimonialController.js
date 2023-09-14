@@ -1,16 +1,18 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 
 exports.getTestimonial=async(req,res,next)=>{
     try{
         let findAllTestinomial='SELECT * FROM testimonials'
+        const categories=await helper.fetchCategories()
 
         db.query(findAllTestinomial,(err,testimonials)=>{
             if(err){
                 throw err 
             }
             
-            return res.status(200).render('admin/testimonial/testimonial',{title:"Testimonial",testimonials})
+            return res.status(200).render('admin/testimonial/testimonial',{title:"Testimonial",nav:"testimonial",testimonials,categories})
         })
 
        
@@ -24,7 +26,8 @@ exports.getTestimonial=async(req,res,next)=>{
 
 exports.getAddTastimonial=async(req,res,next)=>{
     try{
-        return res.status(200).render('admin/testimonial/addTestimonial',{title:"Testimonial"})
+        const categories=await helper.fetchCategories()
+        return res.status(200).render('admin/testimonial/addTestimonial',{title:"Testimonial",nav:"testimonial",categories})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -61,6 +64,7 @@ exports.deleteTestimonial=async(req,res,next)=>{
     try{
         let id=req.params.id
         let deleteTestimonialQuery='DELETE FROM testimonials WHERE id = ?'
+        
         db.query(deleteTestimonialQuery,[id],(err,result)=>{
             if(err){
                 throw err 
@@ -77,12 +81,13 @@ exports.getSingleTestimonail=async(req,res,next)=>{
     try{
         const testimonialId=req.params.id 
         const findTestimonialById='SELECT * FROM testimonials WHERE id=?'
+        const categories=await helper.fetchCategories()
 
         db.query(findTestimonialById,[testimonialId],(err,testimonial)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/testimonial/singleTestimonial',{title:"Team Single",testimonial})
+            return res.status(200).render('admin/testimonial/singleTestimonial',{title:"Team Single",categories,nav:"testimonial",testimonial})
         })
 
     }catch(e){

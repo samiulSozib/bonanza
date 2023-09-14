@@ -9,7 +9,7 @@ exports.getFooterInfo=async(req,res,next)=>{
                 throw err 
             }
             //return res.json(info)
-            return res.status(200).render('admin/generalInfo/footerInfo',{title:"Footer Information",info})
+            return res.status(200).render('admin/generalInfo/footerInfo',{title:"Footer Information",nav:"generalInfo",info})
         })
 
         

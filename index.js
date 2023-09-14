@@ -5,6 +5,7 @@ const db=require('./config/database')
 const bodyParser=require('body-parser')
 const cookieParser = require("cookie-parser");
 const session = require('express-session');
+const cors=require('cors')
 
 
 
@@ -12,6 +13,7 @@ const setMiddlewares = require('./middleware/middleware')
 const setRoutes = require('./route/route')
 
 const app = express()
+app.use(cors());
 
 app.set('view engine', 'ejs')
 app.set('views')
@@ -41,7 +43,7 @@ db.connect(function (err) {
     console.log("Connected to the MySQL server.");
   });
 
-const PORT = process.env.PORT || 1000
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT,()=>{
     console.log("Server created success")

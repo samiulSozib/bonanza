@@ -8,12 +8,12 @@
 
        <!-- Project Overview Header -->
 
-        <section class="flex items-center justify-between px-5 py-2 xl:py-5 gap-4">
+        <!-- <section class="flex items-center justify-between px-5 py-2 xl:py-5 gap-4"> -->
             
-            <p class="text-lg font-bold text-tColor2">Product List</p>
+            <!-- <p class="text-lg font-bold text-tColor2">Product List</p> -->
 
             <!-- Notification & User -->
-            <div class="text-xs xl:text-base flex items-center gap-3 xl:gap-5">
+            <!-- <div class="text-xs xl:text-base flex items-center gap-3 xl:gap-5">
                 
                 <a class="" href="#">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,9 +35,9 @@
                     
                 </a>
 
-            </div>
+            </div> -->
             
-        </section>
+        <!-- </section> -->
 
       
         <section class="mx-5 rounded-md border-b-2">
@@ -45,9 +45,12 @@
           <div class="flex xl:flex-row xl:items-center justify-between py-4 gap-4">
 
             <!-- Search Box -->
-            <div class="bg-white relative shadow">
-              <input class="py-2 pr-7 pl-3 focus:outline-none max-w-[180px]" type="text" placeholder="Search...">
+            <div class="bg-white relative">
+              <p class="text-lg font-bold text-tColor2">Product List</p>
+
+              <!-- <input class="py-2 pr-7 pl-3 focus:outline-none max-w-[180px]" type="text" placeholder="Search...">
               <i class="fa-solid fa-magnifying-glass absolute top-1/2 right-2 -translate-y-1/2 text-tColor"></i>
+             -->
             </div>
 
             <a class="flex items-center gap-3 text-tColor border-green-300 hover:bg-primaryColor hover:text-white border-2 rounded px-3 py-1" href="/dashboard/addProduct">
@@ -60,32 +63,16 @@
 
 
 
-        <section class="px-5 py-5 grid grid-cols-2 xl:grid-cols-6 gap-10">
+        <section id="productList" class="px-5 py-5 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-3 gap-10">
 
-          <% for(let product of allProducts){ %>
-          <div id="removeProduct<%= product.id %>">
-            <p class="text-tColor2">Product Model</p>
-            <p class="text-xl font-semibold border-b-2 pt-1 pb-5"><%= product.product_model %></p>
-            <p class="text-primaryColor font-bold text-sm"><%= product.category_name %></p>
-            <div class="h-40 w-full flex justify-center items-center mt-3 overflow-hidden">
-                  <% if(product.video[0].video_id){ %>
-                    <video controls><source src="<%= product.video[0].video %>" type="video/mp4"></video>
-                    <% }else{ %>
-                      <img src="<%= product.images[0].image %>" alt="" class="w-full">
-                      <% } %>
-                  
-                
-            </div>
-            <p class="text-lg"><%= product.product_name %></p>
-            <p class="border-b-2 pb-3"><%= product.fob_price %></pc>
-            <div class="grid grid-cols-2 mt-3 gap-3">
-              <button class="bg-gray-200 px-2 py-1 rounded">Hide</button>
-              <button class="bg-primaryColor text-white px-2 py-1 rounded">Unhide</button>
-              <button class="bg-green-500 text-white px-2 py-1 rounded"><a href="/dashboard/editProduct/<%= product.id %>">Edit</a></button>
-              <a class="delete-product bg-red-800 text-white px-2 py-1 rounded" data-product-id="<%= product.id %>" href="#">Delete</a>
-            </div>
-          </div>
-          <% } %>
+
+
+          <!-- <div id="productList">
+            
+          </div> -->
+
+          
+    
 
         </section>
     
@@ -178,49 +165,335 @@
 </script>
 
 
-<!-- delete product -->
+
 
 <script>
-  // Add an event listener to the form element
-  const deleteProductButton=document.querySelectorAll('.delete-product')
+  function showSubcategories(categoryId) {
+  const subcategoryList = document.getElementById(`subcategory-list-${categoryId}`);
+  subcategoryList.classList.remove('hidden');
+  }
 
-  deleteProductButton.forEach(button=>{
-    button.addEventListener('click', function(event) {
-    //event.preventDefault(); // Prevent the default form submission
-    
-    // Get the image ID from the data-image-id attribute of the button
-    const productId = this.getAttribute('data-product-id');
-    
-    const confirmed = confirm('Are you sure you want to delete this Product?');
-    const divToRemove = document.getElementById('removeProduct'+productId); 
-
-    if (!confirmed) {
-      return;
-    }
-
-    fetch(`/api/admin/deleteProduct/${productId}`, {
-      method: 'GET',
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-
-      if (divToRemove) {
-        divToRemove.parentNode.removeChild(divToRemove);
-      }
-      
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-    
-  });
-  })
+  function hideSubcategories(categoryId) {
+  const subcategoryList = document.getElementById(`subcategory-list-${categoryId}`);
+  subcategoryList.classList.add('hidden');
+  }
 </script>
+
+		<!-- for category -->
+		<script>
+			async function fetchProducts() {
+			try {
+				const response = await fetch('/api/client/products'); // Replace '/api/products' with your API endpoint
+				const data = await response.json();
+				return data;
+			} catch (error) {
+				console.error('Error fetching products:', error);
+				return [];
+			}
+			}
+		
+			async function displayProducts(selectedCategory) {
+				
+			const productListContainer = document.getElementById('productList');
+			productListContainer.innerHTML = '';
+		
+			try {
+				const products = await fetchProducts();
+				const filteredProducts = selectedCategory === 'all'
+				? products // Show all products when 'All Subcategories' is selected
+				: products.filter(product => product.cat_id == selectedCategory);
+		
+				filteredProducts.forEach(product => {
+					const productDiv = document.createElement('div');
+              productDiv.classList.add('flex', 'flex-col', 'gap-y-4');
+
+              // Create and set Product Model text
+              const productModel = document.createElement('p');
+              productModel.classList.add('text-tColor2');
+              productModel.textContent = 'Product Model';
+
+              const productModelValue = document.createElement('p');
+              productModelValue.classList.add('text-xl', 'font-semibold', 'border-b-2', 'pt-1', 'pb-5');
+              productModelValue.textContent = product.product_model;
+
+              // Create and set Category Name text
+              const categoryName = document.createElement('p');
+              categoryName.classList.add('text-primaryColor', 'font-bold', 'text-sm');
+              categoryName.textContent = product.category_name;
+
+              // Create video or image element based on condition
+              const mediaContainer = document.createElement('div');
+              mediaContainer.classList.add('h-40', 'w-full', 'flex', 'justify-center', 'items-center', 'mt-3', 'overflow-hidden');
+
+              if (product.video[0].video_id) {
+                const video = document.createElement('video');
+                video.setAttribute('controls', true);
+
+                const source = document.createElement('source');
+                source.setAttribute('src', product.video[0].video);
+                source.setAttribute('type', 'video/mp4');
+
+                video.appendChild(source);
+                mediaContainer.appendChild(video);
+              } else {
+                const image = document.createElement('img');
+                image.setAttribute('src', product.images[0].image);
+                image.setAttribute('alt', '');
+                image.classList.add('w-full');
+
+                mediaContainer.appendChild(image);
+              }
+
+              // Create and set Product Name text
+              const productName = document.createElement('p');
+              productName.classList.add('text-lg');
+              productName.textContent = product.product_name;
+
+              // Create and set FOB Price text
+              const fobPrice = document.createElement('p');
+              fobPrice.classList.add('border-b-2', 'pb-3');
+              fobPrice.textContent = product.fob_price;
+
+              // Create buttons div
+              const buttonsDiv = document.createElement('div');
+              buttonsDiv.classList.add('grid', 'grid-cols-2', 'mt-3', 'gap-3');
+
+              // Create and set Hide button
+              // const hideButton = document.createElement('button');
+              // hideButton.classList.add('bg-gray-200', 'px-2', 'py-1', 'rounded');
+              // hideButton.textContent = 'Hide';
+
+              // Create and set Unhide button
+              // const unhideButton = document.createElement('button');
+              // unhideButton.classList.add('bg-primaryColor', 'text-white', 'px-2', 'py-1', 'rounded');
+              // unhideButton.textContent = 'Unhide';
+
+              // Create and set Edit button
+              const editButton = document.createElement('button');
+              editButton.classList.add('bg-green-500', 'text-white', 'px-2', 'py-1', 'rounded');
+              const editLink = document.createElement('a');
+              editLink.setAttribute('href', `/dashboard/editProduct/${product.id}`);
+              editLink.textContent = 'Edit';
+              editButton.appendChild(editLink);
+
+              // Create and set Delete button
+              const deleteButton = document.createElement('a');
+              deleteButton.classList.add('delete-product', 'bg-red-800', 'text-white', 'px-2', 'py-1', 'rounded');
+              deleteButton.setAttribute('data-product-id', product.id);
+              deleteButton.setAttribute('href', '#');
+              deleteButton.textContent = 'Delete';
+
+              // Append all elements to the productDiv
+              productDiv.appendChild(productModel);
+              productDiv.appendChild(productModelValue);
+              productDiv.appendChild(categoryName);
+              productDiv.appendChild(mediaContainer);
+              productDiv.appendChild(productName);
+              productDiv.appendChild(fobPrice);
+              // buttonsDiv.appendChild(hideButton);
+              // buttonsDiv.appendChild(unhideButton);
+              buttonsDiv.appendChild(editButton);
+              buttonsDiv.appendChild(deleteButton);
+              productDiv.appendChild(buttonsDiv);
+
+              // Append the productDiv to the productListContainer
+              productListContainer.appendChild(productDiv);
+
+				});
+			} catch (error) {
+				console.error('Error displaying products:', error);
+			}
+			}
+		
+			// function toggleSubcategories(categoryId) {
+			// const subcategoryList = document.getElementById(`subcategory-list-${categoryId}`);
+			// subcategoryList.classList.toggle('hidden');
+			// }
+		
+			// Initial display with all products
+			displayProducts('all');
+		</script>
+
+
+
+		<!-- for sub category -->
+
+		<script>
+			async function fetchProducts() {
+			try {
+				const response = await fetch('/api/client/products'); // Replace '/api/products' with your API endpoint
+				const data = await response.json();
+				return data;
+			} catch (error) {
+				console.error('Error fetching products:', error);
+				return [];
+			}
+			}
+
+			async function displaySubcategoryProducts(selectedSubCategory) {
+				
+			const productListContainer = document.getElementById('productList');
+			productListContainer.innerHTML = '';
+
+			try {
+				const products = await fetchProducts();
+				const filteredProducts = selectedSubCategory === 'all'
+				? products // Show all products when 'All Subcategories' is selected
+				: products.filter(product => product.subCat_id == selectedSubCategory);
+
+				filteredProducts.forEach(product => {
+					const productDiv = document.createElement('div');
+              productDiv.classList.add('flex', 'flex-col', 'gap-y-4');
+
+              // Create and set Product Model text
+              const productModel = document.createElement('p');
+              productModel.classList.add('text-tColor2');
+              productModel.textContent = 'Product Model';
+
+              const productModelValue = document.createElement('p');
+              productModelValue.classList.add('text-xl', 'font-semibold', 'border-b-2', 'pt-1', 'pb-5');
+              productModelValue.textContent = product.product_model;
+
+              // Create and set Category Name text
+              const categoryName = document.createElement('p');
+              categoryName.classList.add('text-primaryColor', 'font-bold', 'text-sm');
+              categoryName.textContent = product.category_name;
+
+              // Create video or image element based on condition
+              const mediaContainer = document.createElement('div');
+              mediaContainer.classList.add('h-40', 'w-full', 'flex', 'justify-center', 'items-center', 'mt-3', 'overflow-hidden');
+
+              if (product.video[0].video_id) {
+                const video = document.createElement('video');
+                video.setAttribute('controls', true);
+
+                const source = document.createElement('source');
+                source.setAttribute('src', product.video[0].video);
+                source.setAttribute('type', 'video/mp4');
+
+                video.appendChild(source);
+                mediaContainer.appendChild(video);
+              } else {
+                const image = document.createElement('img');
+                image.setAttribute('src', product.images[0].image);
+                image.setAttribute('alt', '');
+                image.classList.add('w-full');
+
+                mediaContainer.appendChild(image);
+              }
+
+              // Create and set Product Name text
+              const productName = document.createElement('p');
+              productName.classList.add('text-lg');
+              productName.textContent = product.product_name;
+
+              // Create and set FOB Price text
+              const fobPrice = document.createElement('p');
+              fobPrice.classList.add('border-b-2', 'pb-3');
+              fobPrice.textContent = product.fob_price;
+
+              // Create buttons div
+              const buttonsDiv = document.createElement('div');
+              buttonsDiv.classList.add('grid', 'grid-cols-2', 'mt-3', 'gap-3');
+
+              // Create and set Hide button
+              // const hideButton = document.createElement('button');
+              // hideButton.classList.add('bg-gray-200', 'px-2', 'py-1', 'rounded');
+              // hideButton.textContent = 'Hide';
+
+              // Create and set Unhide button
+              // const unhideButton = document.createElement('button');
+              // unhideButton.classList.add('bg-primaryColor', 'text-white', 'px-2', 'py-1', 'rounded');
+              // unhideButton.textContent = 'Unhide';
+
+              // Create and set Edit button
+              const editButton = document.createElement('button');
+              editButton.classList.add('bg-green-500', 'text-white', 'px-2', 'py-1', 'rounded');
+              const editLink = document.createElement('a');
+              editLink.setAttribute('href', `/dashboard/editProduct/${product.id}`);
+              editLink.textContent = 'Edit';
+              editButton.appendChild(editLink);
+
+              // Create and set Delete button
+              const deleteButton = document.createElement('a');
+              deleteButton.classList.add('delete-product', 'bg-red-800', 'text-white', 'px-2', 'py-1', 'rounded');
+              deleteButton.setAttribute('data-product-id', product.id);
+              deleteButton.setAttribute('href', '#');
+              deleteButton.textContent = 'Delete';
+
+              // Append all elements to the productDiv
+              productDiv.appendChild(productModel);
+              productDiv.appendChild(productModelValue);
+              productDiv.appendChild(categoryName);
+              productDiv.appendChild(mediaContainer);
+              productDiv.appendChild(productName);
+              productDiv.appendChild(fobPrice);
+              // buttonsDiv.appendChild(hideButton);
+              // buttonsDiv.appendChild(unhideButton);
+              buttonsDiv.appendChild(editButton);
+              buttonsDiv.appendChild(deleteButton);
+              productDiv.appendChild(buttonsDiv);
+
+              // Append the productDiv to the productListContainer
+              productListContainer.appendChild(productDiv);
+				});
+			} catch (error) {
+				console.error('Error displaying products:', error);
+			}
+			}
+
+			// function toggleSubcategories(categoryId) {
+			// const subcategoryList = document.getElementById(`subcategory-list-${categoryId}`);
+			// subcategoryList.classList.toggle('hidden');
+			// }
+
+			// Initial display with all products
+		</script>
+
 
 <!-- delete product -->
 
+<!-- Add this JavaScript code to your HTML file -->
 
+<script>
+  // Function to delete a product
+  async function deleteProduct(productId) {
+    try {
+      const response = await fetch(`/api/admin/deleteProduct/${productId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        console.log('Product deleted successfully.');
+
+        // Refresh the product list after deletion
+        displayProducts('all');
+      } else {
+        console.error('Failed to delete product.');
+      }
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  }
+
+  // Add an event listener to the form element
+  document.addEventListener('click', function (event) {
+  if (event.target.classList.contains('delete-product')) {
+    event.preventDefault(); // Prevent the default link behavior
+
+    const productId = event.target.getAttribute('data-product-id');
+
+    const confirmed = confirm('Are you sure you want to delete this Product?');
+
+    if (confirmed) {
+      deleteProduct(productId);
+    }
+  }
+});
+</script>
+
+
+<!-- delete product -->
 
 </body>
 </html>

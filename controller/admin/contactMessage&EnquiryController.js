@@ -8,7 +8,7 @@ exports.getContactMessage=async(req,res,next)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/contactMessage',{title:"Message",messages})
+            return res.status(200).render('admin/contactMessage',{title:"Message",nav:"contactMessages",messages})
         })
         
     }catch(e){
@@ -42,7 +42,7 @@ exports.getEnquiry=async(req,res,next)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/enquiry',{title:"Message",enquires})
+            return res.status(200).render('admin/enquiry',{title:"Message",nav:"enquiry",enquires})
         })
         
     }catch(e){

@@ -23,30 +23,58 @@
               <a href="index.html" class="h-12 w-12"><img class="h-20 xl:h-24 2xl:h-28" src="/img/Logo.png" alt=""></a>
 
               <a class="xl:bg-gray-100 p-5 flex items-center mx-auto rounded-md gap-3 pl-5 absolute xl:static top-1 right-20 md:right-36" href="/dashboard/profile">
-                <img src="/img/admin.png" alt="" class="h-8 w-8 xl:h-12 xl:w-12 rounded-[50%]">
+                <img src="/img/logo-bg-white.png" alt="" class="h-8 w-8 xl:h-12 xl:w-12 rounded-[50%]">
                 <div class="hidden xl:block">
-                  <p class="text-primaryColor font-semibold">Sarah Brown</p>
+                  <p class="text-primaryColor font-semibold">Bonanza</p>
                   <p>Admin</p>
                 </div>
               </a>
 
               <div class="bg-white xl:bg-transparent hidden xl:grid absolute xl:static top-12 right-0 z-10 rounded-sm py-5 xl:py-0 2xl:py-5 max-h-[800px] xl:max-h-[280px] 2xl:max-h-[700px] overflow-y-auto scroll-h min-w-[195px] scroll-smooth shadow-md xl:shadow-none mt-5" id="toggle-menu">
 
-                  <a class="accordion-button menu-list menu-list-active" href="/dashboard">
+                  <a class="menu-list accordion-button <%= nav==="dashboard"?"menu-list-active":"" %>" href="/dashboard">
                       <span>Dashboard</span>
                   </a>
 
-                  <button class="accordion-button menu-list mt-3">
-                      <span>Product</span>
+                  <button class="accordion-button menu-list mt-3 <%= nav==="product"?"menu-list-active":"" %>">
+                      <span><a href="/dashboard/productList">Product</a></span>
                       <i class="ml-auto fa-solid fa-chevron-down"></i>
                   </button>
 
                     <ul class="menu-collapse hidden">
-                      <li><a href="/dashboard/productList">Products</a></li>
-                      <li><a href="/dashboard/category">Categories</a></li>
+                      <li><p style="cursor: pointer;" onclick="displayProducts('all')">All</p></li>
+                      <% for (let category of categories) { %>
+                        <li>
+                          <div class="category-container"
+                          onmouseover="showSubcategories('<%= category.category_id %>')"
+                          onmouseout="hideSubcategories('<%= category.category_id %>')"
+                        >
+              
+                          <p onclick="displayProducts('<%= category.category_id %>')"
+                          class="flex items-center p-4 font-semibold duration-150 rounded-lg cursor-pointer hover:product-sidebar-link-active product-sidebar-link-active gap-x-3"
+                          >
+                          <i class="bi bi-arrow-right-circle"></i>
+                          <%= category.category_name %>
+                          </p>
+                          <ul class="list-none pl-4 hidden" id="subcategory-list-<%= category.category_id %>">
+                          <% for (let subcategory of category.subcategories) { %>
+                          <li class="py-2">
+                            <div style="margin-left: 30px;" class="flex items-center p-3 font-semibold duration-150 rounded-lg cursor-pointer hover:product-sidebar-link-active product-sidebar-link-active gap-x-3">
+                            <p onclick="displaySubcategoryProducts('<%= subcategory.subcategory_id %>')"><%= subcategory.subcategory_name %></p> 
+                            </div>
+                          </li>
+                          <% } %>
+                          </ul>
+                        </div>
+                        </li>
+                        <% } %>
                     </ul>
 
-                    <button class="accordion-button menu-list mt-3">
+                    <a class="menu-list accordion-button <%= nav==="category"?"menu-list-active":"" %> mt-3" href="/dashboard/category">
+                      <span>Categories</span>
+                  </a>
+
+                    <button class="accordion-button menu-list mt-3 <%= nav==="team"?"menu-list-active":"" %>">
                       <span>Team</span>
                       <i class="ml-auto fa-solid fa-chevron-down"></i>
                   </button>
@@ -60,19 +88,19 @@
                       <span>Team</span>
                   </a> -->
 
-                  <a class="accordion-button menu-list mt-3" href="/dashboard/testimonial">
+                  <a class="accordion-button menu-list mt-3 <%= nav==="testimonial"?"menu-list-active":"" %>" href="/dashboard/testimonial">
                     <span>Testimonial</span>
                   </a>
 
-                  <a class="accordion-button menu-list mt-3" href="/dashboard/contactMessages">
+                  <a class="accordion-button menu-list mt-3 <%= nav==="contactMessages"?"menu-list-active":"" %>" href="/dashboard/contactMessages">
                     <span>Contact Message</span>
                   </a>
 
-                  <a class="accordion-button menu-list mt-3" href="/dashboard/enquiry">
+                  <a class="accordion-button menu-list mt-3 <%= nav==="enquiry"?"menu-list-active":"" %>" href="/dashboard/enquiry">
                     <span>Enquiry</span>
                   </a>
 
-                  <button class="accordion-button menu-list mt-3">
+                  <button class="accordion-button menu-list mt-3 <%= nav==="generalInfo"?"menu-list-active":"" %>">
                     <span>General Info</span>
                     <i class="ml-auto fa-solid fa-chevron-down"></i>
                   </button>
@@ -83,6 +111,7 @@
                     <li><a href="/dashboard/homeBanner">Homepage Banner</a></li>
                     <li><a href="/dashboard/footerInformation">Footer Info</a></li>
                     <li><a href="/dashboard/basicInformation">Basic Info</a></li>
+                    <li><a href="/dashboard/social-media-link">Social Media</a></li>
                   </ul>
                    
 
