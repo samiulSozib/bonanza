@@ -50,9 +50,9 @@
 							<p>Export</p>
 							<div class="w-full relative h-3 border rounded-lg bg-[#d9d9d9]">
 								<span
-									class="absolute rounded-lg top-0 left-0 h-full w-[95%] bg-accent"
+									class="absolute rounded-lg top-0 left-0 h-full w-full bg-accent"
 								></span>
-								<span class="absolute top-[-300%] left-[70%]"><%= basicInfo[0].exportRate %></span>
+								<span class="absolute top-[-300%] left-[95%]"><%= basicInfo[0].exportRate %></span>
 							</div>
 						</div>
 
@@ -60,7 +60,7 @@
 							<p>Production</p>
 							<div class="w-full relative h-3 border rounded-lg bg-[#d9d9d9]">
 								<span
-									class="absolute rounded-lg top-0 left-0 h-full w-[95%] bg-accent"
+									class="absolute rounded-lg top-0 left-0 h-full w-full bg-accent"
 								></span>
 								<span class="absolute top-[-300%] left-[95%]"><%= basicInfo[0].productionRate %></span>
 							</div>
@@ -291,6 +291,21 @@
 			getFooterInfo()
 			getFooterSocialMedia()
 			postContactForm()
+		</script>
+		<script>
+			// Get the exportRate value from your data source
+			var exportRate = basicInfo[0].exportRate;
+		
+			// Get the elements you want to manipulate
+			var bgAccent = document.getElementById('bg-accent');
+			var exportRateText = document.getElementById('exportRateText');
+		
+			// Add or remove the 'bg-accent' class based on the exportRate value
+			if (exportRate >= someThreshold) {
+				bgAccent.classList.add('bg-accent');
+			} else {
+				bgAccent.classList.remove('bg-accent');
+			}
 		</script>
 	</body>
 </html>

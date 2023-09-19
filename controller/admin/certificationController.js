@@ -1,15 +1,17 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 
 // get certification page
 exports.getCertification=async(req,res,next)=>{
     try{
         let getCertificationQuery='SELECT * FROM certification'
+        const categories=await helper.fetchCategories()
         db.query(getCertificationQuery,(err,certifications)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/generalInfo/certification',{title:"Certification",nav:"generalInfo",certifications})
+            return res.status(200).render('admin/generalInfo/certification',{title:"Certification",categories,nav:"generalInfo",certifications})
         })
         
         
@@ -22,7 +24,8 @@ exports.getCertification=async(req,res,next)=>{
 // add certification page 
 exports.getAddCertification=async(req,res,next)=>{
     try{
-        return res.status(200).render('admin/generalInfo/addCertification',{title:"Add Certification",nav:"generalInfo"})
+        const categories=await helper.fetchCategories()
+        return res.status(200).render('admin/generalInfo/addCertification',{title:"Add Certification",categories,nav:"generalInfo"})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -75,12 +78,12 @@ exports.getSingleCertification=async(req,res,next)=>{
     try{
         const certificationId=req.params.id 
         const findCertificationById='SELECT * FROM certification WHERE id=?'
-
+        const categories=await helper.fetchCategories()
         db.query(findCertificationById,[certificationId],(err,certification)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/generalInfo/singleCertification',{title:"Certification",nav:"generalInfo",certification})
+            return res.status(200).render('admin/generalInfo/singleCertification',{title:"Certification",categories,nav:"generalInfo",certification})
         })
 
     }catch(e){

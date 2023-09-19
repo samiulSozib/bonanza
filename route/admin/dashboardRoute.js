@@ -13,6 +13,9 @@ const {getCategory,getAddCategory,postCategory,getEditCategory,editCategory,dele
 const {getProductList,getAddProduct,postAddProduct,getProductEditPage,postProductEditPage}=require('../../controller/admin/productController')
 const {getCertification,getAddCertification,postCertification,deleteCertification,getSingleCertification,updateCertification}=require('../../controller/admin/certificationController')
 const {getSocialMedia,getSocialMediaUpdate,socialMediaUpdate}=require('../../controller/admin/socialMediaLink')
+const {getFactoryVideo,deleteFactoryVideo,getAddFactoryVideo,postAddFactoryVideo,getUpdateFactoryVideo,postUpdateFactoryVideo}=require('../../controller/admin/factoryVideoController')
+const {getQuestionAnswer,getUpdateQuestionAnswer,postUpdateQuestionAnswer,deleteQuestionAnswer,getAddQuestionAnswer,postAddQuestionAnswer}=require('../../controller/admin/qusestionAnswerController')
+
 
 
 const upload=require('../../middleware/uploadMiddleware')
@@ -126,5 +129,25 @@ router.post('/updateCertification/:id',adminAuth,upload.single('certification'),
 router.get('/social-media-link',adminAuth,getSocialMedia)
 router.get('/social-media-link/update/:social_media_link_id',adminAuth,getSocialMediaUpdate)
 router.post('/social-media-link/update/:social_media_link_id',adminAuth,socialMediaUpdate)
+
+
+
+// factory_video 
+router.get('/factory-video',adminAuth,getFactoryVideo)
+router.get('/factory-video/delete/:video_id',adminAuth,deleteFactoryVideo)
+router.get('/factory-video/add',adminAuth,getAddFactoryVideo)
+router.post('/factory-video/add',adminAuth,postAddFactoryVideo)
+router.get('/factory-video/update/:video_id',adminAuth,getUpdateFactoryVideo)
+router.post('/factory-video/update/:video_id',adminAuth,postUpdateFactoryVideo)
+
+
+// question answer
+
+router.get('/question-answer',adminAuth,getQuestionAnswer)
+router.get('/question-answer/update/:question_id',adminAuth,getUpdateQuestionAnswer)
+router.post('/question-answer/update/:question_id',adminAuth,postUpdateQuestionAnswer)
+router.get('/question-answer/delete/:question_id',adminAuth,deleteQuestionAnswer)
+router.get('/question-answer/add',adminAuth,getAddQuestionAnswer)
+router.post('/question-answer/add',adminAuth,postAddQuestionAnswer)
 
 module.exports=router

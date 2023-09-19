@@ -1,5 +1,7 @@
 const db=require('../../config/database')
 const helper=require('../../config/helper')
+const cheerio = require('cheerio');
+
 
 // get product list page
 exports.getProductList=async(req,res,next)=>{
@@ -102,7 +104,16 @@ exports.postAddProduct=async(req,res,next)=>{
             const packaging_details=`<table width="170">
             <tbody>
             <tr>
-            <td width="170">1) ${productData.packaging_1}, <br /> 2) ${productData.packaging_2}<br /> 3) ${productData.packaging_3}<br /> 4) ${productData.packaging_4}<br /> ${productData.packaging_5}</td>
+              <td>${productData.packaging_1}</td>
+            </tr>
+              <tr>
+              <td>${productData.packaging_2}</td>
+            </tr><tr>
+              <td>${productData.packaging_3}</td>
+            </tr><tr>
+              <td>${productData.packaging_4}</td>
+            </tr><tr>
+              <td>${productData.packaging_5}</td>
             </tr>
             </tbody>
             </table>`
@@ -148,7 +159,6 @@ exports.postAddProduct=async(req,res,next)=>{
               </tr>
             </tbody>
           </table>
-
             `
         const values = [
             productData.product_name,
@@ -271,11 +281,33 @@ exports.getProductEditPage=async(req,res,next)=>{
 
         
         let data=await queryAsync(singleProductsQuery,product_id)
+        //return res.json(data)
         const nestedData = {};
 
         data.forEach((product) => {
           const { id,image_id, image, is_featured,video_id, video,cat_id, category_name,subCat_id, subcategory_name, ...productData } = product;
+          
+          
+          const productDetailsHTML = productData.product_details;
+          const $ = cheerio.load(productDetailsHTML);
+          const secondTdElements = $('table tbody tr td:nth-child(2)');
+          const _product_detils = secondTdElements.map((index, element) => $(element).text().trim()).get(); 
+          console.log(_product_detils);
+          productData._product_detils=_product_detils
+          
 
+
+          const packagingHTML = productData.packaging_details;
+          const $_ = cheerio.load(packagingHTML);
+          const secondTdElements_ = $_('table tbody tr td:nth-child(1)');
+          const _packaging = secondTdElements_.map((index, element) => $_(element).text().trim()).get(); 
+          console.log(_packaging);
+          productData._packaging=_packaging
+          
+
+
+
+          //return res.json(secondTdContent)
           if (nestedData[id]) {
             nestedData[id].images.push({ image_id,image, is_featured });
             if (video) {
@@ -321,6 +353,8 @@ exports.postProductEditPage=async(req,res,next)=>{
         // console.log(req.files)
         // return
 
+
+
         const updateProductQuery = `UPDATE products 
                            SET product_name = ?, 
                                product_model = ?, 
@@ -333,6 +367,66 @@ exports.postProductEditPage=async(req,res,next)=>{
                                product_details = ? 
                            WHERE id = ?`;
 
+                           const packaging_details=`<table width="170">
+                           <tbody>
+                           <tr>
+                             <td>${productData.packaging_1}</td>
+                           </tr>
+                             <tr>
+                             <td>${productData.packaging_2}</td>
+                           </tr><tr>
+                             <td>${productData.packaging_3}</td>
+                           </tr><tr>
+                             <td>${productData.packaging_4}</td>
+                           </tr><tr>
+                             <td>${productData.packaging_5}</td>
+                           </tr>
+                           </tbody>
+                           </table>`
+                           const product_details=`
+                           <table style="border-collapse: collapse; width: 100%;" border="1">
+                           <colgroup>
+                             <col style="width: 50%;">
+                             <col style="width: 50%;">
+                           </colgroup>
+                           <tbody>
+                             <tr>
+                               <td>100% Jute</td>
+                               <td>${productData.details_100_jute}</td>
+                             </tr>
+                             <tr>
+                               <td>Model Number</td>
+                               <td>${productData.details_model_number}</td>
+                             </tr>
+                             <tr>
+                               <td>Strength</td>
+                               <td>${productData.details_strength}</td>
+                             </tr>
+                             <tr>
+                               <td>Yarn Count</td>
+                               <td>${productData.details_yarn_count}</td>
+                             </tr>
+                             <tr>
+                               <td>Number of Ply</td>
+                               <td>${productData.details_number_of_ply}</td>
+                             </tr>
+                             <tr>
+                               <td>TPI</td>
+                               <td>${productData.details_tpi}</td>
+                             </tr>
+                             
+                             <tr>
+                               <td>Quality</td>
+                               <td>${productData.details_qualily}</td>
+                             </tr>
+                             <tr>
+                               <td>HS Code</td>
+                               <td>${productData.details_hs_code}</td>
+                             </tr>
+                           </tbody>
+                         </table>
+                           `
+
                            const values = [
                             productData.product_name,
                             productData.product_model,
@@ -341,8 +435,8 @@ exports.postProductEditPage=async(req,res,next)=>{
                             productData.min_order_quentity,
                             productData.suppy_ability,
                             productData.processing_time,
-                            productData.packaging_details,
-                            productData.product_details,
+                            packaging_details,
+                            product_details,
                             product_id
                         ];
 

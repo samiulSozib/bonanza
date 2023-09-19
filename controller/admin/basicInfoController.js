@@ -1,14 +1,16 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 exports.getBasicInfo=async(req,res,next)=>{
     try{
         let getBasicInfoQuery='SELECT * FROM basic_information'
+        const categories=await helper.fetchCategories()
         db.query(getBasicInfoQuery,(err,basicInfo)=>{
             if(err){
                 throw err 
             }
            
-            return res.status(200).render('admin/generalInfo/basicInfo',{title:"Basic Info",nav:"generalInfo",basicInfo})
+            return res.status(200).render('admin/generalInfo/basicInfo',{title:"Basic Info",categories,nav:"generalInfo",basicInfo})
         })
         
     }catch(e){

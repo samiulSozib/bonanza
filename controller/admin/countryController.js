@@ -1,15 +1,17 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 
 // get country page
 exports.getCountry=async(req,res,next)=>{
     try{
         let getCountryQuery='SELECT * FROM country'
+        const categories=await helper.fetchCategories()
         db.query(getCountryQuery,(err,countries)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/generalInfo/countryList',{title:"Country",nav:"generalInfo",countries})
+            return res.status(200).render('admin/generalInfo/countryList',{title:"Country",categories,nav:"generalInfo",countries})
         })
         
     }catch(e){
@@ -22,7 +24,8 @@ exports.getCountry=async(req,res,next)=>{
 // add country page 
 exports.getAddCountry=async(req,res,next)=>{
     try{
-        return res.status(200).render('admin/generalInfo/addCountry',{title:"Add Country",nav:"generalInfo"})
+        const categories=await helper.fetchCategories()
+        return res.status(200).render('admin/generalInfo/addCountry',{title:"Add Country",categories,nav:"generalInfo"})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -73,12 +76,12 @@ exports.getSingleCountry=async(req,res,next)=>{
     try{
         const countryId=req.params.id 
         const findCountrylById='SELECT * FROM country WHERE id=?'
-
+        const categories=await helper.fetchCategories()
         db.query(findCountrylById,[countryId],(err,country)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/generalInfo/singleCountry',{title:"Country",nav:"generalInfo",country})
+            return res.status(200).render('admin/generalInfo/singleCountry',{title:"Country",categories,nav:"generalInfo",country})
         })
 
     }catch(e){

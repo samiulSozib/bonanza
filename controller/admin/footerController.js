@@ -1,15 +1,16 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 exports.getFooterInfo=async(req,res,next)=>{
     try{
         let getInfo='SELECT * FROM contact_information LIMIT 2'
-
+        const categories=await helper.fetchCategories()
         db.query(getInfo,(err,info)=>{
             if(err){
                 throw err 
             }
             //return res.json(info)
-            return res.status(200).render('admin/generalInfo/footerInfo',{title:"Footer Information",nav:"generalInfo",info})
+            return res.status(200).render('admin/generalInfo/footerInfo',{title:"Footer Information",categories,nav:"generalInfo",info})
         })
 
         

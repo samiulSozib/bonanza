@@ -1,15 +1,17 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 
 // get managing Director page
 exports.getManagingDirector=async(req,res,next)=>{
     try{
         const findMDirector='SELECT * FROM m_d_information WHERE id=1'
+        const categories=await helper.fetchCategories()
         db.query(findMDirector,(err,mdInfo)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/teamExpert/managingDirector',{title:"Managing Director",nav:"team",mdInfo})
+            return res.status(200).render('admin/teamExpert/managingDirector',{title:"Managing Director",categories,nav:"team",mdInfo})
         })
         
     }catch(e){
@@ -71,12 +73,12 @@ exports.updateManagingDirector=async(req,res,next)=>{
 exports.getTeamExperts=async(req,res,next)=>{
     try{
         const findAllTeam='SELECT * FROM team'
-
+        const categories=await helper.fetchCategories()
         db.query(findAllTeam,(err,experts)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/teamExpert/teamExperts',{title:"Team Experts",nav:"team",experts})
+            return res.status(200).render('admin/teamExpert/teamExperts',{title:"Team Experts",categories,nav:"team",experts})
         })
 
         
@@ -90,7 +92,8 @@ exports.getTeamExperts=async(req,res,next)=>{
 // get insert team expert page 
 exports.getAddTeamExpert=async(req,res,next)=>{
     try{
-        return res.status(200).render('admin/teamExpert/addTeamExpert',{title:"Add Team Experts",nav:"team"})
+        const categories=await helper.fetchCategories()
+        return res.status(200).render('admin/teamExpert/addTeamExpert',{title:"Add Team Experts",categories,nav:"team"})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})
@@ -129,12 +132,12 @@ exports.getSingleTeam=async(req,res,next)=>{
     try{
         const expertId=req.params.id 
         const findExpertById='SELECT * FROM team WHERE id=?'
-
+        const categories=await helper.fetchCategories()
         db.query(findExpertById,expertId,(err,expert)=>{
             if(err){
                 throw err
             }
-            return res.status(200).render('admin/teamExpert/singleTeam',{title:"Team Single",nav:"team",expert})
+            return res.status(200).render('admin/teamExpert/singleTeam',{title:"Team Single",categories,nav:"team",expert})
         })
 
     }catch(e){
@@ -211,3 +214,4 @@ exports.deleteTeamExpert=async(req,res,next)=>{
         return res.status(500).json({msg:'Internal Server Error'})
     }
 }
+

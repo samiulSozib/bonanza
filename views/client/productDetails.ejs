@@ -1,4 +1,100 @@
-<%- include('./partials/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+		<meta property="og:title" content="<%= product.product_name %>" />
+        <meta property="og:url" content="https://bonanzajutecomposite.com/ourProduct/details/<%= product.id %>" />
+        <meta property="og:site_name" content="Bonanza Jute Composite" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://bonanzajutecomposite.com<%= product.images[0].image %>" />
+
+		<link rel="stylesheet" href="/css/output.css" />
+		
+		<style>
+			   table {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid black; /* Set the border style for the table */
+    }
+
+    th, td {
+      border: 1px solid black; /* Set the border style for table cells */
+      padding: 8px; /* Add padding for better readability */
+    }
+	
+	
+		</style>
+		<script src="/js/singleScript.js"></script>
+		<title>Bonanza</title>
+			
+		
+	</head>
+	<body>
+		<div class="container flex flex-col h-full mx-auto">
+			<!-- Navbar -->
+			<div class="py-5 navbar">
+				<div class="navbar-start">
+					<div class="dropdown">
+						<label tabindex="0" class="btn btn-ghost lg:hidden">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="w-5 h-5"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M4 6h16M4 12h8m-8 6h16"
+								/>
+							</svg>
+						</label>
+						<ul
+							tabindex="0"
+							class="menu menu-lg font-bold text-lg dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+						>
+							<li class="<%= navStatus==="home"?"navlink-active":"" %>">
+								<a href="/">Home</a>
+							</li>
+							<li class="<%= navStatus==="about"?"navlink-active":"" %>">
+								<a href="/aboutUs">About Us</a>
+							</li>
+							<li class="<%= navStatus==="product"?"navlink-active":"" %>"><a href="/ourProduct">Our Product</a></li>
+							<li class="<%= navStatus==="team"?"navlink-active":"" %>"><a href="/ourTeam">Our Team</a></li>
+							<li class="<%= navStatus==="contact"?"navlink-active":"" %>"><a href="/contactUs">Contact</a></li>
+							<li class="<%= navStatus==="enquiry"?"navlink-active":"" %>"><a href="/enquiry">Enquiry</a></li>
+						</ul>
+					</div>
+					<a class="text-xl normal-case"><img src="./img/logo.png" alt="" /></a>
+				</div>
+				<div class="hidden navbar-center lg:flex">
+					<ul class="px-1 text-lg font-bold menu menu-horizontal gap-x-5">
+						<li class="<%= navStatus==="home"?"navlink-active":"" %>">
+							<a href="/">Home</a>
+						</li>
+						<li class="<%= navStatus==="about"?"navlink-active":"" %>">
+							<a href="/aboutUs">About Us</a>
+						</li>
+						<li class="<%= navStatus==="product"?"navlink-active":"" %>"><a href="/ourProduct">Our Product</a></li>
+						<li class="<%= navStatus==="team"?"navlink-active":"" %>"><a href="/ourTeam">Our Team</a></li>
+						<li class="<%= navStatus==="contact"?"navlink-active":"" %>"><a href="/contactUs">Contact</a></li>
+						<li class="<%= navStatus==="enquiry"?"navlink-active":"" %>"><a href="/enquiry">Enquiry</a></li>
+					</ul>
+					
+				</div>
+				<div class="flex-col items-center hidden navbar-end lg:flex">
+					<p style="font-size: 14px;">WhatsApp for any question</p>
+					<p class="text-2xl font-bold text-secondary">+8801750613481</p>
+				</div>
+			</div>
+		</div>
+
+		
 
 		<!-- Hero section -->
 		<div
@@ -80,9 +176,9 @@
 						></span>
 					</div> -->
 
-					<button class="self-start mt-10 btn active-tab btn-md">
+					<a href="/enquiry" class="self-start mt-10 btn active-tab btn-md">
 						Enquiry
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>

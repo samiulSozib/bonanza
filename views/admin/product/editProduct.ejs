@@ -183,12 +183,119 @@
 
             <div>
               <p class="mt-5 mb-2">Packaging Details</p>
-              <textarea id="packaging_details" name="packaging_details" rows="4" cols="50" placeholder="Write Product Description" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"><%= product.packaging_details %></textarea>
+              <table>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td><input type="text" name="packaging_1" value="<%= product._packaging[0] %>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      2
+                    </td>
+                    <td><input type="text" name="packaging_2" value="<%= product._packaging[1] %>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      3
+                    </td>
+                    <td><input type="text" name="packaging_3" value="<%= product._packaging[2] %>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      4
+                    </td>
+                    <td><input type="text" name="packaging_4" value="<%= product._packaging[3] %>"/>
+                    </td>
+                </tr>
+                <tr>
+                  <td>
+                      5
+                  </td>
+                  <td><input type="text" name="packaging_5" value="<%= product._packaging[4] %>"/>
+                  </td>
+              </tr>
+
+        </table>
+              <!-- <textarea id="packaging_details" name="packaging_details" rows="4" cols="50" placeholder="Write Packaging Details" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea> -->
             </div>
 
             <div>
               <p class="mt-5 mb-2">Product Details</p>
-              <textarea id="product_details" name="product_details" rows="4" cols="50" placeholder="Write Product Description" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"><%= product.product_details %></textarea>
+              <table>
+                    <tr>
+                        <td>
+                            <label>
+                              100% Jute
+                            </label>
+                        </td>
+                        <td><input type="text" name="details_100_jute" value="<%= product._product_detils[0] %>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                          Model Number
+                            </label>
+                        </td>
+                        <td><input type="text" name="details_model_number" value="<%= product._product_detils[1] %>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                          Strength
+                            </label>
+                        </td>
+                        <td><input type="text" name="details_strength" value="<%= product._product_detils[2] %>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                          Yarn Count
+                            </label>
+                        </td>
+                        <td><input type="text" name="details_yarn_count" value="<%= product._product_detils[3] %>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          <label>
+                            Number of Ply
+                          </label>
+                      </td>
+                      <td><input type="text" name="details_number_of_ply" value="<%= product._product_detils[4] %>"/>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label>
+                        TPI
+                          </label>
+                      </td>
+                      <td><input type="text" name="details_tpi" value="<%= product._product_detils[5] %>"/>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label>
+                        Quality
+                          </label>
+                      </td>
+                      <td><input type="text" name="details_qualily" value="<%= product._product_detils[6] %>"/>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><label>
+                        HS Code
+                          </label>
+                      </td>
+                      <td><input type="text" name="details_hs_code" value="<%= product._product_detils[7] %>"/>
+                      </td>
+                  </tr>
+            </table>
+              <!-- <textarea id="product_details" name="product_details" placeholder="Write Product Description" class="bg-white w-full max-w-[500px] border-[1px] border-gray-400 first-line:appearance-none  rounded-md py-3 px-5 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"></textarea> -->
+              
             </div>
 
             <div class="flex">

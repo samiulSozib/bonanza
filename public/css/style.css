@@ -103,7 +103,7 @@ progress[value]::-moz-progress-bar {
 }
 table {
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   border-collapse: collapse;
 }
 

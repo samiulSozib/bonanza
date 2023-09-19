@@ -1,13 +1,14 @@
 const db=require('../../config/database')
-
+const helper=require('../../config/helper')
 
 exports.getSocialMedia=async(req,res,next)=>{
     try{
         const social_media_link_query=`SELECT * FROM social_media_link`;
 
         let social_media_link=await queryAsyncWithoutValue(social_media_link_query)
+        const categories=await helper.fetchCategories()
  
-        return res.status(200).render('admin/generalInfo/socialMediaLink',{title:"Social Media",nav:"generalInfo",social_media_link})
+        return res.status(200).render('admin/generalInfo/socialMediaLink',{title:"Social Media",categories,nav:"generalInfo",social_media_link})
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})

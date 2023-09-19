@@ -1,15 +1,17 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 exports.getProfile=async(req,res,next)=>{
     try{
         let adminId=req.admin
         
         let getAdminQuery='SELECT * FROM admin WHERE id=?'
+        const categories=await helper.fetchCategories()
         db.query(getAdminQuery,[adminId],(err,admin)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/generalInfo/profile',{title:"Profile",nav:"generalInfo",admin})
+            return res.status(200).render('admin/generalInfo/profile',{title:"Profile",categories,nav:"generalInfo",admin})
             
         })
         

@@ -46,131 +46,82 @@
 					Request a call back
 				</p>
 				<div class="flex flex-col p-5 lg:p-5 gap-y-5">
-					<p class="italic">
+					<!-- <p class="italic">
 						Dolor in reprehenderit in voluptate velit esse cillum dolore eu
 						fugiat nulla pariatur excepteur sint occaecat
-					</p>
+					</p> -->
 					<div class="flex flex-col gap-y-5">
-						<input
-							class="w-full input input-bordered"
-							type="text"
-							placeholder="Name"
-						/>
-						<input
-							class="input input-bordered"
-							type="phone"
-							placeholder="Phone"
-						/>
-
-						<input
-							class="input input-bordered"
-							type="email"
-							placeholder="Email address"
-						/>
-						<select class="font-normal select select-bordered">
-							<option>Financial consulting</option>
-							<option>Financial consulting</option>
-							<option>Financial consulting</option>
-							<option>Financial consulting</option>
-						</select>
-
-						<button
-							class="border-0 px-16 text-white normal-case btn bg-gradient-to-r from-[#1B8900] to-[#65A184]"
-						>
-							Submit
-						</button>
+						<form id="contactForm">
+							<div class="flex flex-col w-full gap-y-5">
+								<input
+									class="input input-lg input-bordered"
+									type="text"
+									placeholder="Name"
+									name="name"
+									required
+								/>
+								<input
+									class="input input-lg input-bordered"
+									type="phone"
+									placeholder="Phone",
+									name="phoneNumber"
+									required
+								/>
+	
+								<input
+									class="input input-lg input-bordered"
+									type="email"
+									placeholder="Email address",
+									name="email"
+									required
+								/>
+								<select id="category" name="category" class="font-normal select select-lg select-bordered">
+									<% for(let dropdown of contactDropdown){ %>
+										<option value="<%= dropdown.name %>"><%= dropdown.name %></option>
+									<% } %>
+								</select>
+	
+								<textarea
+									class="textarea textarea-lg textarea-bordered"
+									placeholder="Your message"
+									name="message"
+									required
+								></textarea>
+	
+								<button type="submit"
+									class="lg:self-center self-start border-0 px-16 text-white normal-case btn btn-lg bg-gradient-to-r from-[#1B8900] to-[#65A184]"
+								>
+									Submit
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- long video section -->
-		<div class="container relative px-5 mt-20 lg:px-0">
-			<img src="./img/factory-video-long.png" alt="" />
-			<p class="absolute absolute-center">
-				<i
-					class="text-6xl text-white cursor-pointer lg:text-8xl bi bi-play-fill"
-				></i>
-			</p>
+		<div class="container relative flex justify-center px-5 mt-36 lg:px-0">
+			<iframe width="900" height="550"src="<%= factory_video[0].link %>"></iframe>
 		</div>
 
 		<!-- multiple video section -->
 		<div
 			class="container grid px-5 mt-20 lg:px-0 lg:grid-cols-3 gap-x-10 gap-y-20"
 		>
+			<% for(let i=1;i<factory_video.length;i++){ %>
 			<div class="relative flex flex-col gap-y-7">
-				<img src="./img/factory-video-1.png" alt="" />
-				<p class="absolute absolute-center">
-					<i class="text-4xl text-white cursor-pointer bi bi-play-fill"></i>
-				</p>
+				<iframe width="350" height="250"src="<%= factory_video[i].link %>"></iframe>				
 				<div class="flex flex-col gap-y-1">
 					<p class="text-2xl font-semibold text-primary">
-						Bonanza In Birds Eye
+						<%= factory_video[i].title %>
 					</p>
-					<p class="text-primary">Above 100,000 square meters</p>
+					
 				</div>
 			</div>
+			<% } %>
 
-			<div class="relative flex flex-col gap-y-7">
-				<img src="./img/factory-video-2.png" alt="" />
-				<p class="absolute absolute-center">
-					<i class="text-4xl text-white cursor-pointer bi bi-play-fill"></i>
-				</p>
-				<div class="flex flex-col gap-y-1">
-					<p class="text-2xl font-semibold text-primary">Factory Size</p>
-					<p class="text-primary">Above 100,000 square meters</p>
-				</div>
-			</div>
 
-			<div class="relative flex flex-col gap-y-7">
-				<img src="./img/factory-video-3.png" alt="" />
-				<p class="absolute absolute-center">
-					<i class="text-4xl text-white cursor-pointer bi bi-play-fill"></i>
-				</p>
-				<div class="flex flex-col gap-y-1">
-					<p class="text-2xl font-semibold text-primary">
-						Finished stock of jute bag
-					</p>
-					<p class="text-primary">Above 100,000 square meters</p>
-				</div>
-			</div>
-
-			<div class="relative flex flex-col gap-y-7">
-				<img src="./img/factory-video-4.png" alt="" />
-				<p class="absolute absolute-center">
-					<i class="text-4xl text-white cursor-pointer bi bi-play-fill"></i>
-				</p>
-				<div class="flex flex-col gap-y-1">
-					<p class="text-2xl font-semibold text-primary">
-						Golden Eagle Spinning Machine
-					</p>
-					<p class="text-primary">Above 100,000 square meters</p>
-				</div>
-			</div>
-
-			<div class="relative flex flex-col gap-y-7">
-				<img src="./img/factory-video-5.png" alt="" />
-				<p class="absolute absolute-center">
-					<i class="text-4xl text-white cursor-pointer bi bi-play-fill"></i>
-				</p>
-				<div class="flex flex-col gap-y-1">
-					<p class="text-2xl font-semibold text-primary">
-						Jute Yarn/Twine Stock
-					</p>
-					<p class="text-primary">Above 100,000 square meters</p>
-				</div>
-			</div>
-
-			<div class="relative flex flex-col gap-y-7">
-				<img src="./img/factory-video-6.png" alt="" />
-				<p class="absolute absolute-center">
-					<i class="text-4xl text-white cursor-pointer bi bi-play-fill"></i>
-				</p>
-				<div class="flex flex-col gap-y-1">
-					<p class="text-2xl font-semibold text-primary">Factory Size</p>
-					<p class="text-primary">Above 100,000 square meters</p>
-				</div>
-			</div>
 		</div>
 
 		<!-- frequently asked question section -->
@@ -179,124 +130,31 @@
 		>
 			<div class="flex flex-col items-center text-center lg:w-1/2 gap-y-3">
 				<h2 class="text-4xl font-bold">Frequently Asked Questions</h2>
-				<p class="text-primary">
-					Lorem ipsum dolor sit amet consectetur. Tellus sem quisque tristique
-					gravida pulvinar. Lacus tortor venenatis risus interdum id urna urna
-					fermentum facilisis.
-				</p>
+				
 			</div>
 			<div class="lg:w-[60%] join join-vertical">
-				<div class="border-b rounded-none collapse">
-					<input type="checkbox" name="my-accordion-3" />
 
-					<div
-						class="flex items-center text-xl font-medium capitalize collapse-title gap-x-5"
-					>
-						<p class="accordion-icon">
-							<i class="text-3xl bi bi-plus text-secondary"></i>
-						</p>
-						how soon will my order ship
-					</div>
+				<% for(let qa of question_answer){%>
 
-					<div class="collapse-content text-primary">
-						<p>
-							Is there any warranty exclusions? Lorem ipsum dolor sit amet
-							consectetur. Diam pellentesque faucibus habitant mauris a et quis
-							placerat purus. Vitae vel cum dui quisque donec eget. Eu aliquet
-							nibh accumsan sit lorem. Amet blandit sem risus eu velit dui
-							suspendisse tristique. Velit turpis vitae blandit velit. Viverra
-							elit.
-						</p>
-					</div>
-				</div>
+					<div class="border-b rounded-none collapse">
+						<input type="checkbox" name="my-accordion-3" />
 
-				<div class="border-b rounded-none collapse">
-					<input type="checkbox" name="my-accordion-3" />
-					<div
-						class="flex items-center text-xl font-medium capitalize gap-x-5 collapse-title"
-					>
-						<p class="accordion-icon">
-							<i class="text-3xl bi bi-plus text-secondary"></i>
-						</p>
-						is there any warranty exclusions?
-					</div>
-					<div class="collapse-content text-primary">
-						<p>
-							Is there any warranty exclusions? Lorem ipsum dolor sit amet
-							consectetur. Diam pellentesque faucibus habitant mauris a et quis
-							placerat purus. Vitae vel cum dui quisque donec eget. Eu aliquet
-							nibh accumsan sit lorem. Amet blandit sem risus eu velit dui
-							suspendisse tristique. Velit turpis vitae blandit velit. Viverra
-							elit.
-						</p>
-					</div>
-				</div>
+						<div
+							class="flex items-center text-xl font-medium capitalize collapse-title gap-x-5"
+						>
+							<p class="accordion-icon">
+								<i class="text-3xl bi bi-plus text-secondary"></i>
+							</p>
+							<%= qa.question %>
+						</div>
 
-				<div class="border-b rounded-none collapse">
-					<input type="checkbox" name="my-accordion-3" />
-					<div
-						class="flex items-center text-xl font-medium capitalize collapse-title gap-x-5"
-					>
-						<p class="accordion-icon">
-							<i class="text-3xl bi bi-plus text-secondary"></i>
-						</p>
-						is there any return exclusions?
+						<div class="collapse-content text-primary">
+							<p>
+								<%= qa.answer %>
+							</p>
+						</div>
 					</div>
-					<div class="collapse-content text-primary">
-						<p>
-							Is there any warranty exclusions? Lorem ipsum dolor sit amet
-							consectetur. Diam pellentesque faucibus habitant mauris a et quis
-							placerat purus. Vitae vel cum dui quisque donec eget. Eu aliquet
-							nibh accumsan sit lorem. Amet blandit sem risus eu velit dui
-							suspendisse tristique. Velit turpis vitae blandit velit. Viverra
-							elit.
-						</p>
-					</div>
-				</div>
-
-				<div class="border-b rounded-none collapse">
-					<input type="checkbox" name="my-accordion-3" />
-					<div
-						class="flex items-center text-xl font-medium capitalize collapse-title gap-x-5"
-					>
-						<p class="accordion-icon">
-							<i class="text-3xl bi bi-plus text-secondary"></i>
-						</p>
-						Will I be charged for a replacement item?
-					</div>
-					<div class="collapse-content text-primary">
-						<p>
-							Is there any warranty exclusions? Lorem ipsum dolor sit amet
-							consectetur. Diam pellentesque faucibus habitant mauris a et quis
-							placerat purus. Vitae vel cum dui quisque donec eget. Eu aliquet
-							nibh accumsan sit lorem. Amet blandit sem risus eu velit dui
-							suspendisse tristique. Velit turpis vitae blandit velit. Viverra
-							elit.
-						</p>
-					</div>
-				</div>
-
-				<div class="border-b rounded-none collapse">
-					<input type="checkbox" name="my-accordion-3" />
-					<div
-						class="flex items-center text-xl font-medium capitalize collapse-title gap-x-5"
-					>
-						<p class="accordion-icon">
-							<i class="text-3xl bi bi-plus text-secondary"></i>
-						</p>
-						How can I track my orders & payment?
-					</div>
-					<div class="collapse-content text-primary">
-						<p>
-							Is there any warranty exclusions? Lorem ipsum dolor sit amet
-							consectetur. Diam pellentesque faucibus habitant mauris a et quis
-							placerat purus. Vitae vel cum dui quisque donec eget. Eu aliquet
-							nibh accumsan sit lorem. Amet blandit sem risus eu velit dui
-							suspendisse tristique. Velit turpis vitae blandit velit. Viverra
-							elit.
-						</p>
-					</div>
-				</div>
+				<% } %>
 			</div>
 		</div>
 
@@ -338,7 +196,7 @@
 			class="w-full py-5 mt-20 lg:mt-0"
 			style="background: url('./img/factory-bg-3.png')"
 		>
-			<div class="container flex justify-center h-[62vh] mx-auto">
+			<div style="margin-bottom: 10px;" class="container flex justify-center h-[50vh] mx-auto">
 				<div
 					class="flex flex-col justify-center h-full px-5 lg:px-0 lg:w-1/2 gap-y-7"
 				>
@@ -348,27 +206,47 @@
 
 					<div class="flex flex-col gap-y-5">
 						<div class="grid gap-y-5 lg:grid-cols-2 gap-x-5">
-							<input
-								class="input input-border input-lg"
-								type="text"
-								placeholder="Name"
-							/>
-							<input
-								class="input input-border input-lg"
-								type="email"
-								placeholder="Email Address"
-							/>
-						</div>
-
-						<textarea
-							class="textarea textarea-lg h-36"
-							placeholder="Question"
-						></textarea>
-						<button
-							class="self-start border-0 px-16 hover:text-white normal-case btn btn-lg text-black duration-150 hover:bg-gradient-to-r from-[#1B8900] to-[#65A184]"
-						>
-							Submit
-						</button>
+							<form id="enquiryForm">
+								<div class="flex flex-col gap-y-5">
+									<input
+										class="w-full input input-bordered"
+										type="text"
+										placeholder="Name"
+										name="name"
+									/>
+									<input
+										class="input input-bordered"
+										type="phone"
+										placeholder="Phone"
+										name="phoneNumber"
+									/>
+			
+									<input
+										class="input input-bordered"
+										type="email"
+										placeholder="Email address"
+										name="email"
+									/>
+									<input
+										class="input input-bordered"
+										type="text"
+										placeholder="Subject"
+										name="subject"
+									/>
+			
+									<textarea
+										class="textarea textarea-bordered"
+										placeholder="Enquiry"
+										name="enquiry"
+									></textarea>
+			
+									<button type="submit"
+										class="self-start border-0 px-16 text-white normal-case btn bg-gradient-to-r from-[#1B8900] to-[#65A184]"
+									>
+										Submit
+									</button>
+								</div>
+							</form>
 					</div>
 				</div>
 			</div>
@@ -395,6 +273,13 @@
 
 		<!-- footer section -->
         <%- include('./partials/footer.ejs') %>
+
+		<script>
+			getFooterInfo()
+			getFooterSocialMedia()
+			postContactForm()
+			postEnquiryForm()
+		</script>
 		
 	</body>
 </html>

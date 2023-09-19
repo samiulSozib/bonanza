@@ -1,14 +1,16 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 exports.getHomePageBanner=async(req,res,next)=>{
     try{
         let getHomeBanner='SELECT * FROM herobanner'
+        const categories=await helper.fetchCategories()
         db.query(getHomeBanner,(err,homeBanner)=>{
             if(err){
                 throw err 
             }
            //return res.json(homeBanner)
-           return res.status(200).render('admin/generalInfo/homePageBanner',{title:"Home Banner",nav:"generalInfo",homeBanner})
+           return res.status(200).render('admin/generalInfo/homePageBanner',{title:"Home Banner",categories,nav:"generalInfo",homeBanner})
         })
         
     }catch(e){

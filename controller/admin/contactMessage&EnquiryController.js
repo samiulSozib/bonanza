@@ -1,14 +1,16 @@
 const db=require('../../config/database')
+const helper=require('../../config/helper')
 
 // get all message 
 exports.getContactMessage=async(req,res,next)=>{
     try{
         let getContactMessageQuery='SELECT * FROM contacts'
+        const categories=await helper.fetchCategories()
         db.query(getContactMessageQuery,(err,messages)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/contactMessage',{title:"Message",nav:"contactMessages",messages})
+            return res.status(200).render('admin/contactMessage',{title:"Message",categories,nav:"contactMessages",messages})
         })
         
     }catch(e){
@@ -38,11 +40,12 @@ exports.deleteContactMessage=async(req,res,next)=>{
 exports.getEnquiry=async(req,res,next)=>{
     try{
         let getEnquiryQuery='SELECT * FROM enquiry'
+        const categories=await helper.fetchCategories()
         db.query(getEnquiryQuery,(err,enquires)=>{
             if(err){
                 throw err 
             }
-            return res.status(200).render('admin/enquiry',{title:"Message",nav:"enquiry",enquires})
+            return res.status(200).render('admin/enquiry',{title:"Message",categories,nav:"enquiry",enquires})
         })
         
     }catch(e){
