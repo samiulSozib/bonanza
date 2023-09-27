@@ -81,28 +81,28 @@
                   const htmlContent1 = `
                   <li>
                   <a
-                    href="${data[0].link}"
+                    href="${data[0].link}" target="_blank"
                     class="flex items-center justify-center p-3 px-4 duration-100 border border-transparent rounded-full hover:border-white"
                     ><i class="text-xl bi bi-facebook"></i
                   ></a>
                 </li>
                 <li>
                   <a
-                    href="${data[1].link}"
+                    href="${data[1].link}" target="_blank"
                     class="flex items-center justify-center p-3 px-4 duration-100 border border-transparent rounded-full hover:border-white"
                     ><i class="text-xl bi bi-twitter"></i
                   ></a>
                 </li>
                 <li>
                   <a
-                    href="${data[3].link}"
+                    href="${data[3].link}" target="_blank"
                     class="flex items-center justify-center p-3 px-4 duration-100 border border-transparent rounded-full hover:border-white"
                     ><i class="text-xl bi bi-instagram"></i
                   ></a>
                 </li>
                 <li>
                   <a
-                    href="${data[4].link}"
+                    href="${data[4].link}" target="_blank"
                     class="flex items-center justify-center p-3 px-4 duration-100 border border-transparent rounded-full hover:border-white"
                     ><i class="text-xl bi bi-linkedin"></i
                   ></a>

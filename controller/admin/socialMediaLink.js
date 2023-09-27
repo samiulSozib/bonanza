@@ -22,8 +22,9 @@ exports.getSocialMediaUpdate=async(req,res,next)=>{
       const social_media_link_query=`SELECT * FROM social_media_link WHERE id = ?`;
 
       let social_media=await queryAsync(social_media_link_query,[id])
+      const categories=await helper.fetchCategories()
 
-      return res.status(200).render('admin/generalInfo/updateSocialMedia',{title:"Social Media",nav:"generalInfo",social_media:social_media[0]})
+      return res.status(200).render('admin/generalInfo/updateSocialMedia',{title:"Social Media",categories,nav:"generalInfo",social_media:social_media[0]})
   }catch(e){
       console.log(e)
       return res.status(500).json({msg:'Internal Server Error'})

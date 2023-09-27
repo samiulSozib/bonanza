@@ -117,6 +117,7 @@ exports.postTeamExpert=async(req,res,next)=>{
             if(err){
                 throw err
             }
+            return res.redirect('/dashboard/teamExpert')
             return res.json(result)
         })
 
