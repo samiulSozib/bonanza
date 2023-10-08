@@ -6,6 +6,7 @@ exports.getAboutUsPage=async(req,res,next)=>{
         const findBasicInformation='SELECT * FROM basic_information'
         const findCertification='SELECT * FROM certification'
         const findContactDropDown='SELECT * FROM contact_form_dropdown'
+        let findHomeBanner='SELECT * FROM herobanner'
         db.beginTransaction((err)=>{
            if(err){
             throw err
@@ -36,13 +37,20 @@ exports.getAboutUsPage=async(req,res,next)=>{
                                 throw err
                             })
                         }
-                        db.commit((err)=>{
+                        db.query(findHomeBanner,(err,heroBanner)=>{
                             if(err){
                                 db.rollback(()=>{
-                                    throw err 
+                                    throw err
                                 })
                             }
-                            return res.status(200).render('client/aboutUs',{navStatus:"about",countries,basicInfo,certifications,contactDropdown});
+                            db.commit((err)=>{
+                                if(err){
+                                    db.rollback(()=>{
+                                        throw err 
+                                    })
+                                }
+                                return res.status(200).render('client/aboutUs',{navStatus:"about",heroBanner,countries,basicInfo,certifications,contactDropdown});
+                            })
                         })
                     })
                 })

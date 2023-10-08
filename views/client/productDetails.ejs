@@ -27,6 +27,26 @@
 	
 	
 		</style>
+		<style>
+			.chatbot-button {
+				position: fixed;
+			bottom: 20px; /* Adjust the distance from the bottom as needed */
+			right: 20px; /* Adjust the distance from the right as needed */
+			display: flex;
+			align-items: center;
+			justify-content: center; /* Center content horizontally and vertically */
+			background-color: #25d366; /* WhatsApp green color */
+			color: white;
+			width: 60px; /* Adjust the width as needed */
+			height: 60px; /* Adjust the height as needed */
+			border-radius: 50%; /* Rounded shape for chatbot symbol */
+			text-decoration: none;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+		}
+
+		/* Chat icon style */
+		
+		</style>
 		<script src="/js/singleScript.js"></script>
 		<title>Bonanza</title>
 			
@@ -67,7 +87,7 @@
 							<li class="<%= navStatus==="product"?"navlink-active":"" %>"><a href="/ourProduct">Our Product</a></li>
 							<li class="<%= navStatus==="team"?"navlink-active":"" %>"><a href="/ourTeam">Our Team</a></li>
 							<li class="<%= navStatus==="contact"?"navlink-active":"" %>"><a href="/contactUs">Contact</a></li>
-							<li class="<%= navStatus==="enquiry"?"navlink-active":"" %>"><a href="/enquiry">Enquiry</a></li>
+							<li class="<%= navStatus==="enquiry"?"navlink-active":"" %>"><a href="/enquiry">Inquiry</a></li>
 						</ul>
 					</div>
 					<a class="text-xl normal-case"><img src="/img/Logo.png" alt="" /></a>
@@ -83,7 +103,7 @@
 						<li class="<%= navStatus==="product"?"navlink-active":"" %>"><a href="/ourProduct">Our Product</a></li>
 						<li class="<%= navStatus==="team"?"navlink-active":"" %>"><a href="/ourTeam">Our Team</a></li>
 						<li class="<%= navStatus==="contact"?"navlink-active":"" %>"><a href="/contactUs">Contact</a></li>
-						<li class="<%= navStatus==="enquiry"?"navlink-active":"" %>"><a href="/enquiry">Enquiry</a></li>
+						<li class="<%= navStatus==="enquiry"?"navlink-active":"" %>"><a href="/enquiry">Inquiry</a></li>
 					</ul>
 					
 				</div>
@@ -177,7 +197,7 @@
 					</div> -->
 
 					<a href="/enquiry" class="self-start mt-10 btn active-tab btn-md">
-						Enquiry
+						Inquiry
 					</a>
 				</div>
 			</div>
@@ -296,6 +316,10 @@
 				</div>
 			</div>
 		</div>
+
+		<a href="https://wa.me/<%= heroBanner[0].whatsappNumber %>" class="chatbot-button" target="_blank">
+			<i class="text-xl bi bi-whatsapp" style="font-size: 28px;"></i>
+		</a>
 
 		<script>
 			const tabs = document.querySelectorAll('.nav-tab');

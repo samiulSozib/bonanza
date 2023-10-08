@@ -5,11 +5,11 @@
 			<div
 				class="container flex flex-col items-center justify-center h-full mx-auto text-white gap-y-5"
 			>
-				<h2 class="text-5xl font-bold">Enquiry</h2>
+				<h2 class="text-5xl font-bold">Inquiry</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
 						<li><a href="/">Home</a></li>
-						<li class="font-medium">Enquiry</li>
+						<li class="font-medium">Inquiry</li>
 					</ul>
 				</div>
 			</div>
@@ -26,7 +26,7 @@
 				<div
 					class="flex flex-col p-5 py-20 rounded-lg lg:p-20 lg:w-1/2 justify-self-center gap-y-10 bg-base-100"
 				>
-					<h3 class="text-4xl font-bold text-secondary">Enquiry for Bonanza</h3>
+					<h3 class="text-4xl font-bold text-secondary">Inquiry for Bonanza</h3>
 					<form id="enquiryForm">
 						<div class="flex flex-col gap-y-5">
 							<input
@@ -71,6 +71,11 @@
 				</div>
 			</div>
 		</div>
+		<a href="https://wa.me/<%= heroBanner[0].whatsappNumber %>" class="chatbot-button" target="_blank">
+			<i class="text-xl bi bi-whatsapp" style="font-size: 28px;"></i>
+		</a>
+		
+		
 
 		<!-- footer section -->
         <%- include('./partials/footer.ejs') %>

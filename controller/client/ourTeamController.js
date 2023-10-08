@@ -4,6 +4,7 @@ exports.getOurTeam=async(req,res,next)=>{
     try{
         const findOurTeam='SELECT * FROM team'
         const findMDInformation='SELECT * FROM m_d_information LIMIT 1'
+        let findHomeBanner='SELECT * FROM herobanner'
         db.beginTransaction((err)=>{
             if(err){
                 throw err
@@ -20,13 +21,20 @@ exports.getOurTeam=async(req,res,next)=>{
                             throw err
                         })
                     }
-                    db.commit((err)=>{
+                    db.query(findHomeBanner,(err,heroBanner)=>{
                         if(err){
                             db.rollback(()=>{
                                 throw err
                             })
                         }
-                        return res.status(200).render('client/ourTeam',{navStatus:"team",teams,mdInformation});
+                        db.commit((err)=>{
+                            if(err){
+                                db.rollback(()=>{
+                                    throw err
+                                })
+                            }
+                            return res.status(200).render('client/ourTeam',{navStatus:"team",heroBanner,teams,mdInformation});
+                        })
                     })
                 })
             })

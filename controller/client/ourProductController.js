@@ -86,6 +86,8 @@ exports.getOurProduct=async(req,res,next)=>{
         });
 
         const allProducts = Object.values(nestedData);
+        let findHomeBanner='SELECT * FROM herobanner'
+        const  heroBanner=await queryAsyncWithoutValue(findHomeBanner)
 
 
                 db.commit((err)=>{
@@ -95,7 +97,7 @@ exports.getOurProduct=async(req,res,next)=>{
                         })
                     }
                     //return res.json(categories)
-                    return res.status(200).render('client/ourProduct',{navStatus:"product",basicInfo,categories,allProducts});
+                    return res.status(200).render('client/ourProduct',{navStatus:"product",heroBanner,basicInfo,categories,allProducts});
                 })
             }catch(e){
                 db.rollback(()=>{
@@ -167,8 +169,10 @@ exports.getProductDetails=async(req,res,next)=>{
           });
   
           const product = Object.values(nestedData)[0];
+          let findHomeBanner='SELECT * FROM herobanner'
+        const  heroBanner=await queryAsyncWithoutValue(findHomeBanner)
           //return res.json(product)
-        return res.status(200).render('client/productDetails',{navStatus:"product",product});
+        return res.status(200).render('client/productDetails',{navStatus:"product",heroBanner,product});
     }catch(e){
         console.log(e)
         return res.status(500).json({msg:'Internal Server Error'})

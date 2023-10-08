@@ -43,9 +43,9 @@
 						<p><%= mdInformation[0].website %></p>
 					</div>
 					<div class="flex mt-5 text-2xl gap-x-7 text-secondary">
-						<a href="<%= mdInformation[0].instagram %>"><i class="cursor-pointer bi bi-instagram"></i></a>
-						<a href="<%= mdInformation[0].facebook %>"><i class="cursor-pointer bi bi-facebook"></i></a>
-						<a href="<%= mdInformation[0].twitter %>"><i class="cursor-pointer bi bi-twitter"></i></a>
+						<a href="<%= mdInformation[0].instagram %>" target="_blank"><i class="cursor-pointer bi bi-instagram"></i></a>
+						<a href="<%= mdInformation[0].facebook %>" target="_blank"><i class="cursor-pointer bi bi-facebook"></i></a>
+						<a href="<%= mdInformation[0].twitter %>" target="_blank"><i class="cursor-pointer bi bi-twitter"></i></a>
 					</div>
 					<!-- <button
 						class="self-start mt-10 font-medium text-white normal-case btn-lg btn btn-secondary"
@@ -104,14 +104,14 @@
 			</div>
 		</div> -->
 		<div class="container flex flex-col px-5 mt-20 lg:px-0 gap-y-10"></div>
-
+		
 		<!-- Meet our expert section -->
 		<div
 			class="container flex flex-col items-center px-5 mt-20 mb-40 lg:px-0 lg:mt-0 gap-y-20"
 		>
 			<div class="flex flex-col items-center text-center gap-y-5">
 				<h2 class="text-5xl font-bold text-secondary">
-					Meet our experts
+					Meet Our Directors
 				</h2>
 				<!-- <p class="text-primary lg:w-[60%]">
 					Pellentesque vehicula eros neque, maximus mattis est
@@ -120,19 +120,52 @@
 				</p> -->
 			</div>
 			<div class="grid lg:grid-cols-3 gap-x-36 gap-y-16">
-				<% for(let team of teams){ %>
+				<% for(let i=0;i<2;i++){ %>
 				<div class="flex flex-col border rounded-lg p-7 gap-y-7">
-					<img src="<%= team.image %>" alt="" />
+					<img src="<%= teams[i].image %>" alt="" />
 					<div class="flex flex-col text-center gap-y-3">
 						<p class="text-xl font-bold text-secondary">
-							<%= team.name %>
+							<%= teams[i].name %>
 						</p>
-						<p class="text-primary"><%= team.designation %></p>
+						<p class="text-primary"><%= teams[i].designation %></p>
 					</div>
 				</div>
 				<% } %>
 			</div>
 		</div>
+
+		<!-- Meet our expert section -->
+		<div
+			class="container flex flex-col items-center px-5 mt-20 mb-40 lg:px-0 lg:mt-0 gap-y-20"
+		>
+			<div class="flex flex-col items-center text-center gap-y-5">
+				<h2 class="text-5xl font-bold text-secondary">
+					Meet Our Experts
+				</h2>
+				<!-- <p class="text-primary lg:w-[60%]">
+					Pellentesque vehicula eros neque, maximus mattis est
+					sagittis Nulla facilisi. In sed pretium metus. Proin pretium
+					id urna sit amet tincidunt.
+				</p> -->
+			</div>
+			<div class="grid lg:grid-cols-3 gap-x-36 gap-y-16">
+				<% for(let i=2;i<teams.length;i++){ %>
+				<div class="flex flex-col border rounded-lg p-7 gap-y-7">
+					<img src="<%= teams[i].image %>" alt="" />
+					<div class="flex flex-col text-center gap-y-3">
+						<p class="text-xl font-bold text-secondary">
+							<%= teams[i].name %>
+						</p>
+						<p class="text-primary"><%= teams[i].designation %></p>
+					</div>
+				</div>
+				<% } %>
+			</div>
+		</div>
+
+		<a href="https://wa.me/<%= heroBanner[0].whatsappNumber %>" class="chatbot-button" target="_blank">
+			<i class="text-xl bi bi-whatsapp" style="font-size: 28px;"></i>
+		</a>
 
 		<!-- footer section -->
 		<%- include('./partials/footer.ejs') %>
