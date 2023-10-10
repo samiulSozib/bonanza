@@ -5,7 +5,7 @@
 			<div
 				class="container flex flex-col items-center justify-center h-full mx-auto text-white gap-y-5"
 			>
-				<h2 class="text-5xl font-bold">Our Team</h2>
+				<h2 class="text-3xl font-bold lg:text-5xl">Our Team</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
 						<li><a href="/">Home</a></li>
@@ -19,7 +19,7 @@
 		<div class="container grid px-5 mt-20 gap-y-10 lg:px-0 lg:grid-cols-2">
 			<div style="margin: 15px;"><img src="<%= mdInformation[0].image %>" alt="" /></div>
 			<div class="flex flex-col gap-y-12">
-				<p class="text-4xl font-bold text-secondary">
+				<p class="text-3xl font-bold lg:text-4xl text-secondary">
 					<%= mdInformation[0].name %>
 				</p>
 				<p class="text-2xl font-bold text-secondary">
@@ -29,16 +29,16 @@
 					<%= mdInformation[0].statement %>
 				</p>
 				<div class="border"></div>
-				<div class="flex flex-col lg:w-1/2 gap-y-5">
-					<div class="grid grid-cols-2">
+				<div class="flex flex-col w-full lg:w-1/2 gap-y-5">
+					<div class="grid-cols-2 lg:grid">
 						<p class="font-bold text-secondary">Phone:</p>
 						<p><%= mdInformation[0].phoneNumber %></p>
 					</div>
-					<div class="grid grid-cols-2">
+					<div class="grid-cols-2 lg:grid">
 						<p class="font-bold text-secondary">Email:</p>
 						<p><%= mdInformation[0].email %></p>
 					</div>
-					<div class="grid grid-cols-2">
+					<div class="grid-cols-2 lg:grid">
 						<p class="font-bold text-secondary">Website:</p>
 						<p><%= mdInformation[0].website %></p>
 					</div>
@@ -110,7 +110,7 @@
 			class="container flex flex-col items-center px-5 mt-20 mb-40 lg:px-0 lg:mt-0 gap-y-20"
 		>
 			<div class="flex flex-col items-center text-center gap-y-5">
-				<h2 class="text-5xl font-bold text-secondary">
+				<h2 class="text-3xl font-bold lg:text-5xl text-secondary">
 					Meet Our Directors
 				</h2>
 				<!-- <p class="text-primary lg:w-[60%]">
@@ -139,7 +139,7 @@
 			class="container flex flex-col items-center px-5 mt-20 mb-40 lg:px-0 lg:mt-0 gap-y-20"
 		>
 			<div class="flex flex-col items-center text-center gap-y-5">
-				<h2 class="text-5xl font-bold text-secondary">
+				<h2 class="text-3xl font-bold lg:text-5xl text-secondary">
 					Meet Our Experts
 				</h2>
 				<!-- <p class="text-primary lg:w-[60%]">

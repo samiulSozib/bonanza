@@ -8,7 +8,7 @@
 			<div
 				class="container flex flex-col items-center justify-center h-full mx-auto text-white gap-y-5"
 			>
-				<h2 class="text-5xl font-bold">Our Product</h2>
+				<h2 class="text-3xl font-bold lg:text-5xl">Our Product</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
 						<li><a href="/">Home</a></li>
@@ -46,7 +46,7 @@
 						<i class="bi bi-arrow-right-circle"></i>
 						<%= category.category_name %>
 					  </p>
-					  <ul class="list-none pl-4 hidden" id="subcategory-list-<%= category.category_id %>">
+					  <ul class="hidden pl-4 list-none" id="subcategory-list-<%= category.category_id %>">
 						<% for (let subcategory of category.subcategories) { %>
 						<li class="py-2">
 						  <div style="margin-left: 30px;" class="flex items-center p-3 font-semibold duration-150 rounded-lg cursor-pointer hover:product-sidebar-link-active product-sidebar-link-active gap-x-3">
@@ -63,7 +63,7 @@
 				  
 
 				<!-- <div
-					class=" bottom-0 flex-col self-end hidden w-full px-5 py-8 text-white rounded-lg lg:flex justify-self-end gap-y-4 h-fit"
+					class="bottom-0 flex-col self-end hidden w-full px-5 py-8 text-white rounded-lg lg:flex justify-self-end gap-y-4 h-fit"
 					style="
 						background: url('./img/Group-1.png');
 						background-size: cover;
@@ -141,21 +141,21 @@
 			>
 				<div class="flex flex-col">
 					<p class="text-sm font-medium uppercase">numbers speak</p>
-					<p class="text-5xl font-bold">Success story</p>
+					<p class="text-4xl font-bold lg:text-5xl">Success story</p>
 				</div>
 				<div class="grid gap-y-10 lg:grid-cols-3 gap-x-20">
 					<div class="flex flex-col">
-						<p class="text-5xl font-bold lg:text-8xl"><%= basicInfo[0].responseRate %></p>
+						<p class="text-3xl font-bold lg:text-6xl"><%= basicInfo[0].responseRate %></p>
 						<p class="font-medium">Response rate</p>
 					</div>
 
 					<div class="flex flex-col">
-						<p class="text-5xl font-bold lg:text-8xl"><%= basicInfo[0].responseTime %></p>
+						<p class="text-3xl font-bold lg:text-6xl"><%= basicInfo[0].responseTime %></p>
 						<p class="font-medium">Response time</p>
 					</div>
 
 					<div class="flex flex-col">
-						<p class="text-5xl font-bold lg:text-8xl"><%= basicInfo[0].quotationPerformance %></p>
+						<p class="text-3xl font-bold lg:text-6xl"><%= basicInfo[0].quotationPerformance %></p>
 						<p class="font-medium">Ontime Delivery</p>
 					</div>
 				</div>
