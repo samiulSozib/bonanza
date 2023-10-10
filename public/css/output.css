@@ -2368,15 +2368,6 @@ details.collapse summary::-webkit-details-marker{
   line-height: 2;
 }
 
-.input-lg{
-  height: 4rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  line-height: 2;
-}
-
 .join.join-vertical{
   flex-direction: column;
 }
@@ -2441,21 +2432,6 @@ details.collapse summary::-webkit-details-marker{
   padding-right: 1rem;
 }
 
-.select-lg{
-  height: 4rem;
-  padding-left: 1.5rem;
-  padding-right: 2rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  line-height: 2;
-  min-height: 4rem;
-}
-
-[dir="rtl"] .select-lg{
-  padding-left: 2rem;
-  padding-right: 1.5rem;
-}
-
 .textarea-md{
   padding-left: 1rem;
   padding-right: 1rem;
@@ -2463,16 +2439,6 @@ details.collapse summary::-webkit-details-marker{
   padding-bottom: 0.75rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  line-height: 2;
-}
-
-.textarea-lg{
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
   line-height: 2;
 }
 
@@ -2586,24 +2552,6 @@ details.collapse summary::-webkit-details-marker{
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   border-radius: var(--rounded-box, 1rem);
-}
-
-.menu-sm :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)),
-  .menu-sm :where(li:not(.menu-title) > details > summary:not(.menu-title)){
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  border-radius: var(--rounded-btn, 0.5rem);
-}
-
-.menu-sm .menu-title{
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 }
 
 .menu-md :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)),
@@ -2912,10 +2860,6 @@ details.collapse summary::-webkit-details-marker{
 
 .h-\[35vh\]{
   height: 35vh;
-}
-
-.h-\[50vh\]{
-  height: 50vh;
 }
 
 .h-auto{
@@ -3361,10 +3305,6 @@ details.collapse summary::-webkit-details-marker{
   border-bottom-width: 8px;
 }
 
-.border-r{
-  border-right-width: 1px;
-}
-
 .border-solid{
   border-style: solid;
 }
@@ -3404,11 +3344,6 @@ details.collapse summary::-webkit-details-marker{
 
 .border-transparent{
   border-color: transparent;
-}
-
-.border-orange-600{
-  --tw-border-opacity: 1;
-  border-color: rgb(234 88 12 / var(--tw-border-opacity));
 }
 
 .border-b-\[\#499851\]{
@@ -3656,6 +3591,16 @@ details.collapse summary::-webkit-details-marker{
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-40{
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
+.py-36{
+  padding-top: 9rem;
+  padding-bottom: 9rem;
 }
 
 .pb-3{
@@ -4388,10 +4333,6 @@ details.collapse summary::-webkit-details-marker{
     width: 90%;
   }
 
-  .lg\:w-full{
-    width: 100%;
-  }
-
   .lg\:translate-y-\[-30\%\]{
     --tw-translate-y: -30%;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -4435,12 +4376,12 @@ details.collapse summary::-webkit-details-marker{
     row-gap: 0px;
   }
 
-  .lg\:gap-y-20{
-    row-gap: 5rem;
-  }
-
   .lg\:gap-y-10{
     row-gap: 2.5rem;
+  }
+
+  .lg\:gap-y-20{
+    row-gap: 5rem;
   }
 
   .lg\:self-center{
@@ -4455,12 +4396,12 @@ details.collapse summary::-webkit-details-marker{
     border-width: 0px;
   }
 
-  .lg\:border-r{
-    border-right-width: 1px;
-  }
-
   .lg\:border-b-0{
     border-bottom-width: 0px;
+  }
+
+  .lg\:border-r{
+    border-right-width: 1px;
   }
 
   .lg\:p-0{
@@ -4494,8 +4435,18 @@ details.collapse summary::-webkit-details-marker{
     padding-bottom: 2.5rem;
   }
 
+  .lg\:py-36{
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+  }
+
   .lg\:text-left{
     text-align: left;
+  }
+
+  .lg\:text-4xl{
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 
   .lg\:text-5xl{
@@ -4516,16 +4467,6 @@ details.collapse summary::-webkit-details-marker{
   .lg\:text-8xl{
     font-size: 6rem;
     line-height: 1;
-  }
-
-  .lg\:text-9xl{
-    font-size: 8rem;
-    line-height: 1;
-  }
-
-  .lg\:text-4xl{
-    font-size: 2.25rem;
-    line-height: 2.5rem;
   }
 
   .lg\:shadow-xl{
