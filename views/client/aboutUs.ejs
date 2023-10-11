@@ -4,7 +4,7 @@
 			<div
 				class="container flex flex-col items-center justify-center h-full mx-auto text-white gap-y-5"
 			>
-				<h2 class="text-5xl font-bold">About Us</h2>
+				<h2 class="text-3xl font-bold lg:text-5xl">About Us</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
 						<li><a href="/">Home</a></li>
@@ -24,7 +24,7 @@
 			<div class="flex flex-col lg:w-1/2 gap-y-10">
 				<div class="flex flex-col">
 					<p class="font-medium uppercase text-accent">why choose us</p>
-					<p class="text-5xl font-bold text-primary">
+					<p class="text-4xl font-bold lg:text-5xl text-primary">
 						Winning the clients' trust & satisfiction are our first motto
 					</p>
 				</div>
@@ -50,7 +50,7 @@
 							<p>Export</p>
 							<div class="w-full relative h-3 border rounded-lg bg-[#d9d9d9]">
 								<span
-									class="absolute rounded-lg top-0 left-0 h-full w-full bg-accent"
+									class="absolute top-0 left-0 w-full h-full rounded-lg bg-accent"
 								></span>
 								<span class="absolute top-[-300%] left-[95%]"><%= basicInfo[0].exportRate %></span>
 							</div>
@@ -60,7 +60,7 @@
 							<p>Production</p>
 							<div class="w-full relative h-3 border rounded-lg bg-[#d9d9d9]">
 								<span
-									class="absolute rounded-lg top-0 left-0 h-full w-full bg-accent"
+									class="absolute top-0 left-0 w-full h-full rounded-lg bg-accent"
 								></span>
 								<span class="absolute top-[-300%] left-[95%]"><%= basicInfo[0].productionRate %></span>
 							</div>
@@ -75,7 +75,7 @@
 			<div class="flex flex-col lg:w-1/2 gap-y-10">
 				<div class="flex flex-col">
 					<p class="font-medium uppercase text-accent">Countries we export</p>
-					<p class="text-6xl font-bold text-secondary">
+					<p class="text-5xl font-bold lg:text-6xl text-secondary">
 						We export worldwide
 					</p>
 				</div>
@@ -104,16 +104,16 @@
 		>
 			<div class="flex flex-col text-center">
 				<p class="font-medium uppercase text-accent">Our Capablities</p>
-				<p class="text-6xl font-bold text-primary">
+				<p class="text-5xl font-bold lg:text-6xl text-primary">
 					A perfect business solution
 				</p>
 			</div>
 			<div class="grid lg:grid-cols-4 gap-y-10">
 				<div
-					class="flex flex-col items-center px-10 text-center border-r gap-y-5"
+					class="flex flex-col items-center px-10 py-10 text-center border-b lg:border-b-0 lg:py-0 lg:border-r gap-y-5"
 				>
 					<p
-						class="text-[transparent] text-6xl font-bold bg-clip-text bg-gradient"
+						class="text-[transparent] text-4xl lg:text-6xl font-bold bg-clip-text bg-gradient"
 					>
 					<%= basicInfo[0].employeesCount %>
 					</p>
@@ -121,10 +121,10 @@
 				</div>
 
 				<div
-					class="flex flex-col items-center px-10 text-center border-r gap-y-5"
+					class="flex flex-col items-center px-10 py-10 text-center border-b lg:border-b-0 lg:py-0 lg:border-r gap-y-5"
 				>
 					<p
-						class="text-[transparent] text-6xl font-bold bg-clip-text bg-gradient"
+						class="text-[transparent] text-4xl lg:text-6xl font-bold bg-clip-text bg-gradient"
 					>
 					<!--<%= basicInfo[0].officeCount %>--> 24
 					</p>
@@ -132,19 +132,19 @@
 				</div>
 
 				<div
-					class="flex flex-col items-center px-10 text-center border-r gap-y-5"
+					class="flex flex-col items-center px-10 py-10 text-center border-b lg:border-b-0 lg:py-0 lg:border-r gap-y-5"
 				>
 					<p
-						class="text-[transparent] text-6xl font-bold bg-clip-text bg-gradient"
+						class="text-[transparent] text-4xl lg:text-6xl font-bold bg-clip-text bg-gradient"
 					>
 					<%= basicInfo[0].projectCount %>
 					</p>
 					<p class="w-3/4">total number of export projects have been completed in 12 years</p>
 				</div>
 
-				<div class="flex flex-col items-center px-10 text-center gap-y-5">
+				<div class="flex flex-col items-center px-10 py-10 text-center border-b lg:border-0 lg:py-0 gap-y-5">
 					<p
-						class="text-[transparent] text-6xl font-bold bg-clip-text bg-gradient"
+						class="text-[transparent] text-4xl lg:text-6xl font-bold bg-clip-text bg-gradient"
 					>
 					<!--<%= basicInfo[0].customerCount %>--> 600
 					<p class="lg:w-1/2">Metric ton delivery capacity in a month</p>
@@ -200,7 +200,7 @@
 		<div class="container flex flex-col px-5 mt-36 lg:px-0">
 			<div class="flex flex-col items-center">
 				<p class="font-medium uppercase text-accent"></p>
-				<p class="text-5xl font-bold text-primary">Certification</p>
+				<p class="text-4xl font-bold lg:text-5xl text-primary">Certification</p>
 			</div>
 			<div class="grid mt-20 lg:grid-cols-2 gap-x-32 lg:gap-y-20 gap-y-7">
 				<% for(let certification of certifications){ %>
@@ -219,7 +219,7 @@
 
 		<!-- request a callback section -->
 		<div
-			class="flex items-center py-10 mt-36 min-h-max"
+			class="flex items-center lg:py-10 mt-36 min-h-max"
 			style="background: url('./img/aboutUs-pic4.png'); background-size: cover"
 		>
 			<div
@@ -227,7 +227,7 @@
 			>
 				<div class="flex flex-col gap-y-3 lg:w-[40%] items-center text-center">
 					<p class="font-medium uppercase text-accent">request a callback</p>
-					<p class="text-5xl font-bold text-secondary">
+					<p class="px-5 text-4xl font-bold lg:text-5xl text-secondary lg:px-0">
 						Let us know about your next buying plan of jute goods
 					</p>
 				</div>
@@ -236,46 +236,46 @@
 					consectetur, ligula semper sagittis lobortis, eros metus efficitur
 					purus
 				</p> -->
-				<form id="contactForm">
-					<div class="flex flex-col w-full px-5 lg:w-3/4 lg:px-0 gap-y-5">
-						<div class="grid gap-y-10 lg:grid-cols-2 gap-x-5">
+				<form id="contactForm" class="self-center w-full px-5 lg:w-3/4 lg:px-0">
+					<div class="flex flex-col gap-y-5">
+						<div class="grid gap-y-5 lg:gap-y-10 lg:grid-cols-2 gap-x-5">
 							<input
-								class="input input-lg input-bordered"
+								class="w-full input input-md lg:input-lg input-bordered"
 								type="text"
 								placeholder="Name"
 								name="name"
 								required
 							/>
 							<input
-								class="input input-lg input-bordered"
+								class="w-full input input-md lg:input-lg input-bordered"
 								type="email"
 								placeholder="Email address"
 								name="email"
 								required
 							/>
 						</div>
-						<div class="grid gap-y-10 lg:grid-cols-2 gap-x-5">
+						<div class="grid gap-y-5 lg:gap-y-10 lg:grid-cols-2 gap-x-5">
 							<input
-								class="input input-lg input-bordered"
+								class="w-full input input-md lg:input-lg input-bordered"
 								type="phone"
 								placeholder="Phone"
 								name="phoneNumber"
 								required
 							/>
-							<select id="category" name="category" class="font-normal select select-lg select-bordered">
+							<select id="category" name="category" class="font-normal select select-md lg:select-lg select-bordered">
 								<% for(let dropdown of contactDropdown){ %>
 									<option value="<%= dropdown.name %>"><%= dropdown.name %></option>
 								<% } %>
 							</select>
 						</div>
 						<textarea
-								class="textarea textarea-lg h-36 input-bordered"
+								class="textarea textarea-md lg:textarea-lg h-36 input-bordered"
 								placeholder="Your message"
 								name="message"
 								required
 							></textarea>
 						<button type="submit"
-							class="lg:self-center self-start border-0 px-16 text-white normal-case btn btn-lg bg-gradient-to-r from-[#1B8900] to-[#65A184]"
+							class="lg:self-center self-start border-0 px-16 text-white normal-case btn btn-md xl:btn-lg bg-gradient-to-r from-[#1B8900] to-[#65A184]"
 						>
 							Submit
 						</button>

@@ -8,7 +8,7 @@
 			<div
 				class="container flex flex-col items-center justify-center h-full mx-auto text-white gap-y-5"
 			>
-				<h2 class="text-5xl font-bold">Contact Us</h2>
+				<h2 class="text-4xl font-bold lg:text-5xl">Contact Us</h2>
 				<div class="text-sm breadcrumbs">
 					<ul>
 						<li><a href="/">Home</a></li>
@@ -36,7 +36,7 @@
 					class="grid p-5 py-10 rounded-lg lg:shadow-xl lg:p-20 gap-y-10 lg:w-3/4 lg:grid-cols-2 gap-x-10 bg-base-100"
 				>
 					<div class="flex flex-col gap-y-10">
-						<h3 class="text-5xl font-bold text-secondary">
+						<h3 class="text-4xl font-bold lg:text-5xl text-secondary">
 							Let us know about your next buying plan of jute goods
 						</h3>
 						<!-- <p>
@@ -71,20 +71,20 @@
 					</div>
 
 					<div class="flex flex-col gap-y-10">
-						<h3 class="text-5xl font-bold text-secondary">
+						<h3 class="text-4xl font-bold lg:text-5xl text-secondary">
 							Get In Touch
 						</h3>
 						<form id="contactForm">
 							<div class="flex flex-col w-full gap-y-5">
 								<input
-									class="input input-lg input-bordered"
+									class="input input-md lg:input-lg input-bordered"
 									type="text"
 									placeholder="Name"
 									name="name"
 									required
 								/>
 								<input
-									class="input input-lg input-bordered"
+									class="input input-md lg:input-lg input-bordered"
 									type="phone"
 									placeholder="Phone",
 									name="phoneNumber"
@@ -92,20 +92,20 @@
 								/>
 	
 								<input
-									class="input input-lg input-bordered"
+									class="input input-md lg:input-lg input-bordered"
 									type="email"
 									placeholder="Email address",
 									name="email"
 									required
 								/>
-								<select id="category" name="category" class="font-normal select select-lg select-bordered">
+								<select id="category" name="category" class="font-normal select select-md lg:select-lg select-bordered">
 									<% for(let dropdown of contactDropdown){ %>
 										<option value="<%= dropdown.name %>"><%= dropdown.name %></option>
 									<% } %>
 								</select>
 	
 								<textarea
-									class="textarea textarea-lg textarea-bordered"
+									class="textarea textarea-md lg:textarea-lg textarea-bordered"
 									placeholder="Your message"
 									name="message"
 									required
